@@ -7,7 +7,15 @@ class UserCreate(BaseModel):
     password: str
 
 
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+
 class User(BaseModel):
-    id: str
+    id: int
     full_name: str
     email: EmailStr
+
+    class Config:
+        from_attributes = True
