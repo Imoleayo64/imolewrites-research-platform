@@ -1,8 +1,8 @@
 fastapi
-uvicorn[standard]
+uvicorn
+sqlalchemy
 pydantic
 python-dotenv
-sqlalchemy
-httpx
-python-multipart
-google-generativeai
+passlib[bcrypt]
+python-jose[cryptography]
+email-validator
