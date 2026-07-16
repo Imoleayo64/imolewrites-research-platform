@@ -1,3 +1,5 @@
+from backend.services.auth_service import login_user
+from backend.models.user import UserLogin
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -33,3 +35,21 @@ def status():
         "service": "Authentication",
         "status": "running"
     }
+@router.post("/login")
+def login(
+    credentials: UserLogin,
+    db: Session = Depends(get_db)
+):
+    token = login_user(
+        db,
+        credentials.email,
+        credentials.password
+    )
+
+    if token is None:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password."
+        )
+
+    return token
