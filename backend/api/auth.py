@@ -1,30 +1,35 @@
-from fastapi import APIRouter
-from uuid import uuid4
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
 
-from backend.models.user import User, UserCreate
+from backend.crud.users import create_user, get_user_by_email
+from backend.database.session import get_db
+from backend.models.user import UserCreate
 
 router = APIRouter(
     prefix="/auth",
     tags=["Authentication"]
 )
 
-users: list[User] = []
+
+@router.post("/register")
+def register(
+    user: UserCreate,
+    db: Session = Depends(get_db)
+):
+    existing = get_user_by_email(db, user.email)
+
+    if existing:
+        raise HTTPException(
+            status_code=400,
+            detail="Email already exists."
+        )
+
+    return create_user(db, user)
 
 
 @router.get("/")
-def auth_status():
+def status():
     return {
-        "message": "Authentication service is ready."
+        "service": "Authentication",
+        "status": "running"
     }
-
-
-@router.post("/register", response_model=User)
-def register(user: UserCreate):
-    new_user = User(
-        id=str(uuid4()),
-        full_name=user.full_name,
-        email=user.email
-    )
-
-    users.append(new_user)
-    return new_user
