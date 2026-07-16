@@ -11,6 +11,10 @@ class Settings:
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
     DATABASE_URL = os.getenv("DATABASE_URL")
     SECRET_KEY = os.getenv("SECRET_KEY")
+    SECRET_KEY = os.getenv(
+    "SECRET_KEY",
+    "imolewrites-development-secret"
+    )
 
 
 settings = Settings()
