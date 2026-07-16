@@ -1,0 +1,35 @@
+openapi: 3.1.0
+info:
+  title: ImoleWrites Research Platform API
+  version: 2.0.0
+  description: API specification for the ImoleWrites platform.
+
+paths:
+  /:
+    get:
+      summary: Home
+      responses:
+        "200":
+          description: OK
+
+  /health:
+    get:
+      summary: Health Check
+      responses:
+        "200":
+          description: Healthy
+
+  /auth/register:
+    post:
+      summary: Register a new user
+
+  /auth/login:
+    post:
+      summary: Login
+
+  /projects:
+    get:
+      summary: List Projects
+
+    post:
+      summary: Create Project
