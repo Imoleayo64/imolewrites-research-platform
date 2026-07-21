@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create account — ImoleWrites Research Hub</title>
+  <meta name="description" content="Create your free ImoleWrites Research Hub account and start researching smarter today." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="auth">
+    <aside class="auth__aside">
+      <a class="logo" href="../index.html">
+        <span class="logo__mark"><span data-icon="logo"></span></span>
+        <span class="logo__name">Imole<b>Writes</b></span>
+      </a>
+      <div>
+        <p class="auth__quote">Join 120,000+ researchers writing better, smarter, and faster. Your first project is on us — no credit card required.</p>
+        <div class="flex flex-col gap-3" style="margin-top:28px;max-width:420px;">
+          <div class="flex items-center gap-3"><span style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.2);display:grid;place-items:center;"><span data-icon="check2"></span></span><span>Unlimited literature search</span></div>
+          <div class="flex items-center gap-3"><span style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.2);display:grid;place-items:center;"><span data-icon="check2"></span></span><span>AI Research Assistant</span></div>
+          <div class="flex items-center gap-3"><span style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.2);display:grid;place-items:center;"><span data-icon="check2"></span></span><span>Citations in 6 styles</span></div>
+        </div>
+      </div>
+      <div class="auth__stats">
+        <div><div class="n">120k+</div><div class="l">Researchers</div></div>
+        <div><div class="n">4.9/5</div><div class="l">Avg. rating</div></div>
+        <div><div class="n">90</div><div class="l">Countries</div></div>
+      </div>
+    </aside>
+
+    <main class="auth__main">
+      <div class="auth__card">
+        <a class="auth__back" href="../index.html"><span data-icon="arrowRight" style="transform:scaleX(-1);"></span> Back to home</a>
+        <span class="eyebrow">Get started free</span>
+        <h1 style="margin-block:12px 6px;">Create your account</h1>
+        <p class="text-muted" style="margin-bottom:28px;">Research smarter in under a minute.</p>
+
+        <div class="auth__socials" style="margin-bottom:20px;">
+          <button class="social-btn"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 7.3 9.14 5.38 12 5.38z"/></svg> Google</button>
+          <button class="social-btn"><svg viewBox="0 0 24 24" width="18" height="18" fill="#0a66c2"><path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 0 0-4 0v6h-4v-6a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg> LinkedIn</button>
+        </div>
+
+        <div class="divider-text">or sign up with email</div>
+
+        <form data-demo-form="register" data-redirect="../app/dashboard.html">
+          <div class="grid grid-2 gap-4">
+            <div class="field"><label class="label" for="fn">First name</label><input class="input" id="fn" type="text" placeholder="Imole" required /></div>
+            <div class="field"><label class="label" for="ln">Last name</label><input class="input" id="ln" type="text" placeholder="Ayodele" required /></div>
+          </div>
+          <div class="field">
+            <label class="label" for="role">I am a...</label>
+            <select class="select" id="role">
+              <option>Researcher</option><option>Student</option><option>Lecturer / Professor</option>
+              <option>University / Institution</option><option>Journal Editor</option><option>Academic Writer</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="email">Email</label>
+            <div class="input-group"><span class="input-icon"><span data-icon="mail"></span></span><input class="input" id="email" type="email" placeholder="you@university.edu" required /></div>
+          </div>
+          <div class="field">
+            <label class="label" for="password">Password</label>
+            <div class="input-group">
+              <span class="input-icon"><span data-icon="lock"></span></span>
+              <input class="input" id="password" type="password" placeholder="Create a strong password" required style="padding-right:46px;" />
+              <span class="input-affix"><button type="button" data-pw-toggle="password" aria-label="Show password">
+                <span class="pw-show"><span data-icon="eye"></span></span>
+                <span class="pw-hide" style="display:none;"><span data-icon="eyeOff"></span></span>
+              </button></span>
+            </div>
+            <div class="progress" style="margin-top:8px;height:5px;"><div class="progress__bar" style="width:60%;"></div></div>
+            <span class="hint">Use 8+ characters with a mix of letters, numbers & symbols.</span>
+          </div>
+          <label class="checkbox" style="margin-bottom:20px;"><input type="checkbox" required /> <span>I agree to the <a class="text-blue" href="#">Terms</a> and <a class="text-blue" href="#">Privacy Policy</a>.</span></label>
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Create free account <span data-icon="sparkles"></span></button>
+        </form>
+
+        <p class="auth__foot">Already have an account? <a class="text-blue fw-semibold" href="login.html">Log in</a></p>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

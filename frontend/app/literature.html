@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Literature Search — ImoleWrites Research Hub</title>
+  <meta name="description" content="Search 85M+ academic papers with smart filters." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="literature"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Literature Search"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>Literature Search</h1><p>Search 85M+ papers across PubMed, arXiv, Semantic Scholar & more.</p></div>
+          <a class="btn btn-secondary" href="library.html"><span data-icon="bookmark"></span> My library (142)</a>
+        </div>
+
+        <!-- Search bar -->
+        <div class="card card-pad-lg" style="margin-bottom:24px;">
+          <div class="input-group" style="margin-bottom:0;">
+            <span class="input-icon"><span data-icon="search"></span></span>
+            <input class="input" type="text" style="height:54px;font-size:var(--fs-lg);" placeholder="Search papers, authors, DOIs, or ask a question..." value="adaptive machine learning climate modeling" />
+            <span class="input-affix"><button class="btn btn-primary" style="margin-right:6px;">Search <span data-icon="arrowRight"></span></button></span>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-bar">
+          <div class="filter-chips" data-chip-group>
+            <button class="chip active">All</button>
+            <button class="chip">Open access</button>
+            <button class="chip">Review articles</button>
+            <button class="chip">Last 5 years</button>
+            <button class="chip">Highly cited</button>
+          </div>
+          <div class="grow"></div>
+          <select class="select" style="width:auto;">
+            <option>Relevance</option><option>Newest first</option><option>Most cited</option>
+          </select>
+        </div>
+
+        <p class="text-muted" style="margin-bottom:20px;font-size:var(--fs-sm);">About <strong class="text-2">2,480,213</strong> results · showing 6</p>
+
+        <!-- Results -->
+        <div class="flex flex-col gap-4">
+          <article class="card paper-card card-hover">
+            <div class="paper-card__top">
+              <div>
+                <div class="flex items-center gap-2" style="margin-bottom:6px;"><span class="badge badge-blue">Journal Article</span><span class="badge badge-green">Open Access</span></div>
+                <h4>Adaptive Ensemble Methods for Non-Stationary Climate Projections</h4>
+                <div class="authors">Smith, J., Okafor, A., & Chen, L. — <em>Nature Climate Change</em>, 2024</div>
+              </div>
+              <div class="paper-actions">
+                <button class="saved" title="Saved"><span data-icon="bookmark"></span></button>
+                <button title="More"><span data-icon="dots"></span></button>
+              </div>
+            </div>
+            <p class="abstract">We propose an adaptive ensemble framework that re-weights base learners in response to distributional shift, demonstrating an 18% RMSE reduction over state-of-the-art baselines across three major basins under non-stationary climate conditions.</p>
+            <div class="paper-card__foot">
+              <div class="paper-meta">
+                <span><span data-icon="star"></span> Cited 412</span>
+                <span><span data-icon="clock"></span> 14 min read</span>
+                <span><span data-icon="quote"></span> 2.8k views</span>
+              </div>
+              <div class="flex gap-2">
+                <button class="btn btn-soft btn-sm"><span data-icon="file"></span> PDF</button>
+                <button class="btn btn-soft btn-sm"><span data-icon="quote"></span> Cite</button>
+                <button class="btn btn-ghost btn-sm"><span data-icon="sparkles"></span> Summarize</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card paper-card card-hover">
+            <div class="paper-card__top">
+              <div>
+                <div class="flex items-center gap-2" style="margin-bottom:6px;"><span class="badge badge-purple">Preprint</span><span class="badge badge-teal">arXiv</span></div>
+                <h4>Deep Learning for Regional Climate Downscaling: A Survey</h4>
+                <div class="authors">Patel, R., & Moreno, E. — <em>arXiv:2403.11245</em>, 2024</div>
+              </div>
+              <div class="paper-actions"><button title="Save"><span data-icon="bookmark"></span></button><button title="More"><span data-icon="dots"></span></button></div>
+            </div>
+            <p class="abstract">This survey reviews 120 deep learning approaches to statistical downscaling, categorizing them by architecture and identifying persistent challenges in calibration, physical consistency, and out-of-distribution generalization.</p>
+            <div class="paper-card__foot">
+              <div class="paper-meta"><span><span data-icon="star"></span> Cited 87</span><span><span data-icon="clock"></span> 22 min read</span><span><span data-icon="quote"></span> 1.2k views</span></div>
+              <div class="flex gap-2"><button class="btn btn-soft btn-sm"><span data-icon="file"></span> PDF</button><button class="btn btn-soft btn-sm"><span data-icon="quote"></span> Cite</button></div>
+            </div>
+          </article>
+
+          <article class="card paper-card card-hover">
+            <div class="paper-card__top">
+              <div>
+                <div class="flex items-center gap-2" style="margin-bottom:6px;"><span class="badge badge-blue">Journal Article</span></div>
+                <h4>Reproducibility Crises in Computational Climate Science</h4>
+                <div class="authors">Wobbrock, J., & Tan, M. — <em>Journal of Computational Physics</em>, 2023</div>
+              </div>
+              <div class="paper-actions"><button class="saved" title="Saved"><span data-icon="bookmark"></span></button><button title="More"><span data-icon="dots"></span></button></div>
+            </div>
+            <p class="abstract">An analysis of reproducibility across 400 computational climate studies finds that fewer than 23% provide complete data pipelines, underscoring an urgent need for standardized validation protocols.</p>
+            <div class="paper-card__foot">
+              <div class="paper-meta"><span><span data-icon="star"></span> Cited 156</span><span><span data-icon="clock"></span> 18 min read</span><span><span data-icon="quote"></span> 980 views</span></div>
+              <div class="flex gap-2"><button class="btn btn-soft btn-sm"><span data-icon="file"></span> PDF</button><button class="btn btn-soft btn-sm"><span data-icon="quote"></span> Cite</button></div>
+            </div>
+          </article>
+
+          <article class="card paper-card card-hover">
+            <div class="paper-card__top">
+              <div>
+                <div class="flex items-center gap-2" style="margin-bottom:6px;"><span class="badge badge-amber">Review</span><span class="badge badge-green">Open Access</span></div>
+                <h4>Transformer Architectures for Spatio-Temporal Forecasting</h4>
+                <div class="authors">Kim, S., & Adeyemi, T. — <em>Reviews of Geophysics</em>, 2024</div>
+              </div>
+              <div class="paper-actions"><button title="Save"><span data-icon="bookmark"></span></button><button title="More"><span data-icon="dots"></span></button></div>
+            </div>
+            <p class="abstract">A comprehensive review of transformer-based methods for spatio-temporal forecasting, evaluating attention mechanisms, positional encodings, and data efficiency across geophysical domains.</p>
+            <div class="paper-card__foot">
+              <div class="paper-meta"><span><span data-icon="star"></span> Cited 203</span><span><span data-icon="clock"></span> 26 min read</span><span><span data-icon="quote"></span> 2.1k views</span></div>
+              <div class="flex gap-2"><button class="btn btn-soft btn-sm"><span data-icon="file"></span> PDF</button><button class="btn btn-soft btn-sm"><span data-icon="quote"></span> Cite</button></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="text-center" style="margin-top:32px;">
+          <button class="btn btn-secondary btn-lg">Load more results <span data-icon="chevronDown"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

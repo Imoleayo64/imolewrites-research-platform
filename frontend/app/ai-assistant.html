@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Research Assistant — ImoleWrites Research Hub</title>
+  <meta name="description" content="Chat with your AI research assistant, grounded in your reference library." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <style>
+    .ai-layout { display:grid; grid-template-columns: 280px 1fr; gap:0; height: calc(100vh - var(--nav-height)); }
+    .ai-history { border-right:1px solid var(--border); background:var(--surface); display:flex; flex-direction:column; }
+    .ai-chat { display:flex; flex-direction:column; overflow:hidden; }
+    .ai-main { flex:1; overflow-y:auto; padding: clamp(20px,4vw,48px); }
+    .ai-welcome { max-width:720px; margin: auto; text-align:center; padding-top: 6vh; }
+    .prompt-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:14px; margin-top:28px; text-align:left; }
+    .prompt-card { padding:18px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface); cursor:pointer; transition:all .2s; }
+    .prompt-card:hover { border-color:var(--blue-400); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+    @media(max-width:1024px){ .ai-layout{grid-template-columns:1fr;} .ai-history{display:none;} }
+    @media(max-width:640px){ .prompt-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="assistant"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="AI Assistant"></div>
+
+      <div class="ai-layout">
+        <!-- Conversation history -->
+        <aside class="ai-history">
+          <div class="ws-head"><h4 style="font-size:var(--fs-md);">Conversations</h4><a class="btn btn-primary btn-xs" href="ai-assistant.html"><span data-icon="plus"></span></a></div>
+          <div class="ws-scroll">
+            <div class="ws-tree-item active"><span data-icon="chat"></span><span class="name">Stats test for mixed design</span></div>
+            <div class="ws-tree-item"><span data-icon="chat"></span><span class="name">Summarize microbiome papers</span></div>
+            <div class="ws-tree-item"><span data-icon="chat"></span><span class="name">Rewrite intro for clarity</span></div>
+            <div class="ws-tree-item"><span data-icon="chat"></span><span class="name">Grant aims brainstorm</span></div>
+            <div class="ws-tree-item"><span data-icon="chat"></span><span class="name">Convert MLA → APA refs</span></div>
+            <div class="ws-tree-item"><span data-icon="chat"></span><span class="name">Find replication studies</span></div>
+          </div>
+        </aside>
+
+        <!-- Chat -->
+        <section class="ai-chat">
+          <div class="ai-main">
+            <div class="ai-welcome" id="welcome">
+              <div class="verify-icon" style="margin-inline:auto;margin-bottom:20px;"><span data-icon="sparkles"></span></div>
+              <h2 style="margin-bottom:8px;">How can I help your research today?</h2>
+              <p class="text-muted">Ask anything — drafting, analysis, citations, or literature. Grounded in your library.</p>
+              <div class="prompt-grid">
+                <button class="prompt-card" data-suggest="Summarize the key findings of my 3 most recent papers"><span class="icon-tile xs bg-blue" style="margin-bottom:10px;"><span data-icon="bookOpen"></span></span><div class="fw-semibold">Summarize papers</div><div class="text-muted" style="font-size:var(--fs-sm);">Key findings from recent sources</div></button>
+                <button class="prompt-card" data-suggest="Draft a methodology section for a mixed-methods study"><span class="icon-tile xs bg-teal" style="margin-bottom:10px;"><span data-icon="pen"></span></span><div class="fw-semibold">Draft a section</div><div class="text-muted" style="font-size:var(--fs-sm);">Methods, intro, or discussion</div></button>
+                <button class="prompt-card" data-suggest="Which statistical test fits my experimental design?"><span class="icon-tile xs bg-purple" style="margin-bottom:10px;"><span data-icon="chart"></span></span><div class="fw-semibold">Statistics help</div><div class="text-muted" style="font-size:var(--fs-sm);">Pick & interpret the right test</div></button>
+                <button class="prompt-card" data-suggest="Suggest journals for my abstract on climate modeling"><span class="icon-tile xs bg-amber" style="margin-bottom:10px;"><span data-icon="compass"></span></span><div class="fw-semibold">Find a journal</div><div class="text-muted" style="font-size:var(--fs-sm);">Match your abstract to venues</div></button>
+              </div>
+            </div>
+
+            <div class="chat-messages" data-chat-messages style="max-width:760px;margin-inline:auto;padding:0;display:none;"></div>
+          </div>
+
+          <!-- Composer -->
+          <div style="border-top:1px solid var(--border);padding:16px; background:var(--bg);">
+            <form data-chat-form style="max-width:760px;margin-inline:auto;">
+              <div class="chat-composer" style="background:var(--surface);">
+                <textarea placeholder="Message your AI research assistant..." rows="1"></textarea>
+                <button class="chat-send" type="submit" aria-label="Send"><span data-icon="send"></span></button>
+              </div>
+              <p class="text-muted text-center" style="font-size:var(--fs-xs);margin-top:8px;">AI can make mistakes. Verify citations against your library.</p>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/editor.js"></script>
+  <script>
+    // Hide welcome once first message sent
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.querySelector("[data-chat-form]");
+      var welcome = document.getElementById("welcome");
+      var msgs = document.querySelector("[data-chat-messages]");
+      form && form.addEventListener("submit", function () {
+        if (welcome) welcome.style.display = "none";
+        if (msgs) msgs.style.display = "flex";
+      });
+    });
+  </script>
+</body>
+</html>

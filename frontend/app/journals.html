@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal Recommendation — ImoleWrites Research Hub</title>
+  <meta name="description" content="Upload your abstract and get ranked journal suggestions with acceptance probability and submission checklists." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="journals"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Journal Recommendation"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>Journal Recommendation</h1><p>Find the right home for your manuscript.</p></div>
+        </div>
+
+        <!-- Abstract input -->
+        <div class="card card-pad-lg" style="margin-bottom:28px;">
+          <label class="label" style="margin-bottom:10px;">Paste your abstract or title</label>
+          <textarea class="textarea" id="abstract" style="min-height:110px;margin-bottom:16px;">Adaptive ensemble methods that re-weight base learners in response to distributional shift improve regional climate projections by 18% RMSE, validated under non-stationary conditions across three basins.</textarea>
+          <div class="flex items-center justify-between flex-wrap gap-3">
+            <div class="filter-chips" data-chip-group>
+              <span class="chip active">Open access</span>
+              <span class="chip">Fast review</span>
+              <span class="chip">High impact</span>
+            </div>
+            <button class="btn btn-primary" id="recBtn"><span data-icon="compass"></span> Find journals</button>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom:16px;">Recommended journals</h3>
+        <div class="flex flex-col gap-4">
+          <article class="card card-pad card-hover">
+            <div class="flex items-start justify-between gap-4 flex-wrap">
+              <div class="flex gap-4" style="flex:1;min-width:240px;">
+                <span class="icon-tile bg-blue"><span data-icon="book"></span></span>
+                <div>
+                  <div class="flex items-center gap-2"><h4 style="margin:0;">Nature Climate Change</h4><span class="badge badge-green">Best match</span></div>
+                  <p class="text-muted" style="font-size:var(--fs-sm);margin-top:4px;">Springer Nature · Impact factor 31.2 · Monthly</p>
+                  <div class="flex gap-4" style="margin-top:10px;">
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">Acceptance</div><div class="fw-bold text-green" style="font-size:var(--fs-lg);">68%</div></div>
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">Scope match</div><div class="fw-bold" style="font-size:var(--fs-lg);">96%</div></div>
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">Avg. review</div><div class="fw-bold" style="font-size:var(--fs-lg);">8 wks</div></div>
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">APC</div><div class="fw-bold" style="font-size:var(--fs-lg);">$11,200</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2">
+                <button class="btn btn-primary btn-sm" data-modal-open="checklistModal"><span data-icon="checkCircle"></span> Checklist</button>
+                <button class="btn btn-secondary btn-sm"><span data-icon="external"></span> Visit</button>
+              </div>
+            </div>
+            <div style="margin-top:14px;"><div class="flex items-center justify-between" style="font-size:var(--fs-xs);margin-bottom:4px;"><span class="text-muted">Match confidence</span><span class="fw-semibold">96%</span></div><div class="progress"><div class="progress__bar" style="width:96%;"></div></div></div>
+          </article>
+
+          <article class="card card-pad card-hover">
+            <div class="flex items-start justify-between gap-4 flex-wrap">
+              <div class="flex gap-4" style="flex:1;min-width:240px;">
+                <span class="icon-tile bg-teal"><span data-icon="book"></span></span>
+                <div>
+                  <div class="flex items-center gap-2"><h4 style="margin:0;">Journal of Advances in Modeling Earth Systems</h4><span class="badge badge-blue">Open access</span></div>
+                  <p class="text-muted" style="font-size:var(--fs-sm);margin-top:4px;">AGU / Wiley · Impact factor 5.4 · Continuous</p>
+                  <div class="flex gap-4" style="margin-top:10px;">
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">Acceptance</div><div class="fw-bold text-green" style="font-size:var(--fs-lg);">74%</div></div>
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">Scope match</div><div class="fw-bold" style="font-size:var(--fs-lg);">91%</div></div>
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">Avg. review</div><div class="fw-bold" style="font-size:var(--fs-lg);">6 wks</div></div>
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">APC</div><div class="fw-bold" style="font-size:var(--fs-lg);">$2,800</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2"><button class="btn btn-primary btn-sm" data-modal-open="checklistModal"><span data-icon="checkCircle"></span> Checklist</button><button class="btn btn-secondary btn-sm"><span data-icon="external"></span> Visit</button></div>
+            </div>
+            <div style="margin-top:14px;"><div class="flex items-center justify-between" style="font-size:var(--fs-xs);margin-bottom:4px;"><span class="text-muted">Match confidence</span><span class="fw-semibold">91%</span></div><div class="progress"><div class="progress__bar" style="width:91%;background:var(--grad-cool);"></div></div></div>
+          </article>
+
+          <article class="card card-pad card-hover">
+            <div class="flex items-start justify-between gap-4 flex-wrap">
+              <div class="flex gap-4" style="flex:1;min-width:240px;">
+                <span class="icon-tile bg-purple"><span data-icon="book"></span></span>
+                <div>
+                  <div class="flex items-center gap-2"><h4 style="margin:0;">Environmental Data Science</h4></div>
+                  <p class="text-muted" style="font-size:var(--fs-sm);margin-top:4px;">Cambridge University Press · Impact factor 3.1 · Open</p>
+                  <div class="flex gap-4" style="margin-top:10px;">
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">Acceptance</div><div class="fw-bold text-green" style="font-size:var(--fs-lg);">81%</div></div>
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">Scope match</div><div class="fw-bold" style="font-size:var(--fs-lg);">88%</div></div>
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">Avg. review</div><div class="fw-bold" style="font-size:var(--fs-lg);">5 wks</div></div>
+                    <div><div class="text-muted" style="font-size:var(--fs-xs);">APC</div><div class="fw-bold" style="font-size:var(--fs-lg);">$1,600</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2"><button class="btn btn-primary btn-sm" data-modal-open="checklistModal"><span data-icon="checkCircle"></span> Checklist</button><button class="btn btn-secondary btn-sm"><span data-icon="external"></span> Visit</button></div>
+            </div>
+            <div style="margin-top:14px;"><div class="flex items-center justify-between" style="font-size:var(--fs-xs);margin-bottom:4px;"><span class="text-muted">Match confidence</span><span class="fw-semibold">88%</span></div><div class="progress"><div class="progress__bar" style="width:88%;background:var(--grad-warm);"></div></div></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checklist modal -->
+  <div class="modal-overlay" id="checklistModal">
+    <div class="modal">
+      <h3 style="margin-bottom:6px;">Submission checklist</h3>
+      <p class="text-muted" style="margin-bottom:18px;font-size:var(--fs-sm);">Key requirements for this journal.</p>
+      <div class="flex flex-col gap-3">
+        <label class="checkbox"><input type="checkbox" checked /> <span>Abstract ≤ 250 words</span></label>
+        <label class="checkbox"><input type="checkbox" checked /> <span>Structured highlights (3–5 bullets)</span></label>
+        <label class="checkbox"><input type="checkbox" /> <span>Cover letter with novelty statement</span></label>
+        <label class="checkbox"><input type="checkbox" /> <span>Data availability statement</span></label>
+        <label class="checkbox"><input type="checkbox" /> <span>ORCID for all authors</span></label>
+        <label class="checkbox"><input type="checkbox" /> <span>Conflict of interest declaration</span></label>
+      </div>
+      <button class="btn btn-primary btn-block" style="margin-top:18px;" data-modal-close>Start submission</button>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+    document.getElementById("recBtn").addEventListener("click", function () {
+      var b = this, o = b.innerHTML; b.disabled = true; b.innerHTML = '<span class="spinner"></span> Matching...';
+      setTimeout(function(){ b.disabled = false; b.innerHTML = o; IW.Toast.show("Refreshed journal matches", "check", "Done"); }, 1100);
+    });
+  </script>
+</body>
+</html>

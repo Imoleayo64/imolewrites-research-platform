@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Workspace — ImoleWrites Research Hub</title>
+  <meta name="description" content="Read, highlight, annotate, and ask AI about any passage in your PDFs." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <style>
+    .pdf-doc { background:#fff; color:#1a1a1a; padding:48px 56px; border-radius:var(--radius-md); box-shadow:var(--shadow-lg); max-width:640px; margin-inline:auto; line-height:1.8; font-family:Georgia, serif; }
+    [data-theme="dark"] .pdf-doc { background:#f8f6f1; }
+    .pdf-doc h2 { font-size:1.4rem; margin:18px 0 8px; }
+    .pdf-doc p { margin-bottom:12px; font-size:0.95rem; }
+    .hl { background:#fef08a; padding:0 2px; border-radius:2px; cursor:pointer; position:relative; }
+    .hl.blue { background:#bfdbfe; }
+    .hl-tag { background:var(--blue-600); color:#fff; border-radius:4px; padding:1px 5px; font-size:.7em; vertical-align:super; }
+    .note-pin { position:absolute; right:-44px; width:28px; height:28px; border-radius:50%; background:var(--amber-500); color:#fff; display:grid; place-items:center; box-shadow:var(--shadow-md); }
+    @media(max-width:1024px){ .pdf-layout{grid-template-columns:1fr !important;} .pdf-side{order:2;} }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="pdf"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="PDF Workspace"></div>
+
+      <div class="content" style="padding-bottom:0;">
+        <div class="page-title-row" style="margin-bottom:16px;">
+          <div><h1 style="font-size:var(--fs-2xl);">Adaptive Ensemble Methods…</h1><p class="text-muted" style="font-size:var(--fs-sm);">Sherlock &amp; Adler, 2024 · Nature Climate Change · 12 pages</p></div>
+          <div class="flex gap-2">
+            <button class="icon-btn tooltip" data-tip="Highlight"><span data-icon="highlighter"></span></button>
+            <button class="icon-btn tooltip" data-tip="Bookmark"><span data-icon="bookmark"></span></button>
+            <button class="btn btn-secondary btn-sm"><span data-icon="download"></span> Download</button>
+            <button class="btn btn-primary btn-sm" data-modal-open="askAiModal"><span data-icon="sparkles"></span> Ask AI</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content pdf-layout" style="display:grid;grid-template-columns:1fr 320px;gap:24px;padding-top:0;align-items:start;">
+        <!-- PDF viewer -->
+        <div class="flex flex-col gap-3" style="position:sticky;top:calc(var(--nav-height)+24px);">
+          <div class="card card-pad flex items-center justify-between" style="padding:10px 16px;">
+            <div class="flex items-center gap-2">
+              <button class="icon-btn" style="width:34px;height:34px;"><span data-icon="chevronLeft"></span></button>
+              <span class="fw-semibold" style="font-size:var(--fs-sm);">Page 3 / 12</span>
+              <button class="icon-btn" style="width:34px;height:34px;"><span data-icon="chevronRight"></span></button>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="icon-btn tooltip" data-tip="Zoom out" style="width:34px;height:34px;">−</button>
+              <span style="font-size:var(--fs-sm);min-width:40px;text-align:center;">100%</span>
+              <button class="icon-btn tooltip" data-tip="Zoom in" style="width:34px;height:34px;">+</button>
+            </div>
+          </div>
+
+          <div class="pdf-doc">
+            <h2 style="text-align:center;border-bottom:2px solid #1a1a1a;padding-bottom:8px;">Adaptive Ensemble Methods for Non-Stationary Climate Projections</h2>
+            <p style="text-align:center;color:#666;font-size:.85rem;">Sherlock, B., &amp; Adler, P.</p>
+            <h2>3. Methodology</h2>
+            <p>We propose an <span class="hl">adaptive ensemble framework</span> that dynamically re-weights base learners in response to detected distributional shift. Unlike static ensembles, our approach monitors a calibration metric <em>online</em> and triggers re-weighting when drift exceeds a learned threshold.</p>
+            <p>The framework consists of three components: (i) a diverse pool of base models, (ii) a <span class="hl blue">drift detector</span> based on the Page-Hinkley test<span class="note-pin"><span data-icon="message" style="width:14px;height:14px;"></span></span>, and (iii) a Bayesian re-weighting scheme that preserves uncertainty estimates across regimes.</p>
+            <p>Formally, the ensemble prediction at time <em>t</em> is computed as a weighted sum <span class="hl-tag">eq.1</span>, where weights are updated via variational inference conditioned on the most recent calibration window.</p>
+            <h2>3.1 Validation Protocol</h2>
+            <p>Central to our contribution is a validation protocol that <span class="hl">rewards temporal stability</span> rather than point-in-time accuracy. Models are evaluated on rolling windows drawn from held-out future periods, penalizing performance degradation under regime change.</p>
+          </div>
+        </div>
+
+        <!-- Side panel: highlights, notes, AI -->
+        <aside class="pdf-side">
+          <div class="card card-pad" style="margin-bottom:16px;">
+            <div class="tabs" data-tabs style="border:0;margin-bottom:14px;">
+              <button class="tab active" data-tab="hl" data-tab-scope="pdf">Highlights</button>
+              <button class="tab" data-tab="nt" data-tab-scope="pdf">Notes</button>
+              <button class="tab" data-tab="bm" data-tab-scope="pdf">Bookmarks</button>
+            </div>
+            <div data-panel-group="pdf">
+              <div class="tab-panel active" data-panel="hl">
+                <div class="flex flex-col gap-3">
+                  <div style="border-left:3px solid #facc15;padding-left:10px;"><div class="text-muted" style="font-size:var(--fs-xs);">Page 3 · Methods</div><p style="font-size:var(--fs-sm);">"adaptive ensemble framework"</p></div>
+                  <div style="border-left:3px solid var(--blue-400);padding-left:10px;"><div class="text-muted" style="font-size:var(--fs-xs);">Page 3 · Methods</div><p style="font-size:var(--fs-sm);">"drift detector based on Page-Hinkley test"</p></div>
+                  <div style="border-left:3px solid #facc15;padding-left:10px;"><div class="text-muted" style="font-size:var(--fs-xs);">Page 3 · Validation</div><p style="font-size:var(--fs-sm);">"rewards temporal stability"</p></div>
+                </div>
+              </div>
+              <div class="tab-panel" data-panel="nt">
+                <div class="field"><textarea class="textarea" placeholder="Add a note..." style="min-height:80px;"></textarea><button class="btn btn-primary btn-sm btn-block" style="margin-top:8px;">Save note</button></div>
+                <div style="margin-top:16px;background:var(--surface-3);padding:12px;border-radius:var(--radius-md);font-size:var(--fs-sm);">📌 Check Page-Hinkley parameters — sensitivity threshold needs citation. <div class="text-muted" style="font-size:var(--fs-xs);margin-top:4px;">2h ago</div></div>
+              </div>
+              <div class="tab-panel" data-panel="bm">
+                <div class="flex flex-col gap-2">
+                  <div class="ws-tree-item"><span data-icon="bookmark" class="text-blue"></span><span class="name">3. Methodology</span></div>
+                  <div class="ws-tree-item"><span data-icon="bookmark" class="text-blue"></span><span class="name">3.1 Validation Protocol</span></div>
+                  <div class="ws-tree-item"><span data-icon="bookmark" class="text-blue"></span><span class="name">4. Results</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-pad">
+            <div class="flex items-center gap-2" style="margin-bottom:10px;"><span class="icon-tile xs bg-blue"><span data-icon="sparkles"></span></span><h4 style="margin:0;">Ask AI about this PDF</h4></div>
+            <div class="chat-msg ai" style="margin-bottom:12px;">
+              <div class="chat-msg__avatar"><span data-icon="sparkles"></span></div>
+              <div class="chat-msg__body">The Page-Hinkley test detects abrupt mean shifts. The authors use it to trigger re-weighting — a clever, lightweight choice over KL-divergence detectors.</div>
+            </div>
+            <div class="chat-composer"><textarea placeholder="Ask about this paper..." rows="1"></textarea><button class="chat-send"><span data-icon="send"></span></button></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ask AI modal -->
+  <div class="modal-overlay" id="askAiModal">
+    <div class="modal">
+      <div class="flex items-center gap-2" style="margin-bottom:12px;"><span class="icon-tile sm bg-blue"><span data-icon="sparkles"></span></span><h3 style="margin:0;">Ask AI</h3></div>
+      <p class="text-muted" style="margin-bottom:16px;font-size:var(--fs-sm);">Select text in the document or type a question. The AI answers grounded in this paper.</p>
+      <div class="field"><textarea class="textarea" placeholder="e.g., What are the limitations of this method?" style="min-height:80px;"></textarea></div>
+      <div class="flex gap-2"><button class="btn btn-secondary btn-block" data-modal-close>Cancel</button><button class="btn btn-primary btn-block" data-modal-close>Ask</button></div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Humanizer — ImoleWrites Research Hub</title>
+  <meta name="description" content="Refine tone and humanize your writing with a live readability score." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <style>
+    .humanize-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .hz-editor { min-height:360px; line-height:1.8; font-size:var(--fs-md); }
+    .hz-editor:focus { outline:none; }
+    @media(max-width:900px){ .humanize-grid{grid-template-columns:1fr;} }
+    .score-ring { width:88px; height:88px; }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="humanizer"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="AI Humanizer"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>AI Humanizer</h1><p>Refine tone, smooth robotic phrasing, and keep your authentic voice.</p></div>
+          <div class="flex gap-2">
+            <button class="btn btn-secondary"><span data-icon="history"></span> History</button>
+            <button class="btn btn-primary" id="humanizeBtn"><span data-icon="wand"></span> Humanize</button>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="card card-pad" style="margin-bottom:20px;">
+          <div class="flex items-center flex-wrap gap-6">
+            <div>
+              <label class="label" style="display:block;margin-bottom:8px;">Mode</label>
+              <div class="filter-chips" data-chip-group id="modeGroup">
+                <button class="chip active" data-mode="academic">Academic</button>
+                <button class="chip" data-mode="professional">Professional</button>
+                <button class="chip" data-mode="natural">Natural</button>
+                <button class="chip" data-mode="simple">Simple</button>
+              </div>
+            </div>
+            <div class="grow"></div>
+            <div class="flex items-center gap-6">
+              <div class="text-center">
+                <div class="text-muted" style="font-size:var(--fs-xs);">Original</div>
+                <div class="fw-bold" style="font-size:var(--fs-xl);" id="origScore">52</div>
+                <div class="text-muted" style="font-size:var(--fs-xs);">readability</div>
+              </div>
+              <div data-icon="arrowRight" class="text-muted"></div>
+              <div class="text-center">
+                <div class="text-muted" style="font-size:var(--fs-xs);">Humanized</div>
+                <div class="fw-bold text-blue" style="font-size:var(--fs-xl);" id="newScore">—</div>
+                <div class="text-muted" style="font-size:var(--fs-xs);">readability</div>
+              </div>
+              <div class="text-center" style="border-left:1px solid var(--border);padding-left:24px;">
+                <div class="text-muted" style="font-size:var(--fs-xs);">AI detection</div>
+                <div class="fw-bold text-green" style="font-size:var(--fs-xl);">2%</div>
+                <div class="text-muted" style="font-size:var(--fs-xs);">human-like</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editors -->
+        <div class="humanize-grid">
+          <div class="card" style="padding:0;overflow:hidden;">
+            <div class="panel__head"><h3 style="margin:0;">Original text</h3><span class="badge" id="origWords">38 words</span></div>
+            <div style="padding:20px;">
+              <div class="hz-editor" contenteditable="true" id="origText" data-placeholder="Paste your text here...">The utilization of machine learning methodologies for the purpose of climate modeling has been demonstrated to be efficacious in terms of achieving enhanced predictive accuracy, notwithstanding the fact that there exist significant challenges associated with the non-stationarity of the aforementioned climate data.</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:0;overflow:hidden;background:linear-gradient(180deg, var(--blue-50) 0%, var(--surface) 30%);">
+            <div class="panel__head"><h3 style="margin:0;">Humanized</h3><div class="flex gap-2"><button class="btn btn-ghost btn-xs" data-copy="#humanText"><span data-icon="copy"></span></button><button class="btn btn-ghost btn-xs"><span data-icon="refresh"></span></button></div></div>
+            <div style="padding:20px;">
+              <div class="hz-editor" id="humanText" style="color:var(--text-2);">Click <strong>Humanize</strong> to refine your text in the selected tone.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-pad" style="margin-top:20px;">
+          <h4 style="margin-bottom:14px;">Recent humanizations</h4>
+          <div class="list-row">
+            <span class="icon-tile xs bg-teal" style="width:36px;height:36px;border-radius:9px;"><span data-icon="wand"></span></span>
+            <div class="meta"><div class="title">Methods paragraph — Climate ML manuscript</div><div class="sub">Academic · 142 words · score 58 → 81</div></div>
+            <span class="badge badge-green">+23</span>
+          </div>
+          <div class="list-row">
+            <span class="icon-tile xs bg-purple" style="width:36px;height:36px;border-radius:9px;"><span data-icon="wand"></span></span>
+            <div class="meta"><div class="title">Grant aims section — NIH proposal</div><div class="sub">Professional · 96 words · score 47 → 74</div></div>
+            <span class="badge badge-green">+27</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+    var VARIANTS = {
+      academic: "Machine learning has proven valuable for climate modeling, improving predictive accuracy despite the persistent challenge of non-stationary climate data.",
+      professional: "Machine learning methods now help us model the climate more accurately, even though shifting climate patterns remain a real challenge.",
+      natural: "Using machine learning to model the climate really works well — it makes predictions sharper, even when the data keeps changing over time.",
+      simple: "Machine learning helps predict the climate better, even though climate data keeps changing."
+    };
+    function countWords(s){ var t=(s.innerText||s.textContent||"").trim(); return t?t.split(/\s+/).length:0; }
+    var orig = document.getElementById("origText");
+    var ow = document.getElementById("origWords");
+    function upd(){ ow.textContent = countWords(orig) + " words"; }
+    orig.addEventListener("input", upd); upd();
+
+    document.getElementById("humanizeBtn").addEventListener("click", function () {
+      var mode = (document.querySelector("#modeGroup .chip.active") || {}).getAttribute ? document.querySelector("#modeGroup .chip.active").getAttribute("data-mode") : "academic";
+      var out = document.getElementById("humanText");
+      var btn = this; var old = btn.innerHTML;
+      btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Humanizing...';
+      setTimeout(function () {
+        out.innerHTML = VARIANTS[mode] || VARIANTS.academic;
+        document.getElementById("newScore").textContent = {academic:81,professional:74,natural:69,simple:88}[mode] || 80;
+        btn.disabled = false; btn.innerHTML = old;
+        IW.Toast.show("Text humanized in " + mode + " mode", "check", "Done");
+      }, 1100);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — ImoleWrites Research Hub</title>
+  <meta name="description" content="Manage your profile, appearance, notifications, API keys, language, and security." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="settings"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Settings"></div>
+
+      <div class="content">
+        <div class="page-title-row"><div><h1>Settings</h1><p>Manage your account and preferences.</p></div></div>
+
+        <div class="settings-layout" data-tabs>
+          <nav class="settings-nav">
+            <a class="active" data-tab="profile"><span data-icon="user"></span> Profile</a>
+            <a data-tab="appearance"><span data-icon="sun"></span> Appearance</a>
+            <a data-tab="notifications"><span data-icon="bell"></span> Notifications</a>
+            <a data-tab="api"><span data-icon="key"></span> API Keys</a>
+            <a data-tab="language"><span data-icon="globe"></span> Language</a>
+            <a data-tab="security"><span data-icon="shield"></span> Security</a>
+          </nav>
+
+          <div data-panel-group="">
+            <!-- Profile -->
+            <div class="tab-panel active" data-panel="profile">
+              <div class="card card-pad-lg">
+                <div class="flex items-center gap-4" style="margin-bottom:24px;">
+                  <div class="avatar lg" style="width:80px;height:80px;font-size:var(--fs-2xl);">IA</div>
+                  <div><h3 style="margin-bottom:6px;">Profile photo</h3><div class="flex gap-2"><button class="btn btn-secondary btn-sm"><span data-icon="upload"></span> Upload</button><button class="btn btn-ghost btn-sm">Remove</button></div></div>
+                </div>
+                <div class="grid grid-2 gap-4">
+                  <div class="field"><label class="label">First name</label><input class="input" value="Imole" /></div>
+                  <div class="field"><label class="label">Last name</label><input class="input" value="Ayodele" /></div>
+                  <div class="field"><label class="label">Email</label><input class="input" value="imole.ayodele@university.edu" /></div>
+                  <div class="field"><label class="label">Institution</label><input class="input" value="University of Lagos" /></div>
+                  <div class="field"><label class="label">Field</label><select class="select"><option>Environmental Science</option><option>Computer Science</option><option>Medicine</option></select></div>
+                  <div class="field"><label class="label">Role</label><select class="select"><option>Researcher</option><option>Student</option><option>Professor</option></select></div>
+                </div>
+                <div class="field"><label class="label">Bio</label><textarea class="textarea" style="min-height:80px;">PhD researcher focused on adaptive ML for climate modeling. Based in Lagos.</textarea></div>
+                <div class="flex justify-end gap-2" style="margin-top:8px;"><button class="btn btn-secondary">Cancel</button><button class="btn btn-primary" data-demo-form="profile">Save changes</button></div>
+              </div>
+            </div>
+
+            <!-- Appearance -->
+            <div class="tab-panel" data-panel="appearance">
+              <div class="card card-pad-lg">
+                <h3 style="margin-bottom:18px;">Theme</h3>
+                <div class="setting-row"><div><div class="fw-semibold">Dark mode</div><div class="desc">Switch between light and dark themes.</div></div><label class="toggle"><input type="checkbox" id="darkToggle" data-theme-toggle-auto><span class="slider"></span></label></div>
+                <div class="setting-row"><div><div class="fw-semibold">Accent color</div><div class="desc">Personalize your interface accent.</div></div>
+                  <div class="flex gap-2">
+                    <button style="width:30px;height:30px;border-radius:50%;background:#2563eb;border:2px solid var(--text);"></button>
+                    <button style="width:30px;height:30px;border-radius:50%;background:#14b8a6;border:2px solid transparent;"></button>
+                    <button style="width:30px;height:30px;border-radius:50%;background:#7c3aed;border:2px solid transparent;"></button>
+                    <button style="width:30px;height:30px;border-radius:50%;background:#f43f5e;border:2px solid transparent;"></button>
+                  </div>
+                </div>
+                <div class="setting-row"><div><div class="fw-semibold">Reduce motion</div><div class="desc">Minimize animations across the app.</div></div><label class="toggle"><input type="checkbox"><span class="slider"></span></label></div>
+                <div class="setting-row"><div><div class="fw-semibold">Compact mode</div><div class="desc">Tighter spacing for more content.</div></div><label class="toggle"><input type="checkbox"><span class="slider"></span></label></div>
+              </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="tab-panel" data-panel="notifications">
+              <div class="card card-pad-lg">
+                <h3 style="margin-bottom:18px;">Notifications</h3>
+                <div class="setting-row"><div><div class="fw-semibold">Email digests</div><div class="desc">Weekly summary of your research activity.</div></div><label class="toggle"><input type="checkbox" checked><span class="slider"></span></label></div>
+                <div class="setting-row"><div><div class="fw-semibold">Comments & mentions</div><div class="desc">When collaborators reply.</div></div><label class="toggle"><input type="checkbox" checked><span class="slider"></span></label></div>
+                <div class="setting-row"><div><div class="fw-semibold">Deadlines</div><div class="desc">Reminders before due dates.</div></div><label class="toggle"><input type="checkbox" checked><span class="slider"></span></label></div>
+                <div class="setting-row"><div><div class="fw-semibold">Product updates</div><div class="desc">News about new features.</div></div><label class="toggle"><input type="checkbox"><span class="slider"></span></label></div>
+                <div class="setting-row"><div><div class="fw-semibold">Marketing</div><div class="desc">Tips, offers, and surveys.</div></div><label class="toggle"><input type="checkbox"><span class="slider"></span></label></div>
+              </div>
+            </div>
+
+            <!-- API Keys -->
+            <div class="tab-panel" data-panel="api">
+              <div class="card card-pad-lg">
+                <div class="flex items-center justify-between" style="margin-bottom:18px;"><h3>API Keys</h3><button class="btn btn-primary btn-sm"><span data-icon="plus"></span> Generate key</button></div>
+                <p class="text-muted" style="font-size:var(--fs-sm);margin-bottom:16px;">Use these keys to connect ImoleWrites to your FastAPI backend or scripts.</p>
+                <div class="list-row"><span class="icon-tile xs bg-purple" style="width:36px;height:36px;border-radius:9px;"><span data-icon="key"></span></span><div class="meta"><div class="title">Production</div><div class="sub" style="font-family:var(--font-mono);">iw_live_••••••••••••3f9a · created Jul 2</div></div><button class="btn btn-ghost btn-xs" data-copy-text="iw_live_xxxxxxxx3f9a"><span data-icon="copy"></span></button></div>
+                <div class="list-row"><span class="icon-tile xs bg-slate" style="width:36px;height:36px;border-radius:9px;"><span data-icon="key"></span></span><div class="meta"><div class="title">Development</div><div class="sub" style="font-family:var(--font-mono);">iw_test_••••••••••••a21c · created Jun 14</div></div><button class="btn btn-ghost btn-xs" data-copy-text="iw_test_xxxxxxxxa21c"><span data-icon="copy"></span></button></div>
+              </div>
+            </div>
+
+            <!-- Language -->
+            <div class="tab-panel" data-panel="language">
+              <div class="card card-pad-lg">
+                <h3 style="margin-bottom:18px;">Language & region</h3>
+                <div class="grid grid-2 gap-4">
+                  <div class="field"><label class="label">Interface language</label><select class="select"><option>English (US)</option><option>English (UK)</option><option>Français</option><option>Español</option><option>Português</option><option>中文</option></select></div>
+                  <div class="field"><label class="label">Citation language</label><select class="select"><option>English</option><option>French</option><option>Spanish</option></select></div>
+                  <div class="field"><label class="label">Timezone</label><select class="select"><option>(GMT+01:00) Lagos</option><option>(GMT+00:00) London</option><option>(GMT-05:00) New York</option></select></div>
+                  <div class="field"><label class="label">Date format</label><select class="select"><option>DD MMM YYYY</option><option>MM/DD/YYYY</option><option>YYYY-MM-DD</option></select></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security -->
+            <div class="tab-panel" data-panel="security">
+              <div class="flex flex-col gap-6">
+                <div class="card card-pad-lg">
+                  <h3 style="margin-bottom:18px;">Password</h3>
+                  <div class="grid grid-2 gap-4">
+                    <div class="field"><label class="label">Current password</label><input class="input" type="password" placeholder="••••••••" /></div>
+                    <div class="field"><label class="label">New password</label><input class="input" type="password" placeholder="••••••••" /></div>
+                  </div>
+                  <button class="btn btn-primary">Update password</button>
+                </div>
+                <div class="card card-pad-lg">
+                  <h3 style="margin-bottom:18px;">Two-factor authentication</h3>
+                  <div class="setting-row"><div><div class="fw-semibold">Authenticator app</div><div class="desc">Add an extra layer of security.</div></div><label class="toggle"><input type="checkbox" checked><span class="slider"></span></label></div>
+                  <div class="setting-row"><div><div class="fw-semibold">Active sessions</div><div class="desc">3 devices currently signed in.</div></div><button class="btn btn-ghost btn-sm">Manage</button></div>
+                </div>
+                <div class="card card-pad-lg" style="border-color:var(--red-500);">
+                  <h3 style="color:var(--red-500);margin-bottom:8px;">Danger zone</h3>
+                  <div class="setting-row" style="border:0;padding:0;"><div><div class="fw-semibold">Delete account</div><div class="desc">Permanently remove your account and all data.</div></div><button class="btn btn-danger btn-sm">Delete</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+    // Sync dark toggle with current theme
+    document.addEventListener("DOMContentLoaded", function () {
+      var dt = document.getElementById("darkToggle");
+      if (dt) dt.checked = (IW.Theme.current() === "dark");
+    });
+  </script>
+</body>
+</html>

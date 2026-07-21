@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Citation Manager — ImoleWrites Research Hub</title>
+  <meta name="description" content="Generate citations in APA, MLA, Chicago, Harvard, IEEE, and Vancouver with DOI lookup and BibTeX." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <style>
+    .cite-entry { padding:16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface); margin-bottom:12px; font-family:var(--font-mono); font-size:var(--fs-sm); line-height:1.7; color:var(--text-2); }
+    .cite-entry .num { color:var(--blue-600); font-weight:700; margin-right:8px; }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="citations"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Citation Manager"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>Citation Manager</h1><p>Flawless citations in 6 styles — with DOI lookup & BibTeX.</p></div>
+          <div class="flex gap-2">
+            <button class="btn btn-secondary" data-modal-open="doiModal"><span data-icon="search"></span> DOI Lookup</button>
+            <button class="btn btn-primary" data-modal-open="addCiteModal"><span data-icon="plus"></span> Add Citation</button>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <!-- Style + entry -->
+          <div class="flex flex-col gap-6">
+            <div class="card card-pad">
+              <label class="label" style="margin-bottom:12px;">Citation style</label>
+              <div class="filter-chips" data-chip-group id="styleGroup">
+                <button class="chip active" data-style="APA">APA 7th</button>
+                <button class="chip" data-style="MLA">MLA 9th</button>
+                <button class="chip" data-style="Chicago">Chicago</button>
+                <button class="chip" data-style="Harvard">Harvard</button>
+                <button class="chip" data-style="IEEE">IEEE</button>
+                <button class="chip" data-style="Vancouver">Vancouver</button>
+              </div>
+            </div>
+
+            <div class="card card-pad">
+              <div class="flex items-center justify-between" style="margin-bottom:16px;">
+                <h3 style="margin:0;">Bibliography (24 sources)</h3>
+                <div class="flex gap-2">
+                  <button class="btn btn-ghost btn-sm" data-copy="#bibList"><span data-icon="copy"></span> Copy</button>
+                  <button class="btn btn-soft btn-sm"><span data-icon="download"></span> Export</button>
+                </div>
+              </div>
+              <div id="bibList">
+                <div class="cite-entry"><span class="num">[1]</span><span data-ref>Sherlock, B., &amp; Adler, P. (2024). Adaptive ensemble methods for non-stationary climate projections. <em>Nature Climate Change</em>, 14(3), 210–225. https://doi.org/10.1038/s41558-024-02010-x</span></div>
+                <div class="cite-entry"><span class="num">[2]</span><span data-ref>Patel, R., &amp; Moreno, E. (2024). Deep learning for regional climate downscaling: A survey. <em>arXiv preprint</em> arXiv:2403.11245.</span></div>
+                <div class="cite-entry"><span class="num">[3]</span><span data-ref>Wobbrock, J. O., &amp; Tan, M. (2023). Reproducibility crises in computational climate science. <em>Journal of Computational Physics</em>, 485, 112089. https://doi.org/10.1016/j.jcp.2023.112089</span></div>
+                <div class="cite-entry"><span class="num">[4]</span><span data-ref>Kim, S., &amp; Adeyemi, T. (2024). Transformer architectures for spatio-temporal forecasting. <em>Reviews of Geophysics</em>, 62(2), e2023RG000812.</span></div>
+                <div class="cite-entry"><span class="num">[5]</span><span data-ref>Okafor, A. C. (2024). Calibration under distributional shift in Earth-system models [Doctoral dissertation, University of Lagos].</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: in-text + tools -->
+          <div class="flex flex-col gap-6">
+            <div class="card card-pad">
+              <h3 style="margin-bottom:12px;">In-text preview</h3>
+              <div class="cite-entry" style="font-family:var(--font-sans);"><span id="inText">(Sherlock &amp; Adler, 2024)</span></div>
+              <p class="hint" style="margin-top:8px;">Updates automatically with the selected style.</p>
+            </div>
+
+            <div class="card card-pad">
+              <h3 style="margin-bottom:12px;">Quick add by DOI</h3>
+              <div class="input-group" style="margin-bottom:12px;">
+                <span class="input-icon"><span data-icon="link"></span></span>
+                <input class="input" type="text" placeholder="10.1038/s41558-024-02010-x" />
+              </div>
+              <button class="btn btn-soft btn-block btn-sm"><span data-icon="search"></span> Fetch metadata</button>
+            </div>
+
+            <div class="card card-pad">
+              <div class="flex items-center gap-2" style="margin-bottom:10px;"><span class="icon-tile xs bg-purple"><span data-icon="code"></span></span><h4 style="margin:0;">BibTeX</h4></div>
+              <div class="cite-entry" style="max-height:160px;overflow:auto;">@article{sherlock2024adaptive,<br>&nbsp;&nbsp;title={Adaptive ensemble methods for non-stationary climate projections},<br>&nbsp;&nbsp;author={Sherlock, B. and Adler, P.},<br>&nbsp;&nbsp;journal={Nature Climate Change},<br>&nbsp;&nbsp;volume={14},<br>&nbsp;&nbsp;number={3},<br>&nbsp;&nbsp;pages={210--225},<br>&nbsp;&nbsp;year={2024}<br>}</div>
+              <button class="btn btn-ghost btn-sm btn-block" style="margin-top:10px;" data-copy-text="@article{sherlock2024...}"><span data-icon="copy"></span> Copy BibTeX</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOI modal -->
+  <div class="modal-overlay" id="doiModal">
+    <div class="modal">
+      <h3 style="margin-bottom:8px;">DOI Lookup</h3>
+      <p class="text-muted" style="margin-bottom:20px;font-size:var(--fs-sm);">Paste a DOI to auto-fetch citation metadata.</p>
+      <div class="field"><div class="input-group"><span class="input-icon"><span data-icon="link"></span></span><input class="input" placeholder="10.xxxx/xxxxx" /></div></div>
+      <div class="flex gap-2"><button class="btn btn-secondary btn-block" data-modal-close>Cancel</button><button class="btn btn-primary btn-block" data-modal-close>Fetch</button></div>
+    </div>
+  </div>
+  <!-- Add citation modal -->
+  <div class="modal-overlay" id="addCiteModal">
+    <div class="modal">
+      <h3 style="margin-bottom:16px;">Add citation</h3>
+      <div class="field"><label class="label">Source type</label><select class="select"><option>Journal article</option><option>Book</option><option>Book chapter</option><option>Conference paper</option><option>Website</option><option>Thesis</option></select></div>
+      <div class="field"><label class="label">Title</label><input class="input" placeholder="Article title" /></div>
+      <div class="grid grid-2 gap-4"><div class="field"><label class="label">Authors</label><input class="input" placeholder="Last, First" /></div><div class="field"><label class="label">Year</label><input class="input" placeholder="2024" /></div></div>
+      <div class="flex gap-2" style="margin-top:8px;"><button class="btn btn-secondary btn-block" data-modal-close>Cancel</button><button class="btn btn-primary btn-block" data-modal-close>Add</button></div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+    // Simulated style switching
+    var STYLES = {
+      APA: { inText: "(Sherlock & Adler, 2024)" },
+      MLA: { inText: "(Sherlock and Adler 224)" },
+      Chicago: { inText: "(Sherlock and Adler 2024, 210)" },
+      Harvard: { inText: "(Sherlock and Adler, 2024, p. 210)" },
+      IEEE: { inText: "[1]" },
+      Vancouver: { inText: "(1)" }
+    };
+    document.addEventListener("click", function (e) {
+      var chip = e.target.closest("#styleGroup .chip");
+      if (!chip) return;
+      var s = chip.getAttribute("data-style");
+      var it = document.getElementById("inText");
+      if (it && STYLES[s]) it.textContent = STYLES[s].inText;
+      IW.Toast.show("Switched to " + s + " style", "check", "Citation style");
+    });
+  </script>
+</body>
+</html>

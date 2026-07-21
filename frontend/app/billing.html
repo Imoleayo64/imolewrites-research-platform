@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billing — ImoleWrites Research Hub</title>
+  <meta name="description" content="Manage your subscription, payment history, and usage." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="billing"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Billing"></div>
+
+      <div class="content">
+        <div class="page-title-row"><div><h1>Billing</h1><p>Manage your subscription, usage, and invoices.</p></div></div>
+
+        <!-- Current plan -->
+        <div class="card card-pad-lg" style="background:var(--grad-soft);margin-bottom:28px;">
+          <div class="flex items-center justify-between flex-wrap gap-4">
+            <div class="flex items-center gap-4">
+              <span class="icon-tile bg-blue"><span data-icon="sparkles"></span></span>
+              <div>
+                <div class="flex items-center gap-2"><h3 style="margin:0;">Researcher Pro</h3><span class="badge badge-green badge-dot">Active</span></div>
+                <p class="text-muted" style="font-size:var(--fs-sm);margin-top:4px;">$19/mo · renews on Sep 21, 2026 · Visa ending 4242</p>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-secondary"><span data-icon="refresh"></span> Change plan</button>
+              <button class="btn btn-primary" data-modal-open="upgradeModal"><span data-icon="arrowUp"></span> Upgrade</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Usage -->
+        <h3 style="margin-bottom:14px;">Usage this cycle</h3>
+        <div class="grid grid-3 gap-card" style="margin-bottom:28px;">
+          <div class="card card-pad"><div class="flex items-center justify-between" style="margin-bottom:8px;"><span class="text-muted" style="font-size:var(--fs-sm);">AI queries</span><span class="fw-bold">∞ Unlimited</span></div><div class="progress"><div class="progress__bar" style="width:100%;"></div></div></div>
+          <div class="card card-pad"><div class="flex items-center justify-between" style="margin-bottom:8px;"><span class="text-muted" style="font-size:var(--fs-sm);">Storage</span><span class="fw-bold">4.2 / 50 GB</span></div><div class="progress"><div class="progress__bar" style="width:8%;"></div></div></div>
+          <div class="card card-pad"><div class="flex items-center justify-between" style="margin-bottom:8px;"><span class="text-muted" style="font-size:var(--fs-sm);">Projects</span><span class="fw-bold">3 / ∞</span></div><div class="progress"><div class="progress__bar" style="width:100%;"></div></div></div>
+        </div>
+
+        <!-- Payment history -->
+        <div class="panel">
+          <div class="panel__head"><h3>Payment history</h3><button class="btn btn-ghost btn-sm"><span data-icon="download"></span> Export</button></div>
+          <div style="overflow-x:auto;">
+            <table class="compare-table">
+              <thead><tr><th class="col-feature">Date</th><th>Description</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td class="col-feature">Aug 21, 2026</td><td>Researcher Pro — Monthly</td><td>$19.00</td><td><span class="badge badge-green">Paid</span></td><td><button class="btn btn-ghost btn-xs">Invoice</button></td></tr>
+                <tr><td class="col-feature">Jul 21, 2026</td><td>Researcher Pro — Monthly</td><td>$19.00</td><td><span class="badge badge-green">Paid</span></td><td><button class="btn btn-ghost btn-xs">Invoice</button></td></tr>
+                <tr><td class="col-feature">Jun 21, 2026</td><td>Researcher Pro — Monthly</td><td>$19.00</td><td><span class="badge badge-green">Paid</span></td><td><button class="btn btn-ghost btn-xs">Invoice</button></td></tr>
+                <tr><td class="col-feature">May 21, 2026</td><td>Researcher Pro — Monthly</td><td>$19.00</td><td><span class="badge badge-green">Paid</span></td><td><button class="btn btn-ghost btn-xs">Invoice</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Payment method -->
+        <div class="card card-pad" style="margin-top:24px;">
+          <div class="flex items-center justify-between"><div class="flex items-center gap-3"><span class="icon-tile sm bg-slate"><span data-icon="creditCard"></span></span><div><div class="fw-semibold">Visa ending 4242</div><div class="text-muted" style="font-size:var(--fs-sm);">Expires 08/28</div></div></div><div class="flex gap-2"><button class="btn btn-ghost btn-sm">Edit</button><button class="btn btn-secondary btn-sm">Add method</button></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upgrade modal -->
+  <div class="modal-overlay" id="upgradeModal">
+    <div class="modal">
+      <h3 style="margin-bottom:16px;">Upgrade your plan</h3>
+      <div class="flex flex-col gap-3">
+        <label class="card card-pad" style="cursor:pointer;border-color:var(--blue-500);"><div class="flex items-center justify-between"><div class="flex items-center gap-3"><span class="icon-tile sm bg-teal"><span data-icon="building"></span></span><div><div class="fw-semibold">Institution</div><div class="text-muted" style="font-size:var(--fs-sm);">Up to 50 seats + analytics</div></div></div><div class="text-right"><div class="fw-bold" style="font-size:var(--fs-lg);">$499</div><div class="text-muted" style="font-size:var(--fs-xs);">/mo</div></div></div></label>
+        <label class="card card-pad" style="cursor:pointer;"><div class="flex items-center justify-between"><div class="flex items-center gap-3"><span class="icon-tile sm bg-purple"><span data-icon="shield"></span></span><div><div class="fw-semibold">Enterprise</div><div class="text-muted" style="font-size:var(--fs-sm);">Unlimited + SSO + SLA</div></div></div><div class="text-right"><div class="fw-bold" style="font-size:var(--fs-lg);">Custom</div></div></div></label>
+      </div>
+      <div class="flex gap-2" style="margin-top:18px;"><button class="btn btn-secondary btn-block" data-modal-close>Cancel</button><button class="btn btn-primary btn-block" data-modal-close>Continue</button></div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

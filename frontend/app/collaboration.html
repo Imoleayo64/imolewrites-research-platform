@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collaboration — ImoleWrites Research Hub</title>
+  <meta name="description" content="Invite collaborators, leave comments, track versions, and assign tasks." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="collaboration"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Collaboration"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>Collaboration</h1><p>Climate ML Manuscript · 4 collaborators</p></div>
+          <div class="flex gap-2">
+            <div class="flex" style="margin-right:8px;">
+              <div class="avatar md" style="border:2px solid var(--surface);margin-left:-8px;">IA</div>
+              <div class="avatar md bg-teal" style="border:2px solid var(--surface);margin-left:-8px;">RM</div>
+              <div class="avatar md bg-purple" style="border:2px solid var(--surface);margin-left:-8px;">SO</div>
+              <div class="avatar md bg-amber" style="border:2px solid var(--surface);margin-left:-8px;">+1</div>
+            </div>
+            <button class="btn btn-primary" data-modal-open="inviteModal"><span data-icon="user"></span> Invite</button>
+          </div>
+        </div>
+
+        <div class="dash-grid" style="align-items:start;">
+          <!-- Left: comments + tasks -->
+          <div class="flex flex-col gap-6">
+            <!-- Tasks -->
+            <div class="panel">
+              <div class="panel__head"><h3>Tasks</h3><button class="btn btn-ghost btn-xs"><span data-icon="plus"></span></button></div>
+              <div class="panel__body" style="padding-top:6px;padding-bottom:6px;">
+                <div class="list-row">
+                  <input type="checkbox" checked style="width:18px;height:18px;accent-color:var(--blue-600);">
+                  <div class="meta"><div class="title" style="text-decoration:line-through;color:var(--text-muted);">Finalize methodology section</div><div class="sub">Assigned to Imole</div></div>
+                  <span class="badge badge-green">Done</span>
+                </div>
+                <div class="list-row">
+                  <input type="checkbox" style="width:18px;height:18px;accent-color:var(--blue-600);">
+                  <div class="meta"><div class="title">Run validation experiments</div><div class="sub">Due Aug 25 · Assigned to Sade</div></div>
+                  <span class="badge badge-amber">In progress</span>
+                </div>
+                <div class="list-row">
+                  <input type="checkbox" style="width:18px;height:18px;accent-color:var(--blue-600);">
+                  <div class="meta"><div class="title">Edit introduction for clarity</div><div class="sub">Due Aug 26 · Assigned to Dr. Moreau</div></div>
+                  <span class="badge badge-blue">To do</span>
+                </div>
+                <div class="list-row">
+                  <input type="checkbox" style="width:18px;height:18px;accent-color:var(--blue-600);">
+                  <div class="meta"><div class="title">Prepare figures for submission</div><div class="sub">Due Aug 28 · Unassigned</div></div>
+                  <span class="badge">To do</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="panel">
+              <div class="panel__head"><h3>Comments</h3><span class="badge">8</span></div>
+              <div class="panel__body">
+                <div class="flex gap-3" style="margin-bottom:18px;">
+                  <div class="avatar md bg-teal">RM</div>
+                  <div style="flex:1;">
+                    <div class="flex items-center gap-2"><span class="fw-semibold">Dr. Renée Moreau</span><span class="text-muted" style="font-size:var(--fs-xs);">2h ago · on §3.1</span></div>
+                    <div class="card" style="margin-top:6px;padding:12px;font-size:var(--fs-sm);border-color:var(--border);box-shadow:none;">The validation protocol is strong, but we should explicitly state the Page-Hinkley parameters. Let's cite Wobbrock here too.</div>
+                    <div class="flex gap-3" style="margin-top:8px;"><button class="btn btn-ghost btn-xs"><span data-icon="message"></span> Reply</button><button class="btn btn-ghost btn-xs">Resolve</button></div>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <div class="avatar md bg-purple">SO</div>
+                  <div style="flex:1;">
+                    <div class="flex items-center gap-2"><span class="fw-semibold">Sade Okafor</span><span class="text-muted" style="font-size:var(--fs-xs);">5h ago · on §1</span></div>
+                    <div class="card" style="margin-top:6px;padding:12px;font-size:var(--fs-sm);border-color:var(--border);box-shadow:none;">Intro reads well! Minor: "non-stationarity" defined on first use?</div>
+                  </div>
+                </div>
+                <div class="chat-composer" style="margin-top:18px;"><textarea placeholder="Add a comment..." rows="1"></textarea><button class="chat-send"><span data-icon="send"></span></button></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: version history + members -->
+          <div class="flex flex-col gap-6">
+            <div class="panel">
+              <div class="panel__head"><h3>Version history</h3></div>
+              <div class="panel__body" style="padding-top:6px;padding-bottom:6px;">
+                <div class="list-row"><span class="badge badge-green">v3.2</span><div class="meta"><div class="title">Current version</div><div class="sub">Imole · 12 min ago</div></div></div>
+                <div class="list-row"><span class="badge">v3.1</span><div class="meta"><div class="title">Added validation protocol</div><div class="sub">Dr. Moreau · 2h ago</div></div><button class="btn btn-ghost btn-xs">Restore</button></div>
+                <div class="list-row"><span class="badge">v3.0</span><div class="meta"><div class="title">Restructured methodology</div><div class="sub">Imole · yesterday</div></div><button class="btn btn-ghost btn-xs">Restore</button></div>
+                <div class="list-row"><span class="badge">v2.4</span><div class="meta"><div class="title">Inserted figures</div><div class="sub">Sade · 2 days ago</div></div><button class="btn btn-ghost btn-xs">Restore</button></div>
+                <div class="list-row"><span class="badge">v2.0</span><div class="meta"><div class="title">Major revision</div><div class="sub">Imole · 4 days ago</div></div><button class="btn btn-ghost btn-xs">Restore</button></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel__head"><h3>Members</h3></div>
+              <div class="panel__body" style="padding-top:6px;padding-bottom:6px;">
+                <div class="list-row"><div class="avatar md">IA</div><div class="meta"><div class="title">Imole Ayodele <span class="badge badge-blue">You</span></div><div class="sub">Owner</div></div></div>
+                <div class="list-row"><div class="avatar md bg-teal">RM</div><div class="meta"><div class="title">Dr. Renée Moreau</div><div class="sub">Editor</div></div><span data-icon="dots" class="text-muted"></span></div>
+                <div class="list-row"><div class="avatar md bg-purple">SO</div><div class="meta"><div class="title">Sade Okafor</div><div class="sub">Collaborator</div></div><span data-icon="dots" class="text-muted"></span></div>
+                <div class="list-row"><div class="avatar md bg-amber">TK</div><div class="meta"><div class="title">Tunde Kalu</div><div class="sub">Viewer</div></div><span data-icon="dots" class="text-muted"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invite modal -->
+  <div class="modal-overlay" id="inviteModal">
+    <div class="modal">
+      <h3 style="margin-bottom:8px;">Invite collaborators</h3>
+      <p class="text-muted" style="margin-bottom:18px;font-size:var(--fs-sm);">Share this project by email.</p>
+      <div class="field"><label class="label">Email addresses</label><input class="input" placeholder="name@university.edu, comma-separated" /></div>
+      <div class="field"><label class="label">Role</label><select class="select"><option>Editor</option><option>Collaborator</option><option>Viewer</option></select></div>
+      <div class="flex gap-2" style="margin-top:8px;"><button class="btn btn-secondary btn-block" data-modal-close>Cancel</button><button class="btn btn-primary btn-block" data-modal-close>Send invites</button></div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

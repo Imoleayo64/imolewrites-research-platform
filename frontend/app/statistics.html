@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statistics Assistant — ImoleWrites Research Hub</title>
+  <meta name="description" content="Choose the right statistical tests, interpret results, and format tables correctly." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="statistics"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Statistics Assistant"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>Statistics Assistant</h1><p>The right test, the right interpretation, every time.</p></div>
+        </div>
+
+        <div class="dash-grid" style="align-items:start;">
+          <!-- Left: test selector -->
+          <div class="flex flex-col gap-6">
+            <div class="card card-pad">
+              <h3 style="margin-bottom:14px;">Describe your study</h3>
+              <div class="field">
+                <label class="label">Research goal</label>
+                <select class="select"><option>Compare groups</option><option>Relate variables</option><option>Predict an outcome</option><option>Test a distribution</option></select>
+              </div>
+              <div class="grid grid-2 gap-3">
+                <div class="field"><label class="label">Independent variable</label><select class="select"><option>Categorical (2 groups)</option><option>Categorical (3+)</option><option>Continuous</option></select></div>
+                <div class="field"><label class="label">Dependent variable</label><select class="select"><option>Continuous</option><option>Ordinal</option><option>Categorical</option></select></div>
+              </div>
+              <div class="field"><label class="label">Data characteristics</label>
+                <div class="filter-chips" data-chip-group><span class="chip active">Normally distributed</span><span class="chip">Non-normal</span><span class="chip">Repeated measures</span></div>
+              </div>
+              <button class="btn btn-primary btn-block"><span data-icon="sparkles"></span> Recommend a test</button>
+            </div>
+
+            <div class="card card-pad" style="background:linear-gradient(135deg, var(--blue-50), var(--purple-50));border-color:var(--blue-200);">
+              <div class="flex items-center gap-2" style="margin-bottom:8px;"><span class="badge badge-blue">Recommended</span></div>
+              <h3>Independent samples t-test</h3>
+              <p class="text-muted" style="font-size:var(--fs-sm);margin-top:6px;">Appropriate for comparing the means of a continuous outcome between two independent groups, assuming normality and equal variances.</p>
+              <div class="grid grid-3 gap-3" style="margin-top:14px;">
+                <div><div class="text-muted" style="font-size:var(--fs-xs);">Assumptions</div><div class="fw-semibold" style="font-size:var(--fs-sm);">4 met</div></div>
+                <div><div class="text-muted" style="font-size:var(--fs-xs);">Min. sample</div><div class="fw-semibold" style="font-size:var(--fs-sm);">30 / group</div></div>
+                <div><div class="text-muted" style="font-size:var(--fs-xs);">Effect size</div><div class="fw-semibold" style="font-size:var(--fs-sm);">Cohen's d</div></div>
+              </div>
+              <button class="btn btn-soft btn-sm" style="margin-top:14px;">View assumptions & code</button>
+            </div>
+          </div>
+
+          <!-- Right: chat -->
+          <div class="card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;height:560px;">
+            <div class="panel__head"><div class="flex items-center gap-2"><span class="icon-tile xs bg-purple"><span data-icon="sparkles"></span></span><h3 style="margin:0;">Ask the statistician</h3></div></div>
+            <div class="chat-messages" data-chat-messages style="flex:1;">
+              <div class="chat-msg ai"><div class="chat-msg__avatar"><span data-icon="sparkles"></span></div><div class="chat-msg__body">I can help you pick tests, interpret p-values, format results (e.g. "t(58) = 2.34, p = .022, d = 0.61"), and check assumptions. What's your study design?</div></div>
+              <div class="chat-msg user"><div class="chat-msg__avatar">You</div><div class="chat-msg__body">My data failed normality — what now?</div></div>
+              <div class="chat-msg ai"><div class="chat-msg__avatar"><span data-icon="sparkles"></span></div><div class="chat-msg__body">Switch to the non-parametric <strong>Mann–Whitney U test</strong>, or apply a transformation (log/square-root) and re-check. With n&gt;30 per group, the t-test is often robust anyway. Want the reporting template?<div class="chat-msg__actions"><button data-copy="self"><span data-icon="copy"></span></button></div></div></div>
+            </div>
+            <div class="chat-input"><form data-chat-form><div class="chat-composer"><textarea placeholder="Ask about your analysis..." rows="1"></textarea><button class="chat-send" type="submit"><span data-icon="send"></span></button></div></form></div>
+          </div>
+        </div>
+
+        <!-- Templates -->
+        <h3 style="margin:28px 0 14px;">Reporting templates</h3>
+        <div class="grid grid-3 gap-card">
+          <div class="card card-pad"><span class="badge badge-blue" style="margin-bottom:8px;">t-test</span><pre style="font-family:var(--font-mono);font-size:var(--fs-xs);white-space:pre-wrap;color:var(--text-2);">An independent-samples t-test revealed a significant difference, t(58) = 2.34, p = .022, d = 0.61.</pre></div>
+          <div class="card card-pad"><span class="badge badge-teal" style="margin-bottom:8px;">ANOVA</span><pre style="font-family:var(--font-mono);font-size:var(--fs-xs);white-space:pre-wrap;color:var(--text-2);">A one-way ANOVA showed a significant effect, F(2, 87) = 4.21, p = .018, η² = .09.</pre></div>
+          <div class="card card-pad"><span class="badge badge-purple" style="margin-bottom:8px;">Regression</span><pre style="font-family:var(--font-mono);font-size:var(--fs-xs);white-space:pre-wrap;color:var(--text-2);">The model was significant, R² = .34, F(3, 96) = 16.4, p &lt; .001.</pre></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/editor.js"></script>
+</body>
+</html>

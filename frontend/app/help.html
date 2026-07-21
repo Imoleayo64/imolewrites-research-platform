@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help Center — ImoleWrites Research Hub</title>
+  <meta name="description" content="Find answers, browse guides, and get support." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="help"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Help Center"></div>
+
+      <div class="content">
+        <!-- Hero search -->
+        <div class="text-center" style="padding-block:24px 36px;">
+          <h1 style="font-size:var(--fs-4xl);">How can we help?</h1>
+          <p class="text-muted" style="margin-top:8px;">Search our knowledge base or browse popular topics.</p>
+          <div class="topbar__search input-group" style="margin:24px auto 0;max-width:560px;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--radius-full);height:54px;">
+            <span class="input-icon" style="left:18px;"><span data-icon="search"></span></span>
+            <input type="text" placeholder="Search for help..." style="background:transparent;border:0;height:54px;padding-left:46px;" />
+            <span class="input-affix"><button class="btn btn-primary btn-sm">Search</button></span>
+          </div>
+        </div>
+
+        <!-- Quick categories -->
+        <div class="grid grid-4 gap-card" style="margin-bottom:36px;">
+          <a class="card card-pad card-hover text-center"><span class="icon-tile bg-blue" style="margin-inline:auto;margin-bottom:12px;"><span data-icon="sparkles"></span></span><h4 style="font-size:var(--fs-md);">Getting started</h4><p class="text-muted" style="font-size:var(--fs-sm);">12 articles</p></a>
+          <a class="card card-pad card-hover text-center"><span class="icon-tile bg-teal" style="margin-inline:auto;margin-bottom:12px;"><span data-icon="bookOpen"></span></span><h4 style="font-size:var(--fs-md);">Research tools</h4><p class="text-muted" style="font-size:var(--fs-sm);">24 articles</p></a>
+          <a class="card card-pad card-hover text-center"><span class="icon-tile bg-purple" style="margin-inline:auto;margin-bottom:12px;"><span data-icon="quote"></span></span><h4 style="font-size:var(--fs-md);">Citations</h4><p class="text-muted" style="font-size:var(--fs-sm);">18 articles</p></a>
+          <a class="card card-pad card-hover text-center"><span class="icon-tile bg-amber" style="margin-inline:auto;margin-bottom:12px;"><span data-icon="creditCard"></span></span><h4 style="font-size:var(--fs-md);">Billing</h4><p class="text-muted" style="font-size:var(--fs-sm);">9 articles</p></a>
+        </div>
+
+        <div class="dash-grid">
+          <!-- Popular articles -->
+          <div class="panel">
+            <div class="panel__head"><h3>Popular articles</h3></div>
+            <div class="panel__body" style="padding-top:6px;padding-bottom:6px;">
+              <a class="list-row" href="#"><span class="icon-tile xs bg-blue" style="width:36px;height:36px;border-radius:9px;"><span data-icon="fileText"></span></span><div class="meta"><div class="title">Setting up your first project</div><div class="sub">Getting started · 4 min read</div></div><span data-icon="chevronRight" class="text-muted"></span></a>
+              <a class="list-row" href="#"><span class="icon-tile xs bg-teal" style="width:36px;height:36px;border-radius:9px;"><span data-icon="search"></span></span><div class="meta"><div class="title">How to use Literature Search</div><div class="sub">Research tools · 6 min read</div></div><span data-icon="chevronRight" class="text-muted"></span></a>
+              <a class="list-row" href="#"><span class="icon-tile xs bg-purple" style="width:36px;height:36px;border-radius:9px;"><span data-icon="quote"></span></span><div class="meta"><div class="title">Switching citation styles</div><div class="sub">Citations · 3 min read</div></div><span data-icon="chevronRight" class="text-muted"></span></a>
+              <a class="list-row" href="#"><span class="icon-tile xs bg-rose" style="width:36px;height:36px;border-radius:9px;"><span data-icon="wand"></span></span><div class="meta"><div class="title">Getting the most from the AI Humanizer</div><div class="sub">Research tools · 5 min read</div></div><span data-icon="chevronRight" class="text-muted"></span></a>
+              <a class="list-row" href="#"><span class="icon-tile xs bg-amber" style="width:36px;height:36px;border-radius:9px;"><span data-icon="users"></span></span><div class="meta"><div class="title">Inviting collaborators</div><div class="sub">Collaboration · 4 min read</div></div><span data-icon="chevronRight" class="text-muted"></span></a>
+            </div>
+          </div>
+
+          <!-- Contact support -->
+          <div class="flex flex-col gap-6">
+            <div class="card card-pad-lg text-center">
+              <span class="icon-tile bg-blue" style="margin-inline:auto;margin-bottom:14px;"><span data-icon="headset"></span></span>
+              <h3 style="margin-bottom:6px;">Talk to support</h3>
+              <p class="text-muted" style="font-size:var(--fs-sm);margin-bottom:18px;">Our team replies within 24 hours.</p>
+              <a class="btn btn-primary btn-block" href="../contact.html">Contact us</a>
+            </div>
+            <div class="card card-pad-lg" style="background:var(--grad-soft);">
+              <div class="flex items-center gap-2" style="margin-bottom:8px;"><span class="badge badge-green badge-dot">Online</span></div>
+              <h3 style="margin-bottom:6px;">System status</h3>
+              <p class="text-muted" style="font-size:var(--fs-sm);">All systems operational. Last incident: 47 days ago.</p>
+              <a class="btn btn-ghost btn-sm" style="margin-top:10px;">View status page <span data-icon="external"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

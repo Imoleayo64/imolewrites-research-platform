@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics — ImoleWrites Research Hub</title>
+  <meta name="description" content="Visualize writing progress, research activity, AI usage, and publication tracking." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="analytics"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Analytics"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>Analytics</h1><p>Your research activity, writing progress, and AI usage at a glance.</p></div>
+          <div class="flex items-center gap-2 padding:5px;background:var(--surface-3);border-radius:var(--radius-full);border:1px solid var(--border);">
+            <select class="select" style="border:0;background:transparent;width:auto;">
+              <option>Last 30 days</option><option>Last 7 days</option><option>This quarter</option><option>This year</option>
+            </select>
+            <button class="btn btn-secondary btn-sm"><span data-icon="download"></span> Export</button>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="stat-grid" style="margin-bottom:24px;">
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Total words</span><span class="icon-tile xs bg-blue"><span data-icon="pen"></span></span></div>
+            <div class="stat-card__value"><span data-count="24810">0</span></div>
+            <div class="stat-card__trend up"><span data-icon="arrowUp"></span> +12%</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Papers read</span><span class="icon-tile xs bg-teal"><span data-icon="bookOpen"></span></span></div>
+            <div class="stat-card__value"><span data-count="87">0</span></div>
+            <div class="stat-card__trend up"><span data-icon="arrowUp"></span> +14 this month</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">AI interactions</span><span class="icon-tile xs bg-purple"><span data-icon="sparkles"></span></span></div>
+            <div class="stat-card__value"><span data-count="1284">0</span></div>
+            <div class="stat-card__trend up"><span data-icon="arrowUp"></span> +8%</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Publications</span><span class="icon-tile xs bg-amber"><span data-icon="award"></span></span></div>
+            <div class="stat-card__value"><span data-count="5">0</span></div>
+            <div class="stat-card__trend up"><span data-icon="arrowUp"></span> +1 in review</div>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="dash-grid" style="margin-bottom:24px;">
+          <div class="panel">
+            <div class="panel__head"><h3>Writing activity</h3><div class="flex items-center gap-3"><span class="badge badge-blue">Words</span><span class="badge badge-teal">Citations</span></div></div>
+            <div class="panel__body"><div id="writingChart" style="height:280px;"></div></div>
+          </div>
+          <div class="panel">
+            <div class="panel__head"><h3>Time by activity</h3></div>
+            <div class="panel__body">
+              <div id="timeDonut" style="height:200px;"></div>
+              <div class="flex flex-col gap-2" style="margin-top:16px;">
+                <div class="flex items-center gap-2" style="font-size:var(--fs-sm);"><span style="width:10px;height:10px;border-radius:50%;background:#2563eb;"></span> Writing <span class="text-muted" style="margin-left:auto;">42%</span></div>
+                <div class="flex items-center gap-2" style="font-size:var(--fs-sm);"><span style="width:10px;height:10px;border-radius:50%;background:#14b8a6;"></span> Reading <span class="text-muted" style="margin-left:auto;">28%</span></div>
+                <div class="flex items-center gap-2" style="font-size:var(--fs-sm);"><span style="width:10px;height:10px;border-radius:50%;background:#7c3aed;"></span> AI assistant <span class="text-muted" style="margin-left:auto;">18%</span></div>
+                <div class="flex items-center gap-2" style="font-size:var(--fs-sm);"><span style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></span> Citations <span class="text-muted" style="margin-left:auto;">12%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <div class="panel">
+            <div class="panel__head"><h3>AI usage by feature</h3></div>
+            <div class="panel__body"><div id="aiBarChart" style="height:260px;"></div></div>
+          </div>
+          <div class="panel">
+            <div class="panel__head"><h3>Publication tracking</h3></div>
+            <div class="panel__body" style="padding-top:6px;padding-bottom:6px;">
+              <div class="list-row"><span class="badge badge-blue">Submitted</span><div class="meta"><div class="title">Adaptive ensembles for climate</div><div class="sub">Nature Climate Change · Aug 12</div></div></div>
+              <div class="list-row"><span class="badge badge-amber">In review</span><div class="meta"><div class="title">Microbiome & cognition review</div><div class="sub">Frontiers · Jul 30</div></div></div>
+              <div class="list-row"><span class="badge badge-purple">Revisions</span><div class="meta"><div class="title">Bayesian NN forecasting</div><div class="sub">JMLR · Jul 18</div></div></div>
+              <div class="list-row"><span class="badge badge-green">Published</span><div class="meta"><div class="title">Validation protocols survey</div><div class="sub">Reviews of Geophysics · Jun 5</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/charts.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!window.Charts) return;
+      Charts.line(document.getElementById("writingChart"), {
+        labels: ["W1","W2","W3","W4","W5","W6","W7","W8"],
+        series: [
+          { values: [1800,2400,2100,3200,2800,4100,3600,4800], color: "#2563eb", fill: true },
+          { values: [8,12,10,18,14,22,16,26], color: "#14b8a6", fill: false }
+        ]
+      });
+      Charts.donut(document.getElementById("timeDonut"), {
+        values: [42,28,18,12],
+        colors: ["#2563eb","#14b8a6","#7c3aed","#f59e0b"]
+      }, { center: { value: "186h", label: "this month" } });
+      Charts.bar(document.getElementById("aiBarChart"), {
+        labels: ["Draft","Summarize","Cite","Humanize","Stats","Search"],
+        series: [{ values: [420,310,240,180,90,280], color: "#7c3aed" }]
+      });
+    });
+  </script>
+</body>
+</html>

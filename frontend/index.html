@@ -1,159 +1,497 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImoleWrites | AI Research & Scientific Writing Platform</title>
-
-    <link rel="stylesheet" href="css/style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <script src="https://kit.fontawesome.com/6b54b0d8b8.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ImoleWrites Research Hub — Research Smarter. Write Better. Publish Faster.</title>
+  <meta name="description" content="ImoleWrites Research Hub is the all-in-one AI platform for researchers, students, and institutions. Search literature, manage citations, humanize writing, and find the right journals — all in one elegant workspace." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
 </head>
-
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<header>
+  <div data-mount="nav" data-active="home"></div>
+  <div data-mount="mobile-menu" data-active="home"></div>
 
-<nav class="navbar">
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero__grid">
+          <div class="hero__content">
+            <div class="badge badge-blue animate-fadeIn" style="margin-bottom:24px;">
+              <span style="width:7px;height:7px;border-radius:50%;background:var(--blue-600);"></span>
+              AI-first research workspace
+            </div>
+            <h1 class="hero__title">
+              <span class="line">Research Smarter.</span>
+              <span class="line">Write Better.</span>
+              <span class="line text-gradient">Publish Faster.</span>
+            </h1>
+            <p class="hero__sub">
+              The all-in-one AI hub for researchers, students, and institutions.
+              Discover literature, manage citations, humanize your writing, and find the perfect journal — beautifully unified.
+            </p>
+            <div class="hero__cta">
+              <a class="btn btn-primary btn-lg" href="auth/register.html">
+                Start Free
+                <span data-icon="arrowRight"></span>
+              </a>
+              <a class="btn btn-secondary btn-lg" href="#demo" data-modal-open="demoModal">
+                <span data-icon="play"></span>
+                Watch Demo
+              </a>
+            </div>
+            <div class="hero__stats">
+              <div class="hero__stat">
+                <div class="n"><span data-count="120000" data-suffix="+">0</span></div>
+                <div class="l">Researchers</div>
+              </div>
+              <div class="hero__stat">
+                <div class="n"><span data-count="85" data-suffix="M+">0</span></div>
+                <div class="l">Papers indexed</div>
+              </div>
+              <div class="hero__stat">
+                <div class="n"><span data-count="99.9" data-decimals="1" data-suffix="%">0</span></div>
+                <div class="l">Uptime</div>
+              </div>
+            </div>
+          </div>
 
-<div class="logo">
+          <!-- Hero visual -->
+          <div class="hero__visual">
+            <div class="hero-blob b1"></div>
+            <div class="hero-blob b2"></div>
 
-ImoleWrites
+            <div class="hero-float-card fc1">
+              <div class="fi bg-teal"><span data-icon="check2"></span></div>
+              <div>Citation generated</div>
+            </div>
+            <div class="hero-float-card fc2">
+              <div class="fi bg-purple"><span data-icon="sparkles"></span></div>
+              <div>AI improved clarity</div>
+            </div>
 
-</div>
+            <div class="hero__app">
+              <div class="hero__app-bar">
+                <span class="dot" style="background:#ff5f57"></span>
+                <span class="dot" style="background:#febc2e"></span>
+                <span class="dot" style="background:#28c840"></span>
+                <span class="app-title">ImoleWrites — Research Workspace</span>
+              </div>
+              <div class="hero__app-body">
+                <!-- writing pane -->
+                <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;">
+                  <div style="font-size:11px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Manuscript</div>
+                  <div style="height:8px;width:80%;background:var(--text);border-radius:4px;opacity:.85;margin-bottom:6px;"></div>
+                  <div style="height:6px;background:var(--border-2);border-radius:4px;margin-bottom:5px;"></div>
+                  <div style="height:6px;background:var(--border-2);border-radius:4px;width:90%;margin-bottom:5px;"></div>
+                  <div style="height:6px;background:var(--border-2);border-radius:4px;width:70%;margin-bottom:14px;"></div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <span class="badge badge-blue" style="font-size:9px;">APA</span>
+                    <span class="badge badge-teal" style="font-size:9px;">Peer-reviewed</span>
+                  </div>
+                </div>
+                <!-- chat pane -->
+                <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;">
+                    <span style="width:18px;height:18px;border-radius:5px;background:var(--grad-brand);display:grid;place-items:center;color:#fff;"><span data-icon="sparkles" style="width:11px;height:11px;display:inline-flex;"></span></span>
+                    AI Assistant
+                  </div>
+                  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:10px;color:var(--text-2);">
+                    Summarize the methodology gaps in these 3 papers.
+                  </div>
+                  <div style="background:var(--blue-600);color:#fff;border-radius:8px;padding:8px 10px;font-size:10px;margin-left:24px;">
+                    Most lack reproducible data pipelines — great angle!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<ul class="nav-links">
+        <div class="hero__trust">
+          <p>Trusted by researchers & institutions worldwide</p>
+          <div class="trust-logos">
+            <span class="trust-logo"><span data-icon="graduation"></span> Stanford</span>
+            <span class="trust-logo"><span data-icon="building"></span> MIT</span>
+            <span class="trust-logo"><span data-icon="book"></span> Oxford</span>
+            <span class="trust-logo"><span data-icon="globe"></span> WHO</span>
+            <span class="trust-logo"><span data-icon="flask"></span> Nature</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<li><a href="#">Features</a></li>
+    <!-- LOGOS MARQUEE -->
+    <div class="marquee">
+      <div class="marquee__track">
+        <span class="marquee__item"><span data-icon="graduation"></span> Stanford</span>
+        <span class="marquee__item"><span data-icon="building"></span> MIT</span>
+        <span class="marquee__item"><span data-icon="book"></span> Oxford</span>
+        <span class="marquee__item"><span data-icon="globe"></span> WHO</span>
+        <span class="marquee__item"><span data-icon="flask"></span> Nature</span>
+        <span class="marquee__item"><span data-icon="compass"></span> Elsevier</span>
+        <span class="marquee__item"><span data-icon="award"></span> IEEE</span>
+        <span class="marquee__item"><span data-icon="layers"></span> Springer</span>
+        <!-- duplicate for seamless loop -->
+        <span class="marquee__item"><span data-icon="graduation"></span> Stanford</span>
+        <span class="marquee__item"><span data-icon="building"></span> MIT</span>
+        <span class="marquee__item"><span data-icon="book"></span> Oxford</span>
+        <span class="marquee__item"><span data-icon="globe"></span> WHO</span>
+        <span class="marquee__item"><span data-icon="flask"></span> Nature</span>
+        <span class="marquee__item"><span data-icon="compass"></span> Elsevier</span>
+        <span class="marquee__item"><span data-icon="award"></span> IEEE</span>
+        <span class="marquee__item"><span data-icon="layers"></span> Springer</span>
+      </div>
+    </div>
 
-<li><a href="#">Pricing</a></li>
+    <!-- FEATURE HIGHLIGHTS -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Everything you need</span>
+          <h2 class="section-title">One workspace for the entire research lifecycle</h2>
+          <p class="section-sub">From the first literature search to the final published manuscript — ImoleWrites brings every tool into a single, beautifully designed hub.</p>
+        </div>
 
-<li><a href="#">About</a></li>
+        <div class="grid grid-3 gap-card">
+          <article class="card card-hover feature-card" data-reveal>
+            <div class="icon-tile bg-blue"><span data-icon="sparkles"></span></div>
+            <h3>AI Research Assistant</h3>
+            <p>Chat with your sources. Draft sections, brainstorm hypotheses, and get instant summaries grounded in your reference library.</p>
+            <a class="learn" href="features.html">Learn more <span data-icon="arrowRight"></span></a>
+          </article>
 
-<li><a href="#">Contact</a></li>
+          <article class="card card-hover feature-card" data-reveal data-reveal-delay="1">
+            <div class="icon-tile bg-teal"><span data-icon="bookOpen"></span></div>
+            <h3>Literature Search</h3>
+            <p>Search 85M+ papers across major databases with smart filters, semantic ranking, and one-click saving to your library.</p>
+            <a class="learn" href="features.html">Learn more <span data-icon="arrowRight"></span></a>
+          </article>
 
-</ul>
+          <article class="card card-hover feature-card" data-reveal data-reveal-delay="2">
+            <div class="icon-tile bg-purple"><span data-icon="quote"></span></div>
+            <h3>Citation Manager</h3>
+            <p>Generate flawless citations in APA, MLA, Chicago, Harvard, IEEE & Vancouver. DOI lookup and BibTeX included.</p>
+            <a class="learn" href="features.html">Learn more <span data-icon="arrowRight"></span></a>
+          </article>
 
-<div class="nav-buttons">
+          <article class="card card-hover feature-card" data-reveal>
+            <div class="icon-tile bg-amber"><span data-icon="file"></span></div>
+            <h3>PDF Workspace</h3>
+            <p>Read, highlight, annotate, and ask the AI about any selected passage — without leaving your browser.</p>
+            <a class="learn" href="features.html">Learn more <span data-icon="arrowRight"></span></a>
+          </article>
 
-<a href="login.html" class="login-btn">
+          <article class="card card-hover feature-card" data-reveal data-reveal-delay="1">
+            <div class="icon-tile bg-rose"><span data-icon="wand"></span></div>
+            <h3>AI Humanizer</h3>
+            <p>Refine tone for academic, professional, or natural readability — with a live readability score and undetectable flow.</p>
+            <a class="learn" href="features.html">Learn more <span data-icon="arrowRight"></span></a>
+          </article>
 
-Login
+          <article class="card card-hover feature-card" data-reveal data-reveal-delay="2">
+            <div class="icon-tile bg-green"><span data-icon="compass"></span></div>
+            <h3>Journal Recommendation</h3>
+            <p>Upload your abstract and get ranked journal suggestions with acceptance probability and submission checklists.</p>
+            <a class="learn" href="features.html">Learn more <span data-icon="arrowRight"></span></a>
+          </article>
+        </div>
 
-</a>
+        <div class="text-center" style="margin-top:40px;" data-reveal>
+          <a class="btn btn-secondary btn-lg" href="features.html">Explore all features <span data-icon="arrowRight"></span></a>
+        </div>
+      </div>
+    </section>
 
-<a href="register.html" class="primary-btn">
+    <!-- RESEARCH WORKFLOW -->
+    <section class="section" style="background:var(--surface);border-block:1px solid var(--border);">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">How it works</span>
+          <h2 class="section-title">A workflow built for serious research</h2>
+          <p class="section-sub">Four focused stages that take you from a blank page to a publication-ready manuscript — faster than ever.</p>
+        </div>
 
-Get Started
+        <div class="workflow">
+          <div class="workflow-step" data-reveal>
+            <div class="workflow-step__num bg-blue">1</div>
+            <h4>Discover</h4>
+            <p>Search millions of papers, build your library, and surface the gaps worth pursuing.</p>
+          </div>
+          <div class="workflow-step" data-reveal data-reveal-delay="1">
+            <div class="workflow-step__num bg-teal">2</div>
+            <h4>Write</h4>
+            <p>Draft in a distraction-free editor with an AI co-writer and citations by your side.</p>
+          </div>
+          <div class="workflow-step" data-reveal data-reveal-delay="2">
+            <div class="workflow-step__num bg-purple">3</div>
+            <h4>Refine</h4>
+            <p>Humanize tone, polish grammar, and verify every reference automatically.</p>
+          </div>
+          <div class="workflow-step" data-reveal data-reveal-delay="3">
+            <div class="workflow-step__num bg-green">4</div>
+            <h4>Publish</h4>
+            <p>Find the right journal, track submissions, and ship your work to the world.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</a>
+    <!-- BAND: AI assistant highlight -->
+    <section class="section">
+      <div class="container">
+        <div class="dash-grid" style="align-items:center;">
+          <div data-reveal>
+            <span class="eyebrow">Your AI co-researcher</span>
+            <h2 class="section-title" style="margin-bottom:16px;">An assistant that actually understands academia</h2>
+            <p class="text-muted" style="font-size:var(--fs-lg);margin-bottom:28px;">Trained on scholarly conventions, the ImoleWrites assistant drafts in your voice, respects citation standards, and never invents references. Ask it anything — methodology, statistics, structure, or tone.</p>
+            <ul style="display:flex;flex-direction:column;gap:16px;">
+              <li class="flex items-start gap-3"><span class="icon-tile xs bg-blue"><span data-icon="check2"></span></span><div><strong>Grounded answers</strong><div class="text-muted" style="font-size:var(--fs-sm);">Every insight links back to a real, cited source in your library.</div></div></li>
+              <li class="flex items-start gap-3"><span class="icon-tile xs bg-teal"><span data-icon="check2"></span></span><div><strong>Statistical guidance</strong><div class="text-muted" style="font-size:var(--fs-sm);">Pick the right tests, interpret results, and format tables correctly.</div></div></li>
+              <li class="flex items-start gap-3"><span class="icon-tile xs bg-purple"><span data-icon="check2"></span></span><div><strong>Export anywhere</strong><div class="text-muted" style="font-size:var(--fs-sm);">Copy or export full conversations as Markdown, PDF, or DOCX.</div></div></li>
+            </ul>
+            <a class="btn btn-primary btn-lg" href="app/ai-assistant.html" style="margin-top:32px;">Try the assistant <span data-icon="arrowRight"></span></a>
+          </div>
+          <div data-reveal data-reveal-delay="1">
+            <div class="card card-pad-lg" style="box-shadow:var(--shadow-xl);">
+              <div class="chat-messages" style="padding:0;max-height:none;">
+                <div class="chat-msg user">
+                  <div class="chat-msg__avatar">You</div>
+                  <div class="chat-msg__body">Which statistical test fits my 2×3 mixed design with a non-normal dependent variable?</div>
+                </div>
+                <div class="chat-msg ai">
+                  <div class="chat-msg__avatar"><span data-icon="sparkles"></span></div>
+                  <div class="chat-msg__body">
+                    For a 2×3 mixed design with non-normal DVs, consider the <strong>Aligned Rank Transform (ART) ANOVA</strong> or a <strong>robust mixed ANOVA</strong> (WRS2 package). Both handle ordinal/non-normal data without violating assumptions. I can draft the R code and reporting template — want me to?
+                    <div class="chat-msg__actions">
+                      <button tooltip aria-label="Copy"><span data-icon="copy"></span></button>
+                      <button aria-label="Like"><span data-icon="thumbsUp"></span></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="chat-msg user">
+                  <div class="chat-msg__avatar">You</div>
+                  <div class="chat-msg__body">Yes, and cite a seminal source.</div>
+                </div>
+                <div class="chat-msg ai">
+                  <div class="chat-msg__avatar"><span data-icon="sparkles"></span></div>
+                  <div class="chat-msg__body">Wobbrock et al. (2011) introduced ART-ANOVA — I've added it to your citations in APA 7. Drafting the code now…</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <!-- TESTIMONIALS -->
+    <section class="section" style="background:var(--surface);border-block:1px solid var(--border);">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Loved by scholars</span>
+          <h2 class="section-title">Research, reimagined by our community</h2>
+          <p class="section-sub">Join 120,000+ researchers, students, and institutions publishing faster with ImoleWrites.</p>
+        </div>
 
-</nav>
+        <div class="grid grid-3 gap-card">
+          <article class="card testimonial-card" data-reveal>
+            <div class="stars" aria-label="5 out of 5 stars">
+              <span data-icon="star"></span><span data-icon="star"></span><span data-icon="star"></span><span data-icon="star"></span><span data-icon="star"></span>
+            </div>
+            <p class="quote" style="margin-top:16px;">ImoleWrites cut my literature review time in half. The AI summarization and citation tools are genuinely the best I've used.</p>
+            <div class="testimonial-author">
+              <div class="avatar md">DA</div>
+              <div>
+                <div class="fw-semibold">Dr. Amara Nwosu</div>
+                <div class="text-muted" style="font-size:var(--fs-sm);">Postdoctoral Researcher, Public Health</div>
+              </div>
+            </div>
+          </article>
 
-</header>
+          <article class="card testimonial-card" data-reveal data-reveal-delay="1">
+            <div class="stars" aria-label="5 out of 5 stars">
+              <span data-icon="star"></span><span data-icon="star"></span><span data-icon="star"></span><span data-icon="star"></span><span data-icon="star"></span>
+            </div>
+            <p class="quote" style="margin-top:16px;">As a PhD student juggling multiple papers, the workspace keeps everything organized. The journal recommender found me a perfect-fit journal.</p>
+            <div class="testimonial-author">
+              <div class="avatar md bg-teal">SO</div>
+              <div>
+                <div class="fw-semibold">Sade Okafor</div>
+                <div class="text-muted" style="font-size:var(--fs-sm);">PhD Candidate, Computer Science</div>
+              </div>
+            </div>
+          </article>
 
-<section class="hero">
+          <article class="card testimonial-card" data-reveal data-reveal-delay="2">
+            <div class="stars" aria-label="5 out of 5 stars">
+              <span data-icon="star"></span><span data-icon="star"></span><span data-icon="star"></span><span data-icon="star"></span><span data-icon="star"></span>
+            </div>
+            <p class="quote" style="margin-top:16px;">We rolled out the Institution plan across our faculty. Collaboration and analytics gave us real visibility into research output.</p>
+            <div class="testimonial-author">
+              <div class="avatar md bg-purple">RB</div>
+              <div>
+                <div class="fw-semibold">Prof. Ravi Bhatt</div>
+                <div class="text-muted" style="font-size:var(--fs-sm);">Dean of Research, University</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<div class="hero-content">
+    <!-- PRICING PREVIEW -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Simple pricing</span>
+          <h2 class="section-title">Plans that scale with your research</h2>
+          <p class="section-sub">Start free. Upgrade when you're ready. No hidden fees, cancel anytime.</p>
+        </div>
 
-<h1>
+        <div class="pricing-grid">
+          <div class="card price-card" data-reveal>
+            <div class="plan-name">Free</div>
+            <div class="price">$0<span>/mo</span></div>
+            <div class="price-desc">For students getting started with research.</div>
+            <a class="btn btn-secondary btn-block" href="auth/register.html">Get started</a>
+            <div class="features">
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>10 AI assistant queries/day</div>
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>50 saved papers</div>
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>Basic citation export</div>
+              <div class="price-feature off"><span class="check"><span data-icon="check2"></span></span>PDF workspace</div>
+            </div>
+          </div>
 
-Research Smarter.
+          <div class="card price-card featured" data-reveal data-reveal-delay="1">
+            <div class="plan-name">Researcher Pro</div>
+            <div class="price">$19<span>/mo</span></div>
+            <div class="price-desc">For active researchers and writers.</div>
+            <a class="btn btn-primary btn-block" href="auth/register.html">Start free trial</a>
+            <div class="features">
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>Unlimited AI queries</div>
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>Unlimited library & PDF tools</div>
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>All citation styles + BibTeX</div>
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>Journal recommendations</div>
+            </div>
+          </div>
 
-<br>
+          <div class="card price-card" data-reveal data-reveal-delay="2">
+            <div class="plan-name">Institution</div>
+            <div class="price">$499<span>/mo</span></div>
+            <div class="price-desc">For departments and research groups.</div>
+            <a class="btn btn-secondary btn-block" href="contact.html">Contact sales</a>
+            <div class="features">
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>Up to 50 seats</div>
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>Collaboration & versioning</div>
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>Analytics dashboard</div>
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>Priority support</div>
+            </div>
+          </div>
 
-Write Better.
+          <div class="card price-card" data-reveal data-reveal-delay="3">
+            <div class="plan-name">Enterprise</div>
+            <div class="price">Custom</div>
+            <div class="price-desc">For large universities & publishers.</div>
+            <a class="btn btn-secondary btn-block" href="contact.html">Contact sales</a>
+            <div class="features">
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>Unlimited seats</div>
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>SSO, SAML & audit logs</div>
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>On-prem / private cloud</div>
+              <div class="price-feature"><span class="check"><span data-icon="check2"></span></span>Dedicated success manager</div>
+            </div>
+          </div>
+        </div>
 
-<br>
+        <div class="text-center" style="margin-top:40px;" data-reveal>
+          <a class="btn btn-secondary" href="pricing.html">See full comparison <span data-icon="arrowRight"></span></a>
+        </div>
+      </div>
+    </section>
 
-Publish Faster.
+    <!-- FAQ -->
+    <section class="section" style="background:var(--surface);border-top:1px solid var(--border);">
+      <div class="container container--narrow">
+        <div class="section-head">
+          <span class="eyebrow">FAQ</span>
+          <h2 class="section-title">Questions, answered</h2>
+          <p class="section-sub">Everything you need to know before getting started.</p>
+        </div>
 
-</h1>
+        <div class="accordion" data-single>
+          <div class="accordion__item open">
+            <button class="accordion__q">Is ImoleWrites suitable for students?<span class="accordion__icon"><span data-icon="chevronDown"></span></span></button>
+            <div class="accordion__a"><div class="accordion__a-inner">Absolutely. The Free plan is built for students, and the assistant is trained to teach — not just produce. It explains methodology, helps structure assignments, and keeps citations compliant with your institution's style guide.</div></div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__q">Does the AI invent fake citations?<span class="accordion__icon"><span data-icon="chevronDown"></span></span></button>
+            <div class="accordion__a"><div class="accordion__a-inner">No. ImoleWrites is grounded in real, indexed sources and your own reference library. Every suggestion links back to a verifiable paper, and you can audit any citation with one click.</div></div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__q">Which citation styles are supported?<span class="accordion__icon"><span data-icon="chevronDown"></span></span></button>
+            <div class="accordion__a"><div class="accordion__a-inner">APA (7th), MLA (9th), Chicago (notes & author-date), Harvard, IEEE, and Vancouver — plus BibTeX export and DOI lookup for instant, accurate references.</div></div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__q">Can I collaborate with my co-authors?<span class="accordion__icon"><span data-icon="chevronDown"></span></span></button>
+            <div class="accordion__a"><div class="accordion__a-inner">Yes. The Researcher Pro and Institution plans support real-time collaboration, comments, version history, and task assignments so your whole team stays in sync.</div></div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__q">Is my research data secure?<span class="accordion__icon"><span data-icon="chevronDown"></span></span></button>
+            <div class="accordion__a"><div class="accordion__a-inner">Security is foundational. We use encryption in transit and at rest, SOC 2-aligned controls, and optional SSO. Your unpublished work is never used to train models.</div></div>
+          </div>
+        </div>
 
-<p>
+        <div class="text-center" style="margin-top:40px;">
+          <a class="btn btn-ghost" href="faq.html">View all FAQs <span data-icon="arrowRight"></span></a>
+        </div>
+      </div>
+    </section>
 
-ImoleWrites is your all-in-one AI research workspace for literature discovery,
-academic writing, citation management, journal recommendation, and scientific collaboration.
+    <!-- CTA BAND -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band" data-reveal>
+          <span class="badge" style="background:rgba(255,255,255,0.18);color:#fff;border-color:rgba(255,255,255,0.25);"><span data-icon="sparkles"></span> Start in minutes</span>
+          <h2 style="margin-top:20px;">Ready to publish faster?</h2>
+          <p>Join 120,000+ researchers writing better, smarter, and faster with ImoleWrites. Your first project is free.</p>
+          <div class="flex gap-3 justify-center flex-wrap">
+            <a class="btn btn-secondary btn-lg" href="auth/register.html">Start Free <span data-icon="arrowRight"></span></a>
+            <a class="btn btn-lg" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.4);" href="contact.html">Talk to sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-</p>
+  <!-- Demo modal -->
+  <div class="modal-overlay" id="demoModal">
+    <div class="modal" style="max-width:640px;padding:0;overflow:hidden;">
+      <div style="position:relative;aspect-ratio:16/9;background:var(--grad-brand);display:grid;place-items:center;">
+        <button class="btn btn-icon" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.2);color:#fff;" data-modal-close aria-label="Close"><span data-icon="close"></span></button>
+        <button class="fab" style="animation:none;width:72px;height:72px;" aria-label="Play demo"><span data-icon="play"></span></button>
+      </div>
+      <div style="padding:24px;">
+        <h3 style="margin-bottom:8px;">See ImoleWrites in action</h3>
+        <p class="text-muted" style="margin-bottom:16px;">A 2-minute tour of the research workspace, AI assistant, and citation tools.</p>
+        <a class="btn btn-primary btn-block" href="auth/register.html">Start free to explore <span data-icon="arrowRight"></span></a>
+      </div>
+    </div>
+  </div>
 
-<div class="hero-buttons">
+  <div data-mount="footer"></div>
 
-<a href="register.html" class="primary-btn">
-
-Start Free
-
-</a>
-
-<a href="#" class="secondary-btn">
-
-Watch Demo
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="features">
-
-<h2>Everything You Need for Modern Research</h2>
-
-<p class="section-subtitle">
-One platform. Every research tool.
-</p>
-
-<div class="feature-grid">
-
-<div class="feature-card">
-<i class="fas fa-robot"></i>
-<h3>AI Research Assistant</h3>
-<p>Generate research ideas, write literature reviews, and improve academic writing.</p>
-</div>
-
-<div class="feature-card">
-<i class="fas fa-book"></i>
-<h3>Literature Search</h3>
-<p>Search millions of scholarly papers from trusted academic databases.</p>
-</div>
-
-<div class="feature-card">
-<i class="fas fa-file-alt"></i>
-<h3>Citation Manager</h3>
-<p>Create and organize APA, MLA, Chicago, IEEE, and many other citation styles.</p>
-</div>
-
-<div class="feature-card">
-<i class="fas fa-brain"></i>
-<h3>AI Humanizer</h3>
-<p>Transform AI-generated text into natural, publication-ready academic writing.</p>
-</div>
-
-<div class="feature-card">
-<i class="fas fa-chart-line"></i>
-<h3>Journal Recommendation</h3>
-<p>Discover the best journals for your manuscript based on your research.</p>
-</div>
-
-<div class="feature-card">
-<i class="fas fa-users"></i>
-<h3>Collaboration</h3>
-<p>Work with supervisors, co-authors, and research teams in one workspace.</p>
-</div>
-
-</div>
-
-</section>
-
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
-
 </html>

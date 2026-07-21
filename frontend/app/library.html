@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reference Library — ImoleWrites Research Hub</title>
+  <meta name="description" content="Your organized reference library with collections, tags, and full-text search." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="library"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Reference Library"></div>
+
+      <div class="content">
+        <div class="dash-grid" style="align-items:start;">
+          <!-- Collections sidebar -->
+          <aside style="position:sticky;top:calc(var(--nav-height) + 24px);">
+            <div class="card card-pad">
+              <div class="input-group" style="margin-bottom:16px;"><span class="input-icon"><span data-icon="search"></span></span><input class="input" type="text" placeholder="Search library..." /></div>
+              <div class="ws-folder-header" style="padding:4px 0;"><span data-icon="folder"></span> Collections</div>
+              <div class="ws-tree-item active"><span data-icon="books"></span><span class="name">All references</span><span class="badge" style="margin-left:auto;">142</span></div>
+              <div class="ws-tree-item"><span data-icon="folder"></span><span class="name">Climate ML</span><span class="badge" style="margin-left:auto;">48</span></div>
+              <div class="ws-tree-item"><span data-icon="folder"></span><span class="name">Microbiome</span><span class="badge" style="margin-left:auto;">32</span></div>
+              <div class="ws-tree-item"><span data-icon="folder"></span><span class="name">Grant proposal</span><span class="badge" style="margin-left:auto;">19</span></div>
+              <div class="ws-tree-item"><span data-icon="bookmark"></span><span class="name">Favorites</span><span class="badge" style="margin-left:auto;">14</span></div>
+              <div class="ws-folder-header" style="padding:12px 0 4px;"><span data-icon="tag"></span> Tags</div>
+              <div class="filter-chips" data-chip-group>
+                <span class="chip" style="font-size:var(--fs-xs);">methods</span>
+                <span class="chip" style="font-size:var(--fs-xs);">review</span>
+                <span class="chip" style="font-size:var(--fs-xs);">dataset</span>
+                <span class="chip" style="font-size:var(--fs-xs);">2024</span>
+              </div>
+              <button class="btn btn-soft btn-block btn-sm" style="margin-top:14px;"><span data-icon="plus"></span> New collection</button>
+            </div>
+          </aside>
+
+          <!-- Library grid -->
+          <div>
+            <div class="page-title-row" style="margin-bottom:20px;">
+              <div><h1 style="font-size:var(--fs-2xl);">All references</h1><p class="text-muted" style="font-size:var(--fs-sm);">142 sources · last updated today</p></div>
+              <div class="flex gap-2">
+                <button class="btn btn-secondary btn-sm"><span data-icon="upload"></span> Import</button>
+                <button class="btn btn-ghost btn-sm"><span data-icon="grid"></span></button>
+              </div>
+            </div>
+
+            <div class="grid grid-2 gap-card">
+              <article class="card card-pad card-hover">
+                <div class="flex items-start justify-between gap-2" style="margin-bottom:10px;">
+                  <span class="icon-tile sm bg-blue"><span data-icon="book"></span></span>
+                  <button class="icon-btn" style="width:32px;height:32px;color:var(--blue-600);"><span data-icon="bookmark"></span></button>
+                </div>
+                <h4 style="font-size:var(--fs-md);line-height:1.35;margin-bottom:4px;">Adaptive Ensemble Methods for Non-Stationary Climate Projections</h4>
+                <div class="text-muted" style="font-size:var(--fs-sm);">Sherlock &amp; Adler · 2024 · Nature Climate Change</div>
+                <div class="flex gap-2" style="margin-top:12px;"><span class="badge badge-blue">methods</span><span class="badge badge-teal">2024</span></div>
+              </article>
+
+              <article class="card card-pad card-hover">
+                <div class="flex items-start justify-between gap-2" style="margin-bottom:10px;">
+                  <span class="icon-tile sm bg-teal"><span data-icon="book"></span></span>
+                  <button class="icon-btn" style="width:32px;height:32px;"><span data-icon="bookmark"></span></button>
+                </div>
+                <h4 style="font-size:var(--fs-md);line-height:1.35;margin-bottom:4px;">Deep Learning for Regional Climate Downscaling: A Survey</h4>
+                <div class="text-muted" style="font-size:var(--fs-sm);">Patel &amp; Moreno · 2024 · arXiv</div>
+                <div class="flex gap-2" style="margin-top:12px;"><span class="badge badge-purple">review</span></div>
+              </article>
+
+              <article class="card card-pad card-hover">
+                <div class="flex items-start justify-between gap-2" style="margin-bottom:10px;">
+                  <span class="icon-tile sm bg-purple"><span data-icon="book"></span></span>
+                  <button class="icon-btn" style="width:32px;height:32px;"><span data-icon="bookmark"></span></button>
+                </div>
+                <h4 style="font-size:var(--fs-md);line-height:1.35;margin-bottom:4px;">Reproducibility Crises in Computational Climate Science</h4>
+                <div class="text-muted" style="font-size:var(--fs-sm);">Wobbrock &amp; Tan · 2023 · J. Computational Physics</div>
+                <div class="flex gap-2" style="margin-top:12px;"><span class="badge badge-amber">dataset</span></div>
+              </article>
+
+              <article class="card card-pad card-hover">
+                <div class="flex items-start justify-between gap-2" style="margin-bottom:10px;">
+                  <span class="icon-tile sm bg-amber"><span data-icon="book"></span></span>
+                  <button class="icon-btn" style="width:32px;height:32px;"><span data-icon="bookmark"></span></button>
+                </div>
+                <h4 style="font-size:var(--fs-md);line-height:1.35;margin-bottom:4px;">Transformer Architectures for Spatio-Temporal Forecasting</h4>
+                <div class="text-muted" style="font-size:var(--fs-sm);">Kim &amp; Adeyemi · 2024 · Reviews of Geophysics</div>
+                <div class="flex gap-2" style="margin-top:12px;"><span class="badge badge-blue">methods</span><span class="badge badge-teal">2024</span></div>
+              </article>
+
+              <article class="card card-pad card-hover">
+                <div class="flex items-start justify-between gap-2" style="margin-bottom:10px;">
+                  <span class="icon-tile sm bg-rose"><span data-icon="book"></span></span>
+                  <button class="icon-btn" style="width:32px;height:32px;"><span data-icon="bookmark"></span></button>
+                </div>
+                <h4 style="font-size:var(--fs-md);line-height:1.35;margin-bottom:4px;">Calibration Under Distributional Shift in Earth-System Models</h4>
+                <div class="text-muted" style="font-size:var(--fs-sm);">Okafor · 2024 · Doctoral dissertation</div>
+                <div class="flex gap-2" style="margin-top:12px;"><span class="badge badge-purple">review</span></div>
+              </article>
+
+              <article class="card card-pad card-hover">
+                <div class="flex items-start justify-between gap-2" style="margin-bottom:10px;">
+                  <span class="icon-tile sm bg-green"><span data-icon="book"></span></span>
+                  <button class="icon-btn" style="width:32px;height:32px;"><span data-icon="bookmark"></span></button>
+                </div>
+                <h4 style="font-size:var(--fs-md);line-height:1.35;margin-bottom:4px;">Probabilistic Forecasting with Bayesian Neural Networks</h4>
+                <div class="text-muted" style="font-size:var(--fs-sm);">Adeyemi &amp; Liu · 2023 · JMLR</div>
+                <div class="flex gap-2" style="margin-top:12px;"><span class="badge badge-blue">methods</span></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

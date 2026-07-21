@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Workspace — ImoleWrites Research Hub</title>
+  <meta name="description" content="Your three-column research workspace: project navigation, rich text editor, and AI assistant." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="workspace"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Research Workspace"></div>
+
+      <div class="workspace">
+        <!-- LEFT: project navigation -->
+        <div class="ws-col ws-left">
+          <div class="ws-head">
+            <div>
+              <div class="text-muted" style="font-size:var(--fs-xs);">Project</div>
+              <h4 style="font-size:var(--fs-md);">Climate ML Manuscript</h4>
+            </div>
+            <button class="icon-btn" data-sidebar-toggle aria-label="Toggle sidebar" style="width:34px;height:34px;"><span data-icon="menu"></span></button>
+          </div>
+          <div class="ws-scroll">
+            <div class="ws-folder-header"><span data-icon="folderOpen"></span> Chapters</div>
+            <div class="ws-tree-item active"><span data-icon="fileText"></span><span class="name">1. Introduction</span></div>
+            <div class="ws-tree-item"><span data-icon="fileText"></span><span class="name">2. Literature Review</span></div>
+            <div class="ws-tree-item"><span data-icon="fileText"></span><span class="name">3. Methodology</span></div>
+            <div class="ws-tree-item"><span data-icon="fileText"></span><span class="name">4. Results</span><span class="ws-badge"></span></div>
+            <div class="ws-tree-item"><span data-icon="fileText"></span><span class="name">5. Discussion</span></div>
+            <div class="ws-tree-item"><span data-icon="fileText"></span><span class="name">6. Conclusion</span></div>
+
+            <div class="ws-folder-header" style="margin-top:12px;"><span data-icon="bookOpen"></span> Research notes</div>
+            <div class="ws-tree-item"><span data-icon="pen"></span><span class="name">Adaptive modeling gaps</span></div>
+            <div class="ws-tree-item"><span data-icon="pen"></span><span class="name">Validation approach</span></div>
+            <div class="ws-tree-item"><span data-icon="pen"></span><span class="name">Dataset sources</span></div>
+
+            <div class="ws-folder-header" style="margin-top:12px;"><span data-icon="quote"></span> References (24)</div>
+            <div class="ws-tree-item"><span data-icon="book"></span><span class="name">Smith et al. (2023)</span></div>
+            <div class="ws-tree-item"><span data-icon="book"></span><span class="name">Chen & Park (2022)</span></div>
+            <div class="ws-tree-item"><span data-icon="book"></span><span class="name">Okafor (2024)</span></div>
+
+            <button class="btn btn-soft btn-block btn-sm" style="margin-top:14px;"><span data-icon="plus"></span> New page</button>
+          </div>
+        </div>
+
+        <!-- CENTER: editor -->
+        <div class="ws-col ws-center">
+          <div class="ws-head">
+            <div class="flex items-center gap-3">
+              <button class="icon-btn" data-ws-toggle=".ws-left" style="display:none;" aria-label="Toggle folders"></button>
+              <div>
+                <h4 style="font-size:var(--fs-md);">1. Introduction</h4>
+                <div class="text-muted" style="font-size:var(--fs-xs);"><span data-wordcount>0 words</span> · Auto-saved 2m ago</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="icon-btn tooltip" data-tip="Share" aria-label="Share"><span data-icon="share"></span></button>
+              <button class="icon-btn tooltip" data-tip="Comments" aria-label="Comments"><span data-icon="message"></span></button>
+              <button class="btn btn-soft btn-sm" data-modal-open="exportModal"><span data-icon="download"></span> Export</button>
+              <button class="btn btn-primary btn-sm" data-ws-toggle=".ws-right" style="display:none;"><span data-icon="sparkles"></span> AI</button>
+            </div>
+          </div>
+
+          <!-- toolbar -->
+          <div class="editor-toolbar">
+            <select class="editor-select" data-cmd="formatBlock" data-value="p"><option data-value="p">Paragraph</option></select>
+            <button class="editor-btn tooltip" data-cmd="formatBlock" data-value="h1" data-tip="Heading 1"><span data-icon="bold"></span></button>
+            <div class="editor-divider"></div>
+            <button class="editor-btn tooltip" data-cmd="bold" data-tip="Bold (⌘B)"><span data-icon="bold"></span></button>
+            <button class="editor-btn tooltip" data-cmd="italic" data-tip="Italic (⌘I)"><span data-icon="italic"></span></button>
+            <button class="editor-btn tooltip" data-cmd="underline" data-tip="Underline (⌘U)"><span data-icon="underline"></span></button>
+            <button class="editor-btn tooltip" data-cmd="strikeThrough" data-tip="Strikethrough"><span data-icon="strikethrough"></span></button>
+            <div class="editor-divider"></div>
+            <button class="editor-btn tooltip" data-cmd="insertUnorderedList" data-tip="Bullet list"><span data-icon="list"></span></button>
+            <button class="editor-btn tooltip" data-cmd="insertOrderedList" data-tip="Numbered list"><span data-icon="listOrdered"></span></button>
+            <button class="editor-btn tooltip" data-cmd="formatBlock" data-value="blockquote" data-tip="Quote"><span data-icon="quote2"></span></button>
+            <div class="editor-divider"></div>
+            <button class="editor-btn tooltip" data-cmd="justifyLeft" data-tip="Align left"><span data-icon="alignLeft"></span></button>
+            <button class="editor-btn tooltip" data-cmd="justifyCenter" data-tip="Align center"><span data-icon="alignCenter"></span></button>
+            <div class="editor-divider"></div>
+            <button class="editor-btn tooltip" data-cmd="createLink" data-tip="Insert link"><span data-icon="link"></span></button>
+            <button class="editor-btn tooltip" data-cmd="undo" data-tip="Undo"><span data-icon="undo"></span></button>
+            <button class="editor-btn tooltip" data-cmd="redo" data-tip="Redo"><span data-icon="redo"></span></button>
+            <div style="margin-left:auto;" class="flex items-center gap-2">
+              <span class="badge badge-green badge-dot">Collaborating</span>
+              <div class="avatar sm bg-teal" title="Dr. Moreau">RM</div>
+            </div>
+          </div>
+
+          <!-- editor content -->
+          <div class="editor-area">
+            <div class="editor-page" contenteditable="true" data-editor data-placeholder="Start writing your manuscript...">
+              <h1>Adaptive Machine Learning for Climate Modeling</h1>
+              <p class="text-muted" style="font-size:var(--fs-sm);">By Imole Ayodele, Dr. Renée Moreau — Department of Environmental Science</p>
+              <p>Climate modeling sits at the intersection of physics, statistics, and computation. Despite remarkable advances in numerical weather prediction over the past decade, long-horizon projections remain limited by the complexity of coupled Earth-system feedbacks <sup>[1]</sup>.</p>
+              <h2>1.1 Motivation</h2>
+              <p>Traditional ensemble approaches scale poorly with the dimensionality of modern reanalysis datasets. This paper argues that <strong>adaptive learning algorithms</strong> — those that re-weight features in response to distributional shift — offer a principled path toward more robust regional forecasts.</p>
+              <blockquote>The central challenge is not a lack of data, but a lack of methods that remain calibrated under non-stationary conditions. — Okafor (2024)</blockquote>
+              <p>Our contributions are threefold:</p>
+              <ul>
+                <li>We formalize a framework for <em>adaptive</em> climate downscaling.</li>
+                <li>We introduce a validation protocol that rewards temporal stability.</li>
+                <li>We demonstrate gains of 18% RMSE reduction across three basins.</li>
+              </ul>
+              <p>The remainder of this manuscript reviews related work, describes our methodology, and reports empirical results across heterogeneous climate regimes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: AI assistant -->
+        <div class="ws-col ws-right">
+          <div class="ws-head">
+            <div class="flex items-center gap-2">
+              <span class="icon-tile xs bg-blue"><span data-icon="sparkles"></span></span>
+              <div><h4 style="font-size:var(--fs-md);">AI Assistant</h4><div class="text-muted" style="font-size:var(--fs-xs);">Grounded in your library</div></div>
+            </div>
+            <button class="icon-btn" data-ws-toggle=".ws-right" aria-label="Close panel"><span data-icon="close"></span></button>
+          </div>
+
+          <div class="chat-messages" data-chat-messages>
+            <div class="chat-msg ai">
+              <div class="chat-msg__avatar"><span data-icon="sparkles"></span></div>
+              <div class="chat-msg__body">Hi Imole! I see you're working on the Introduction. I noticed your motivation paragraph could use a clearer statement of the <strong>research gap</strong>. Want me to suggest a revision?
+                <div class="chat-msg__actions"><button data-copy="self" aria-label="Copy"><span data-icon="copy"></span></button><button aria-label="Like"><span data-icon="thumbsUp"></span></button></div>
+              </div>
+            </div>
+            <div class="chat-msg user">
+              <div class="chat-msg__avatar">You</div>
+              <div class="chat-msg__body">Yes, and suggest a citation for non-stationarity.</div>
+            </div>
+            <div class="chat-msg ai">
+              <div class="chat-msg__avatar"><span data-icon="sparkles"></span></div>
+              <div class="chat-msg__body">Here's a tighter version: <em>"A persistent obstacle is the non-stationarity of climate signals, which violates the distributional assumptions of most supervised learners."</em> Okafor (2024) directly addresses this — I've added the citation to your bibliography.
+                <div class="chat-msg__actions"><button data-copy="self" aria-label="Copy"><span data-icon="copy"></span></button><button aria-label="Insert"><span data-icon="plus"></span></button></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input">
+            <div class="chat-suggest">
+              <button class="chip" data-suggest="Improve the clarity of this paragraph">✨ Improve clarity</button>
+              <button class="chip" data-suggest="Suggest a citation for this claim">📚 Suggest citation</button>
+              <button class="chip" data-suggest="Check grammar and tone">✔️ Check grammar</button>
+            </div>
+            <form data-chat-form>
+              <div class="chat-composer">
+                <textarea placeholder="Ask AI to write, research, or refine..." rows="1"></textarea>
+                <button class="chat-send" type="submit" aria-label="Send"><span data-icon="send"></span></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating AI -->
+      <button class="fab tooltip" data-tip="Open AI" data-ws-toggle=".ws-right" style="bottom:24px;left:50%;transform:translateX(-50%);position:fixed;animation:none;display:none;" aria-label="Open AI assistant"><span data-icon="sparkles"></span></button>
+    </div>
+  </div>
+
+  <!-- Export modal -->
+  <div class="modal-overlay" id="exportModal">
+    <div class="modal">
+      <h3 style="margin-bottom:8px;">Export document</h3>
+      <p class="text-muted" style="margin-bottom:20px;font-size:var(--fs-sm);">Choose a format. Citations will be formatted automatically.</p>
+      <div class="grid grid-2 gap-3" style="margin-bottom:20px;">
+        <button class="quick-action" data-modal-close><span class="icon-tile sm bg-blue"><span data-icon="fileText"></span></span><span>DOCX</span></button>
+        <button class="quick-action" data-modal-close><span class="icon-tile sm bg-rose"><span data-icon="file"></span></span><span>PDF</span></button>
+        <button class="quick-action" data-modal-close><span class="icon-tile sm bg-teal"><span data-icon="code"></span></span><span>Markdown</span></button>
+        <button class="quick-action" data-modal-close><span class="icon-tile sm bg-purple"><span data-icon="quote"></span></span><span>BibTeX</span></button>
+      </div>
+      <button class="btn btn-secondary btn-block" data-modal-close>Cancel</button>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/editor.js"></script>
+  <script>
+    // Show panel toggle buttons + floating AI on smaller screens
+    function syncToggles() {
+      const show = window.matchMedia("(max-width: 1024px)").matches;
+      document.querySelectorAll('[data-ws-toggle=".ws-right"], [data-ws-toggle=".ws-left"]').forEach(b => b.style.display = show ? "" : "none");
+      document.querySelector('.fab[data-ws-toggle]')?.style.setProperty('display', show ? 'inline-grid' : 'none');
+    }
+    window.addEventListener("resize", syncToggles);
+    document.addEventListener("DOMContentLoaded", syncToggles);
+  </script>
+</body>
+</html>

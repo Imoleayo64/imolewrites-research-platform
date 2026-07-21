@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — ImoleWrites Research Hub</title>
+  <meta name="description" content="Your ImoleWrites research dashboard." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="dashboard"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Dashboard"></div>
+
+      <div class="content">
+        <!-- Welcome -->
+        <div class="flex items-center justify-between gap-4 flex-wrap" style="margin-bottom:28px;">
+          <div>
+            <h1 style="font-size:var(--fs-3xl);">Good morning, Imole 👋</h1>
+            <p class="text-muted" style="margin-top:4px;">You have <strong class="text-blue">3 active projects</strong> and <strong class="text-purple">2 deadlines</strong> this week. Let's make progress.</p>
+          </div>
+          <div class="flex gap-2">
+            <a class="btn btn-secondary" href="ai-assistant.html"><span data-icon="sparkles"></span> Ask AI</a>
+            <a class="btn btn-primary" href="workspace.html"><span data-icon="plus"></span> New Project</a>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="stat-grid" style="margin-bottom:28px;">
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Active projects</span><span class="icon-tile xs bg-blue"><span data-icon="folder"></span></span></div>
+            <div class="stat-card__value">3</div>
+            <div class="stat-card__trend up"><span data-icon="arrowUp"></span> +1 this week</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Words written</span><span class="icon-tile xs bg-teal"><span data-icon="pen"></span></span></div>
+            <div class="stat-card__value">24,810</div>
+            <div class="stat-card__trend up"><span data-icon="arrowUp"></span> +12% vs last week</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Saved papers</span><span class="icon-tile xs bg-purple"><span data-icon="book"></span></span></div>
+            <div class="stat-card__value">142</div>
+            <div class="stat-card__trend up"><span data-icon="arrowUp"></span> +8 added</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">AI queries used</span><span class="icon-tile xs bg-amber"><span data-icon="sparkles"></span></span></div>
+            <div class="stat-card__value">1,284</div>
+            <div class="stat-card__trend down"><span data-icon="zap"></span> ∞ Pro plan</div>
+          </div>
+        </div>
+
+        <!-- Main grid -->
+        <div class="dash-grid" style="margin-bottom:28px;">
+          <!-- Writing progress -->
+          <div class="panel">
+            <div class="panel__head">
+              <h3>Writing progress</h3>
+              <div class="tabs" data-tabs style="border:0;">
+                <button class="tab active" data-tab="w" data-scope-v="7d">7D</button>
+                <button class="tab" data-tab="w" data-scope-v="30d">30D</button>
+              </div>
+            </div>
+            <div class="panel__body">
+              <div id="progressChart" style="height:260px;"></div>
+              <div class="grid grid-3 gap-3" style="margin-top:20px;">
+                <div><div class="text-muted" style="font-size:var(--fs-xs);">Avg/day</div><div class="fw-bold" style="font-size:var(--fs-lg);">3,544</div></div>
+                <div><div class="text-muted" style="font-size:var(--fs-xs);">Best day</div><div class="fw-bold" style="font-size:var(--fs-lg);">5,120</div></div>
+                <div><div class="text-muted" style="font-size:var(--fs-xs);">Streak</div><div class="fw-bold" style="font-size:var(--fs-lg);">9 days 🔥</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick actions + deadlines -->
+          <div class="flex flex-col gap-6">
+            <div class="panel">
+              <div class="panel__head"><h3>Quick actions</h3></div>
+              <div class="panel__body">
+                <div class="quick-actions">
+                  <a class="quick-action" href="workspace.html"><span class="icon-tile sm bg-blue"><span data-icon="fileText"></span></span><span>New manuscript</span></a>
+                  <a class="quick-action" href="literature.html"><span class="icon-tile sm bg-teal"><span data-icon="bookOpen"></span></span><span>Search papers</span></a>
+                  <a class="quick-action" href="citations.html"><span class="icon-tile sm bg-purple"><span data-icon="quote"></span></span><span>Add citation</span></a>
+                  <a class="quick-action" href="humanizer.html"><span class="icon-tile sm bg-rose"><span data-icon="wand"></span></span><span>Humanize text</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel__head"><h3>Upcoming deadlines</h3><a class="more" href="projects.html">All</a></div>
+              <div class="panel__body" style="padding-top:6px;padding-bottom:6px;">
+                <div class="list-row">
+                  <span class="icon-tile xs bg-red" style="width:36px;height:36px;border-radius:9px;"><span data-icon="calendar"></span></span>
+                  <div class="meta"><div class="title">Journal submission — Nature Methods</div><div class="sub">In 3 days · Aug 24</div></div>
+                  <span class="badge badge-red">Urgent</span>
+                </div>
+                <div class="list-row">
+                  <span class="icon-tile xs bg-amber" style="width:36px;height:36px;border-radius:9px;"><span data-icon="calendar"></span></span>
+                  <div class="meta"><div class="title">PhD thesis chapter 3</div><div class="sub">In 6 days · Aug 27</div></div>
+                  <span class="badge badge-amber">Soon</span>
+                </div>
+                <div class="list-row">
+                  <span class="icon-tile xs bg-blue" style="width:36px;height:36px;border-radius:9px;"><span data-icon="calendar"></span></span>
+                  <div class="meta"><div class="title">Conference abstract</div><div class="sub">In 12 days · Sep 2</div></div>
+                  <span class="badge badge-blue">Normal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent projects + chats -->
+        <div class="dash-grid">
+          <div class="panel">
+            <div class="panel__head"><h3>Recent projects</h3><a class="more" href="projects.html">View all</a></div>
+            <div class="panel__body" style="padding-top:6px;padding-bottom:6px;">
+              <div class="list-row">
+                <span class="icon-tile xs bg-blue" style="width:36px;height:36px;border-radius:9px;"><span data-icon="fileText"></span></span>
+                <div class="meta"><div class="title">Adaptive ML for Climate Modeling</div><div class="sub">Manuscript · 12,400 words · 68% complete</div></div>
+                <div style="width:90px;"><div class="progress"><div class="progress__bar" style="width:68%;"></div></div></div>
+              </div>
+              <div class="list-row">
+                <span class="icon-tile xs bg-teal" style="width:36px;height:36px;border-radius:9px;"><span data-icon="fileText"></span></span>
+                <div class="meta"><div class="title">Review: Microbiome & Cognition</div><div class="sub">Literature review · 8,200 words · 42%</div></div>
+                <div style="width:90px;"><div class="progress"><div class="progress__bar" style="width:42%;background:var(--grad-cool);"></div></div></div>
+              </div>
+              <div class="list-row">
+                <span class="icon-tile xs bg-purple" style="width:36px;height:36px;border-radius:9px;"><span data-icon="fileText"></span></span>
+                <div class="meta"><div class="title">Grant proposal — NIH R01</div><div class="sub">Proposal · 4,210 words · 90%</div></div>
+                <div style="width:90px;"><div class="progress"><div class="progress__bar" style="width:90%;background:var(--grad-warm);"></div></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel__head"><h3>Recent AI chats</h3><a class="more" href="ai-assistant.html">New chat</a></div>
+            <div class="panel__body" style="padding-top:6px;padding-bottom:6px;">
+              <a class="list-row" href="ai-assistant.html" style="cursor:pointer;">
+                <span class="icon-tile xs bg-blue" style="width:36px;height:36px;border-radius:9px;"><span data-icon="sparkles"></span></span>
+                <div class="meta"><div class="title">Stats test for mixed design</div><div class="sub">12 messages · 2h ago</div></div>
+                <span data-icon="chevronRight" class="text-muted"></span>
+              </a>
+              <a class="list-row" href="ai-assistant.html" style="cursor:pointer;">
+                <span class="icon-tile xs bg-teal" style="width:36px;height:36px;border-radius:9px;"><span data-icon="sparkles"></span></span>
+                <div class="meta"><div class="title">Summarize 3 papers on microbiome</div><div class="sub">8 messages · yesterday</div></div>
+                <span data-icon="chevronRight" class="text-muted"></span>
+              </a>
+              <a class="list-row" href="ai-assistant.html" style="cursor:pointer;">
+                <span class="icon-tile xs bg-purple" style="width:36px;height:36px;border-radius:9px;"><span data-icon="sparkles"></span></span>
+                <div class="meta"><div class="title">Rewrite intro for clarity</div><div class="sub">5 messages · 2 days ago</div></div>
+                <span data-icon="chevronRight" class="text-muted"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/charts.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const el = document.getElementById("progressChart");
+      if (el && window.Charts) {
+        Charts.line(el, {
+          labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+          series: [
+            { values: [2200, 3100, 1800, 4200, 5120, 3600, 3800], color: "#2563eb", fill: true },
+            { values: [1800, 2400, 2200, 3000, 3300, 2900, 3100], color: "#14b8a6", fill: false }
+          ]
+        }, {});
+      }
+    });
+  </script>
+</body>
+</html>

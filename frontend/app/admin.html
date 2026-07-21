@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — ImoleWrites Research Hub</title>
+  <meta name="description" content="Platform administration — users, revenue, system health, and support." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="admin"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Admin"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1 style="display:flex;align-items:center;gap:10px;">Admin Dashboard <span class="badge badge-purple"><span data-icon="shield"></span> Admin</span></h1><p>Platform overview, users, revenue, and system health.</p></div>
+          <div class="flex gap-2">
+            <select class="select" style="width:auto;"><option>Last 30 days</option><option>Last 7 days</option><option>This quarter</option></select>
+            <button class="btn btn-secondary"><span data-icon="download"></span> Report</button>
+          </div>
+        </div>
+
+        <!-- KPI cards -->
+        <div class="admin-grid" style="margin-bottom:24px;">
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Total users</span><span class="icon-tile xs bg-blue"><span data-icon="users"></span></span></div>
+            <div class="stat-card__value"><span data-count="124803">0</span></div>
+            <div class="stat-card__trend up"><span data-icon="arrowUp"></span> +6.2%</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">MRR</span><span class="icon-tile xs bg-teal"><span data-icon="dollar"></span></span></div>
+            <div class="stat-card__value">$<span data-count="84200">0</span></div>
+            <div class="stat-card__trend up"><span data-icon="arrowUp"></span> +9.1%</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Active subscriptions</span><span class="icon-tile xs bg-purple"><span data-icon="refresh"></span></span></div>
+            <div class="stat-card__value"><span data-count="14820">0</span></div>
+            <div class="stat-card__trend up"><span data-icon="arrowUp"></span> +4.4%</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Open tickets</span><span class="icon-tile xs bg-amber"><span data-icon="ticket"></span></span></div>
+            <div class="stat-card__value"><span data-count="23">0</span></div>
+            <div class="stat-card__trend down"><span data-icon="arrowUp" style="transform:rotate(180deg);"></span> -12%</div>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="dash-grid" style="margin-bottom:24px;">
+          <div class="panel">
+            <div class="panel__head"><h3>Revenue</h3><span class="badge badge-green">+9.1%</span></div>
+            <div class="panel__body"><div id="revChart" style="height:280px;"></div></div>
+          </div>
+          <div class="panel">
+            <div class="panel__head"><h3>Plan distribution</h3></div>
+            <div class="panel__body">
+              <div id="planDonut" style="height:200px;"></div>
+              <div class="flex flex-col gap-2" style="margin-top:14px;">
+                <div class="flex items-center gap-2" style="font-size:var(--fs-sm);"><span style="width:10px;height:10px;border-radius:50%;background:#7c3aed;"></span> Researcher Pro <span class="text-muted" style="margin-left:auto;">62%</span></div>
+                <div class="flex items-center gap-2" style="font-size:var(--fs-sm);"><span style="width:10px;height:10px;border-radius:50%;background:#2563eb;"></span> Institution <span class="text-muted" style="margin-left:auto;">24%</span></div>
+                <div class="flex items-center gap-2" style="font-size:var(--fs-sm);"><span style="width:10px;height:10px;border-radius:50%;background:#14b8a6;"></span> Enterprise <span class="text-muted" style="margin-left:auto;">8%</span></div>
+                <div class="flex items-center gap-2" style="font-size:var(--fs-sm);"><span style="width:10px;height:10px;border-radius:50%;background:#94a3b8;"></span> Free <span class="text-muted" style="margin-left:auto;">6%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <!-- Users table -->
+          <div class="panel">
+            <div class="panel__head"><h3>Recent users</h3><a class="more" href="#">View all</a></div>
+            <div style="overflow-x:auto;">
+              <table class="compare-table">
+                <thead><tr><th class="col-feature">User</th><th>Plan</th><th>Joined</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td class="col-feature"><div class="flex items-center gap-2"><div class="avatar sm">IA</div>Imole Ayodele</div></td><td>Pro</td><td>Aug 20</td><td><span class="badge badge-green">Active</span></td></tr>
+                  <tr><td class="col-feature"><div class="flex items-center gap-2"><div class="avatar sm bg-teal">SO</div>Sade Okafor</div></td><td>Institution</td><td>Aug 19</td><td><span class="badge badge-green">Active</span></td></tr>
+                  <tr><td class="col-feature"><div class="flex items-center gap-2"><div class="avatar sm bg-purple">RB</div>Ravi Bhatt</div></td><td>Enterprise</td><td>Aug 18</td><td><span class="badge badge-amber">Trial</span></td></tr>
+                  <tr><td class="col-feature"><div class="flex items-center gap-2"><div class="avatar sm bg-amber">KM</div>Kemi Musa</div></td><td>Free</td><td>Aug 17</td><td><span class="badge badge-green">Active</span></td></tr>
+                  <tr><td class="col-feature"><div class="flex items-center gap-2"><div class="avatar sm bg-rose">JD</div>John Doe</div></td><td>Pro</td><td>Aug 16</td><td><span class="badge badge-red">Suspended</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- System health + tickets -->
+          <div class="flex flex-col gap-6">
+            <div class="panel">
+              <div class="panel__head"><h3>System health</h3><span class="badge badge-green badge-dot">Operational</span></div>
+              <div class="panel__body" style="padding-top:6px;padding-bottom:6px;">
+                <div class="list-row"><span data-icon="server" class="text-green"></span><div class="meta"><div class="title">API latency</div><div class="sub">avg 142ms</div></div><span class="badge badge-green">Healthy</span></div>
+                <div class="list-row"><span data-icon="database" class="text-green"></span><div class="meta"><div class="title">Database</div><div class="sub">99.99% uptime</div></div><span class="badge badge-green">Healthy</span></div>
+                <div class="list-row"><span data-icon="sparkles" class="text-amber"></span><div class="meta"><div class="title">AI services</div><div class="sub">elevated latency</div></div><span class="badge badge-amber">Degraded</span></div>
+                <div class="list-row"><span data-icon="cloud" class="text-green"></span><div class="meta"><div class="title">File storage</div><div class="sub">62% capacity</div></div><span class="badge badge-green">Healthy</span></div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel__head"><h3>Support tickets</h3><span class="badge">23 open</span></div>
+              <div class="panel__body" style="padding-top:6px;padding-bottom:6px;">
+                <div class="list-row"><span class="badge badge-red">Urgent</span><div class="meta"><div class="title">Login failing on Safari</div><div class="sub">#4821 · 12m ago</div></div></div>
+                <div class="list-row"><span class="badge badge-amber">High</span><div class="meta"><div class="title">Citation export issue</div><div class="sub">#4820 · 1h ago</div></div></div>
+                <div class="list-row"><span class="badge badge-blue">Normal</span><div class="meta"><div class="title">Feature request: RIS export</div><div class="sub">#4818 · 3h ago</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/charts.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!window.Charts) return;
+      Charts.line(document.getElementById("revChart"), {
+        labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug"],
+        series: [{ values: [48,52,58,61,66,71,77,84], color: "#14b8a6", fill: true }]
+      });
+      Charts.donut(document.getElementById("planDonut"), {
+        values: [62,24,8,6],
+        colors: ["#7c3aed","#2563eb","#14b8a6","#94a3b8"]
+      }, { center: { value: "14.8k", label: "paying" } });
+    });
+  </script>
+</body>
+</html>

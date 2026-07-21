@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Projects — ImoleWrites Research Hub</title>
+  <meta name="description" content="All your research projects in one place." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="projects"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="My Projects"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>My Projects</h1><p>3 active · 2 archived</p></div>
+          <div class="flex gap-2">
+            <div class="filter-chips" data-chip-group>
+              <span class="chip active">All</span><span class="chip">Active</span><span class="chip">Archived</span>
+            </div>
+            <a class="btn btn-primary" href="workspace.html"><span data-icon="plus"></span> New Project</a>
+          </div>
+        </div>
+
+        <div class="grid grid-3 gap-card">
+          <a class="card card-pad card-hover" href="workspace.html" style="border-top:4px solid var(--blue-600);">
+            <div class="flex items-center justify-between" style="margin-bottom:14px;">
+              <span class="icon-tile bg-blue"><span data-icon="fileText"></span></span>
+              <span class="badge badge-blue">Manuscript</span>
+            </div>
+            <h3 style="font-size:var(--fs-lg);margin-bottom:4px;">Adaptive ML for Climate Modeling</h3>
+            <p class="text-muted" style="font-size:var(--fs-sm);margin-bottom:14px;">12,400 words · 24 references</p>
+            <div class="flex items-center justify-between" style="margin-bottom:6px;font-size:var(--fs-xs);"><span class="text-muted">Progress</span><span class="fw-semibold">68%</span></div>
+            <div class="progress"><div class="progress__bar" style="width:68%;"></div></div>
+            <div class="flex items-center justify-between" style="margin-top:14px;">
+              <div class="flex"><div class="avatar sm" style="border:2px solid var(--surface);margin-left:-6px;">IA</div><div class="avatar sm bg-teal" style="border:2px solid var(--surface);margin-left:-6px;">RM</div></div>
+              <span class="text-muted" style="font-size:var(--fs-xs);"><span data-icon="clock"></span> 12m ago</span>
+            </div>
+          </a>
+
+          <a class="card card-pad card-hover" href="workspace.html" style="border-top:4px solid var(--teal-500);">
+            <div class="flex items-center justify-between" style="margin-bottom:14px;">
+              <span class="icon-tile bg-teal"><span data-icon="fileText"></span></span>
+              <span class="badge badge-teal">Review</span>
+            </div>
+            <h3 style="font-size:var(--fs-lg);margin-bottom:4px;">Microbiome & Cognition</h3>
+            <p class="text-muted" style="font-size:var(--fs-sm);margin-bottom:14px;">8,200 words · 36 references</p>
+            <div class="flex items-center justify-between" style="margin-bottom:6px;font-size:var(--fs-xs);"><span class="text-muted">Progress</span><span class="fw-semibold">42%</span></div>
+            <div class="progress"><div class="progress__bar" style="width:42%;background:var(--grad-cool);"></div></div>
+            <div class="flex items-center justify-between" style="margin-top:14px;">
+              <div class="flex"><div class="avatar sm" style="border:2px solid var(--surface);margin-left:-6px;">IA</div><div class="avatar sm bg-purple" style="border:2px solid var(--surface);margin-left:-6px;">SO</div></div>
+              <span class="text-muted" style="font-size:var(--fs-xs);"><span data-icon="clock"></span> 2h ago</span>
+            </div>
+          </a>
+
+          <a class="card card-pad card-hover" href="workspace.html" style="border-top:4px solid var(--purple-600);">
+            <div class="flex items-center justify-between" style="margin-bottom:14px;">
+              <span class="icon-tile bg-purple"><span data-icon="fileText"></span></span>
+              <span class="badge badge-purple">Proposal</span>
+            </div>
+            <h3 style="font-size:var(--fs-lg);margin-bottom:4px;">NIH R01 Grant Proposal</h3>
+            <p class="text-muted" style="font-size:var(--fs-sm);margin-bottom:14px;">4,210 words · 18 references</p>
+            <div class="flex items-center justify-between" style="margin-bottom:6px;font-size:var(--fs-xs);"><span class="text-muted">Progress</span><span class="fw-semibold">90%</span></div>
+            <div class="progress"><div class="progress__bar" style="width:90%;background:var(--grad-warm);"></div></div>
+            <div class="flex items-center justify-between" style="margin-top:14px;">
+              <div class="flex"><div class="avatar sm" style="border:2px solid var(--surface);margin-left:-6px;">IA</div></div>
+              <span class="text-muted" style="font-size:var(--fs-xs);"><span data-icon="clock"></span> yesterday</span>
+            </div>
+          </a>
+
+          <button class="card card-pad" style="border:2px dashed var(--border-2);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:220px;cursor:pointer;background:transparent;">
+            <span class="icon-tile" style="background:var(--surface-3);color:var(--text-3);box-shadow:none;"><span data-icon="plus"></span></span>
+            <h4 style="margin-top:14px;">Start a new project</h4>
+            <p class="text-muted" style="font-size:var(--fs-sm);margin-top:4px;">Manuscript, review, or proposal</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
