@@ -14,6 +14,7 @@ from backend.models.project import ProjectCreate, ProjectResponse
 from backend.services.auth_service import get_current_user
 from backend.services.analytics_service import log_event
 from backend.services.html_export_service import html_to_docx, html_to_markdown, html_to_plain_text
+from backend.services.latex_export_service import html_to_latex
 from backend.database.models import ChapterModel
 
 router = APIRouter(
@@ -92,6 +93,10 @@ def export_document(request: ExportRequest, current_user = Depends(get_current_u
     title = request.title
     content = request.content  # real HTML from the editor, not stripped plain text
     fmt = request.format.lower()
+        
+    if "latex" in fmt:
+        latex_str = html_to_latex(content, title)
+        return Response(content=latex_str, media_type="application/x-tex")
 
     if "docx" in fmt:
         doc = docx.Document()
