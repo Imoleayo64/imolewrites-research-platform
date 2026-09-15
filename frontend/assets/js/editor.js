@@ -280,7 +280,7 @@
           if (!exportBtn) return;
           
           const text = exportBtn.innerText.trim();
-          if (text.includes("DOCX") || text.includes("PDF") || text.includes("Markdown") || text.includes("BibTeX") || text.includes("Cancel")) {
+          if (text.includes("DOCX") || text.includes("PDF") || text.includes("Markdown") || text.includes("BibTeX") || text.includes("LaTeX") || text.includes("Cancel")) {
               e.preventDefault();
               e.stopPropagation();
               
