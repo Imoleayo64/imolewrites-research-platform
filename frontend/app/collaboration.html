@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collaboration — ImoleWrites Research Hub</title>
+  <meta name="description" content="Invite collaborators, leave comments, track versions, and assign tasks." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="collaboration"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Collaboration"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>Collaboration</h1><p id="collabProjectSub">Select a project to manage collaborators.</p></div>
+          <div class="flex gap-2 items-center">
+            <select id="collabProjectSelect" class="select" style="width:auto;min-width:220px;"></select>
+            <div id="collabAvatarStack" class="flex" style="margin-right:8px;"></div>
+            <button class="btn btn-primary" data-modal-open="inviteModal"><span data-icon="user"></span> Invite</button>
+            <a id="collabOpenBtn" class="btn btn-secondary" href="workspace.html"><span data-icon="edit"></span> Open live document</a>
+          </div>
+        </div>
+
+        <div class="dash-grid" style="align-items:start;">
+          <!-- Left: comments + tasks -->
+          <div class="flex flex-col gap-6">
+            <!-- Tasks -->
+            <div class="panel">
+              <div class="panel__head"><h3>Tasks</h3><span class="badge">Coming soon</span></div>
+              <div class="panel__body" style="padding-top:12px;padding-bottom:12px;">
+                <p class="text-muted" style="font-size:var(--fs-sm);">Task assignment isn't built yet — for now, coordinate work with your collaborators directly in the live document or by email.</p>
+              </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="panel">
+              <div class="panel__head"><h3>Comments</h3><span class="badge">Coming soon</span></div>
+              <div class="panel__body" style="padding-top:12px;padding-bottom:12px;">
+                <p class="text-muted" style="font-size:var(--fs-sm);">Inline comments aren't built yet. What IS real right now: real-time co-editing — open the live document above and edit together, and you'll see each other's changes and cursors instantly.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: version history + members -->
+          <div class="flex flex-col gap-6">
+            <div class="panel">
+              <div class="panel__head"><h3>Version history</h3><span class="badge">Coming soon</span></div>
+              <div class="panel__body" style="padding-top:12px;padding-bottom:12px;">
+                <p class="text-muted" style="font-size:var(--fs-sm);">Named version snapshots and restore aren't built yet. Your document itself is always saved live as you and your collaborators edit.</p>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel__head"><h3>Members</h3></div>
+              <div class="panel__body" style="padding-top:6px;padding-bottom:6px;" id="collabMembersList">
+                <p class="text-muted" style="font-size:var(--fs-sm);padding:12px 4px;">Select a project above.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invite modal -->
+  <div class="modal-overlay" id="inviteModal">
+    <div class="modal">
+      <h3 style="margin-bottom:8px;">Invite a collaborator</h3>
+      <p class="text-muted" style="margin-bottom:18px;font-size:var(--fs-sm);">They need an existing ImoleWrites account. Real-time co-editing works once they're added.</p>
+      <div class="field"><label class="label">Email address</label><input id="collabInviteEmail" class="input" placeholder="name@university.edu" /></div>
+      <div class="field"><label class="label">Role</label><select id="collabInviteRole" class="select"><option value="editor">Editor</option><option value="viewer">Viewer</option></select></div>
+      <div class="flex gap-2" style="margin-top:8px;"><button class="btn btn-secondary btn-block" data-modal-close>Cancel</button><button id="collabInviteBtn" class="btn btn-primary btn-block">Send invite</button></div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/collaboration.js"></script>
+</body>
+</html>

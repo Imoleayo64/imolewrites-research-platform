@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Workspace — ImoleWrites Research Hub</title>
+  <meta name="description" content="Read, highlight, annotate, and ask AI about any passage in your PDFs." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <style>
+    .hl { background:#fef08a; padding:0 2px; border-radius:2px; cursor:pointer; }
+    #pdfCanvasWrap { background:#fff; border-radius:var(--radius-md); box-shadow:var(--shadow-lg); max-width:760px; margin-inline:auto; position:relative; }
+    #pdfHighlightLayer { position:absolute; top:0; left:0; pointer-events:none; }
+    .pdf-highlight-mark { position:absolute; border-radius:2px; mix-blend-mode:multiply; }
+    #pdfCanvas { display:block; }
+    #pdfTextLayer { position:absolute; top:0; left:0; overflow:hidden; opacity:0.2; line-height:1; }
+    #pdfTextLayer span { position:absolute; white-space:pre; color:transparent; cursor:text; }
+    @media(max-width:1024px){ .pdf-layout{grid-template-columns:1fr !important;} .pdf-side{order:2;} }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="pdf"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="PDF Workspace"></div>
+
+      <!-- LIBRARY VIEW -->
+      <div class="content" id="pdfLibraryView">
+        <div class="page-title-row">
+          <div><h1>PDF Workspace</h1><p id="pdfStorageNote" class="text-muted" style="font-size:var(--fs-sm);">Upload a PDF to read, highlight, and ask AI questions grounded in its content.</p></div>
+          <div>
+            <input type="file" id="pdfUploadInput" accept="application/pdf" style="display:none;" />
+            <button id="pdfUploadBtn" class="btn btn-primary"><span data-icon="upload"></span> Upload PDF</button>
+          </div>
+        </div>
+        <div id="pdfLibraryGrid" class="grid grid-3 gap-card"></div>
+      </div>
+
+      <!-- VIEWER (hidden until a PDF is opened) -->
+      <div id="pdfViewerView" style="display:none;">
+        <div class="content" style="padding-bottom:0;">
+          <div class="page-title-row" style="margin-bottom:16px;">
+            <div><a href="pdf-workspace.html" class="text-muted" style="font-size:var(--fs-xs);">&larr; Back to library</a><h1 id="pdfTitle" style="font-size:var(--fs-2xl);margin-top:4px;">Loading…</h1></div>
+            <div class="flex gap-2">
+              <button id="pdfHighlightBtn" class="btn btn-secondary btn-sm"><span data-icon="highlighter"></span> Highlight selection</button>
+              <button id="pdfDeleteBtn" class="btn btn-ghost btn-sm"><span data-icon="trash"></span> Delete</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="content pdf-layout" style="display:grid;grid-template-columns:1fr 320px;gap:24px;padding-top:0;align-items:start;">
+          <!-- PDF viewer -->
+          <div class="flex flex-col gap-3" style="position:sticky;top:calc(var(--nav-height)+24px);">
+            <div class="card card-pad flex items-center justify-between" style="padding:10px 16px;">
+              <div class="flex items-center gap-2">
+                <button id="pdfPrevBtn" class="icon-btn" style="width:34px;height:34px;"><span data-icon="chevronLeft"></span></button>
+                <span class="fw-semibold" style="font-size:var(--fs-sm);"><span id="pdfPageNum">1</span> / <span id="pdfPageCount">1</span></span>
+                <button id="pdfNextBtn" class="icon-btn" style="width:34px;height:34px;"><span data-icon="chevronRight"></span></button>
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="pdfZoomOutBtn" class="icon-btn" style="width:34px;height:34px;">−</button>
+                <span id="pdfZoomLabel" style="font-size:var(--fs-sm);min-width:40px;text-align:center;">100%</span>
+                <button id="pdfZoomInBtn" class="icon-btn" style="width:34px;height:34px;">+</button>
+              </div>
+            </div>
+
+            <div id="pdfCanvasWrap">
+              <canvas id="pdfCanvas"></canvas>
+              <div id="pdfHighlightLayer"></div>
+              <div id="pdfTextLayer"></div>
+            </div>
+          </div>
+
+          <!-- Side panel: highlights + AI -->
+          <aside class="pdf-side">
+            <div class="card card-pad" style="margin-bottom:16px;">
+              <h4 style="margin-bottom:12px;">Highlights & notes</h4>
+              <div id="pdfAnnotationsList" class="flex flex-col gap-3">
+                <p class="text-muted" style="font-size:var(--fs-sm);">Select text in the document, then click "Highlight selection".</p>
+              </div>
+            </div>
+
+            <div class="card card-pad">
+              <div class="flex items-center gap-2" style="margin-bottom:10px;"><span class="icon-tile xs bg-blue"><span data-icon="sparkles"></span></span><h4 style="margin:0;">Ask AI about this PDF</h4></div>
+              <div id="pdfAskMessages" class="flex flex-col gap-2" style="margin-bottom:12px;max-height:320px;overflow-y:auto;"></div>
+              <div class="chat-composer"><textarea id="pdfAskInput" placeholder="Ask about this paper..." rows="1"></textarea><button id="pdfAskBtn" class="chat-send"><span data-icon="send"></span></button></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Highlight note modal -->
+  <div class="modal-overlay" id="highlightNoteModal">
+    <div class="modal">
+      <h3 style="margin-bottom:10px;">Add a note (optional)</h3>
+      <p id="highlightPreviewText" class="text-muted" style="font-size:var(--fs-sm);margin-bottom:14px;font-style:italic;"></p>
+      <div class="field"><textarea id="highlightNoteInput" class="textarea" placeholder="Add a note..." style="min-height:80px;"></textarea></div>
+      <div class="flex gap-2"><button class="btn btn-secondary btn-block" data-modal-close>Cancel</button><button id="highlightSaveBtn" class="btn btn-primary btn-block">Save highlight</button></div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="../assets/js/markdown.js"></script>
+  <script src="../assets/js/pdf-workspace.js"></script>
+</body>
+</html>

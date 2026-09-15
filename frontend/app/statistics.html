@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statistics Assistant — ImoleWrites Research Hub</title>
+  <meta name="description" content="Choose the right statistical tests, interpret results, and format tables correctly." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="statistics"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Statistics Assistant"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>Statistics Assistant</h1><p>The right test, the right interpretation, every time.</p></div>
+        </div>
+
+        <div class="dash-grid" style="align-items:start;">
+          <!-- Left: test selector -->
+          <div class="flex flex-col gap-6">
+            <div class="card card-pad">
+              <h3 style="margin-bottom:14px;">Describe your study</h3>
+              <div class="field">
+                <label class="label">Research goal</label>
+                <select id="statGoal" class="select"><option>Compare groups</option><option>Relate variables</option><option>Predict an outcome</option><option>Test a distribution</option></select>
+              </div>
+              <div class="grid grid-2 gap-3">
+                <div class="field"><label class="label">Independent variable</label><select id="statIndepVar" class="select"><option>Categorical (2 groups)</option><option>Categorical (3+)</option><option>Continuous</option></select></div>
+                <div class="field"><label class="label">Dependent variable</label><select id="statDepVar" class="select"><option>Continuous</option><option>Ordinal</option><option>Categorical</option></select></div>
+              </div>
+              <div class="field"><label class="label">Data characteristics</label>
+                <div class="filter-chips" data-chip-group id="statDataChips"><button class="chip active" data-val="Normally distributed">Normally distributed</button><button class="chip" data-val="Non-normal">Non-normal</button><button class="chip" data-val="Repeated measures">Repeated measures</button></div>
+              </div>
+              <button id="statRecommendBtn" class="btn btn-primary btn-block"><span data-icon="sparkles"></span> Recommend a test</button>
+            </div>
+
+            <div id="statRecommendation" class="card card-pad" style="background:linear-gradient(135deg, var(--blue-50), var(--purple-50));border-color:var(--blue-200);">
+              <p class="text-muted" style="font-size:var(--fs-sm);">Fill in your study design and click "Recommend a test" to get an AI-generated suggestion.</p>
+            </div>
+          </div>
+
+          <!-- Right: chat -->
+          <div class="card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;height:560px;">
+            <div class="panel__head"><div class="flex items-center gap-2"><span class="icon-tile xs bg-purple"><span data-icon="sparkles"></span></span><h3 style="margin:0;">Ask the statistician</h3></div></div>
+            <div class="chat-messages" data-chat-messages style="flex:1;">
+              <div class="chat-msg ai"><div class="chat-msg__avatar"><span data-icon="sparkles"></span></div><div class="chat-msg__body">I can help you pick tests, interpret p-values, format results (e.g. "t(58) = 2.34, p = .022, d = 0.61"), and check assumptions. What's your study design?</div></div>
+            </div>
+            <div class="chat-input"><form data-chat-form><div id="chatAttachmentChip" style="display:none;margin-bottom:8px;"></div><div class="chat-composer"><input type="file" id="chatAttachInput" accept=".pdf,.docx,.txt,.md,.csv" style="display:none;" /><button type="button" class="icon-btn" id="chatAttachBtn" aria-label="Attach file" title="Attach a document"><span data-icon="upload"></span></button><textarea placeholder="Ask about your analysis..." rows="1"></textarea><button class="chat-send" type="submit"><span data-icon="send"></span></button></div></form></div>
+          </div>
+        </div>
+
+        <!-- Templates -->
+        <h3 style="margin:28px 0 14px;">Reporting templates</h3>
+        <div class="grid grid-3 gap-card">
+          <div class="card card-pad"><span class="badge badge-blue" style="margin-bottom:8px;">t-test</span><pre style="font-family:var(--font-mono);font-size:var(--fs-xs);white-space:pre-wrap;color:var(--text-2);">An independent-samples t-test revealed a significant difference, t(58) = 2.34, p = .022, d = 0.61.</pre></div>
+          <div class="card card-pad"><span class="badge badge-teal" style="margin-bottom:8px;">ANOVA</span><pre style="font-family:var(--font-mono);font-size:var(--fs-xs);white-space:pre-wrap;color:var(--text-2);">A one-way ANOVA showed a significant effect, F(2, 87) = 4.21, p = .018, η² = .09.</pre></div>
+          <div class="card card-pad"><span class="badge badge-purple" style="margin-bottom:8px;">Regression</span><pre style="font-family:var(--font-mono);font-size:var(--fs-xs);white-space:pre-wrap;color:var(--text-2);">The model was significant, R² = .34, F(3, 96) = 16.4, p &lt; .001.</pre></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/markdown.js"></script>
+  <script src="../assets/js/editor.js"></script>
+  <script src="../assets/js/statistics.js"></script>
+</body>
+</html>

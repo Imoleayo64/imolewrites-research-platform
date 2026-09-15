@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verify your email — ImoleWrites Research Hub</title>
+  <meta name="description" content="Verify your email address to activate your ImoleWrites account." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="auth">
+    <aside class="auth__aside">
+      <a class="logo" href="../index.html"><span class="logo__mark"><span data-icon="logo"></span></span><span class="logo__name">Imole<b>Writes</b></span></a>
+      <div><p class="auth__quote">One last step to unlock your full research workspace.</p></div>
+      <div class="auth__stats"><div><div class="n">120k+</div><div class="l">Researchers</div></div><div><div class="n">85M+</div><div class="l">Papers</div></div></div>
+    </aside>
+
+    <main class="auth__main">
+      <div class="auth__card text-center">
+        <div class="verify-icon" style="background:var(--grad-warm);animation:floatY 5s infinite;"><span data-icon="mail"></span></div>
+        <span class="badge badge-amber" style="margin-top:24px;"><span data-icon="clock"></span> Action needed</span>
+        <h1 style="margin-block:16px 8px;">Verify your email</h1>
+        <p class="text-muted" style="margin-bottom:28px;">We sent a verification link to <strong class="text-2">imole.ayodele@university.edu</strong>. Click the link to activate your account.</p>
+
+        <div class="otp-inputs" style="margin-bottom:28px;">
+          <input class="input" maxlength="1" inputmode="numeric" value="3" />
+          <input class="input" maxlength="1" inputmode="numeric" value="9" />
+          <input class="input" maxlength="1" inputmode="numeric" value="2" />
+          <input class="input" maxlength="1" inputmode="numeric" value="7" />
+        </div>
+
+        <button class="btn btn-primary btn-block btn-lg" onclick="window.location.href='../app/dashboard.html'">Verify email <span data-icon="check2"></span></button>
+
+        <div class="divider-text">or</div>
+
+        <a class="btn btn-secondary btn-block" href="mailto:"><span data-icon="external"></span> Open email app</a>
+
+        <p class="auth__foot">Didn't receive it? <a class="text-blue fw-semibold" href="#">Resend in <span id="timer">30</span>s</a></p>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+    (function () {
+      let t = 30; const el = document.getElementById('timer');
+      const iv = setInterval(() => { t--; if (el) el.textContent = t; if (t <= 0) clearInterval(iv); }, 1000);
+    })();
+  </script>
+</body>
+</html>

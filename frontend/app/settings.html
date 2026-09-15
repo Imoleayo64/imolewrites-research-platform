@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — ImoleWrites Research Hub</title>
+  <meta name="description" content="Manage your profile, appearance, notifications, API keys, language, and security." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="settings"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Settings"></div>
+
+      <div class="content">
+        <div class="page-title-row"><div><h1>Settings</h1><p>Manage your account and preferences.</p></div></div>
+
+        <div class="settings-layout" data-tabs>
+          <nav class="settings-nav">
+            <a class="active" data-tab="profile"><span data-icon="user"></span> Profile</a>
+            <a data-tab="appearance"><span data-icon="sun"></span> Appearance</a>
+            <a data-tab="notifications"><span data-icon="bell"></span> Notifications</a>
+            <a data-tab="api"><span data-icon="key"></span> API Keys</a>
+            <a data-tab="integrations"><span data-icon="link"></span> Integrations</a>
+            <a data-tab="language"><span data-icon="globe"></span> Language</a>
+            <a data-tab="security"><span data-icon="shield"></span> Security</a>
+          </nav>
+
+          <div data-panel-group="">
+            <!-- Profile -->
+            <div class="tab-panel active" data-panel="profile">
+              <div class="card card-pad-lg">
+                <div class="flex items-center gap-4 flex-wrap" style="margin-bottom:24px;">
+                  <div class="avatar lg" id="profileAvatar" style="width:80px;height:80px;font-size:var(--fs-2xl);overflow:hidden;">··</div>
+                  <div>
+                    <h3 style="margin-bottom:6px;">Profile photo</h3>
+                    <input type="file" id="avatarInput" accept="image/*" style="display:none;" />
+                    <div class="flex gap-2">
+                      <button id="avatarUploadBtn" class="btn btn-secondary btn-sm"><span data-icon="upload"></span> Upload photo</button>
+                    </div>
+                    <p class="text-muted" style="font-size:var(--fs-xs);margin-top:6px;">JPEG, PNG, WEBP, or GIF — up to 5 MB.</p>
+                  </div>
+                </div>
+                <div class="grid grid-2 gap-4">
+                  <div class="field"><label class="label">Full name</label><input id="settingsName" class="input" /></div>
+                  <div class="field"><label class="label">Email</label><input id="settingsEmail" class="input" disabled /></div>
+                  <div class="field"><label class="label">Institution</label><input id="settingsInstitution" class="input" /></div>
+                  <div class="field"><label class="label">Field</label><input id="settingsField" class="input" placeholder="e.g. Environmental Science" /></div>
+                  <div class="field"><label class="label">Role</label><select id="settingsRole" class="select"><option>Researcher</option><option>Student</option><option>Professor</option></select></div>
+                </div>
+                <div class="field"><label class="label">Bio</label><textarea id="settingsBio" class="textarea" style="min-height:80px;"></textarea></div>
+                <div class="flex justify-end gap-2" style="margin-top:8px;"><button id="profileCancelBtn" class="btn btn-secondary">Cancel</button><button id="profileSaveBtn" class="btn btn-primary">Save changes</button></div>
+              </div>
+            </div>
+
+            <!-- Appearance -->
+            <div class="tab-panel" data-panel="appearance">
+              <div class="card card-pad-lg">
+                <h3 style="margin-bottom:18px;">Theme</h3>
+                <div class="setting-row"><div><div class="fw-semibold">Dark mode</div><div class="desc">Switch between light and dark themes.</div></div><label class="toggle"><input type="checkbox" id="darkToggle" data-theme-toggle-auto><span class="slider"></span></label></div>
+                <div class="setting-row"><div><div class="fw-semibold">Accent color</div><div class="desc">Personalize your interface accent.</div></div>
+                  <div class="flex gap-2">
+                    <button style="width:30px;height:30px;border-radius:50%;background:#2563eb;border:2px solid var(--text);"></button>
+                    <button style="width:30px;height:30px;border-radius:50%;background:#14b8a6;border:2px solid transparent;"></button>
+                    <button style="width:30px;height:30px;border-radius:50%;background:#7c3aed;border:2px solid transparent;"></button>
+                    <button style="width:30px;height:30px;border-radius:50%;background:#f43f5e;border:2px solid transparent;"></button>
+                  </div>
+                </div>
+                <div class="setting-row"><div><div class="fw-semibold">Reduce motion</div><div class="desc">Minimize animations across the app.</div></div><label class="toggle"><input type="checkbox"><span class="slider"></span></label></div>
+                <div class="setting-row"><div><div class="fw-semibold">Compact mode</div><div class="desc">Tighter spacing for more content.</div></div><label class="toggle"><input type="checkbox"><span class="slider"></span></label></div>
+              </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="tab-panel" data-panel="notifications">
+              <div class="card card-pad-lg">
+                <div class="flex items-center gap-2" style="margin-bottom:18px;"><h3 style="margin:0;">Notifications</h3><span class="badge">Coming soon</span></div>
+                <p class="text-muted" style="font-size:var(--fs-sm);margin-bottom:16px;">Notification preferences aren't wired up to real emails yet — this is a preview of what's coming.</p>
+                <div class="setting-row" style="opacity:.6;"><div><div class="fw-semibold">Email digests</div><div class="desc">Weekly summary of your research activity.</div></div><label class="toggle"><input type="checkbox" disabled><span class="slider"></span></label></div>
+                <div class="setting-row" style="opacity:.6;"><div><div class="fw-semibold">Comments & mentions</div><div class="desc">When collaborators reply.</div></div><label class="toggle"><input type="checkbox" disabled><span class="slider"></span></label></div>
+                <div class="setting-row" style="opacity:.6;"><div><div class="fw-semibold">Deadlines</div><div class="desc">Reminders before due dates.</div></div><label class="toggle"><input type="checkbox" disabled><span class="slider"></span></label></div>
+              </div>
+            </div>
+
+            <!-- API Keys -->
+            <div class="tab-panel" data-panel="api">
+              <div class="card card-pad-lg">
+                <div class="flex items-center gap-2" style="margin-bottom:18px;"><h3 style="margin:0;">API Keys</h3><span class="badge">Coming soon</span></div>
+                <p class="text-muted" style="font-size:var(--fs-sm);">Developer API key access isn't available yet. When it launches, you'll be able to generate keys here to call ImoleWrites programmatically.</p>
+              </div>
+            </div>
+
+            <!-- Integrations -->
+            <div class="tab-panel" data-panel="integrations">
+              <div class="card card-pad-lg">
+                <h3 style="margin-bottom:18px;">Reference managers</h3>
+                <div id="mendeleyConnectedView" style="display:none;">
+                  <div class="setting-row">
+                    <div><div class="fw-semibold">Mendeley</div><div class="desc">Connected — import papers straight from your Mendeley library.</div></div>
+                    <div class="flex gap-2">
+                      <button id="mendeleyBrowseBtn" class="btn btn-secondary btn-sm">Browse library</button>
+                      <button id="mendeleyDisconnectBtn" class="btn btn-ghost btn-sm">Disconnect</button>
+                    </div>
+                  </div>
+                  <div id="mendeleyLibraryList" class="flex flex-col gap-2" style="margin-top:16px;display:none;"></div>
+                </div>
+                <div id="mendeleyDisconnectedView" style="display:none;">
+                  <div class="setting-row">
+                    <div><div class="fw-semibold">Mendeley</div><div class="desc">Connect your Mendeley account to import references directly into your Citation Manager.</div></div>
+                    <button id="mendeleyConnectBtn" class="btn btn-primary btn-sm">Connect</button>
+                  </div>
+                </div>
+                <div id="mendeleyNotConfiguredView" style="display:none;">
+                  <div class="setting-row">
+                    <div><div class="fw-semibold">Mendeley</div><div class="desc">Not set up on this server yet.</div></div>
+                    <span class="badge">Coming soon</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Language -->
+            <div class="tab-panel" data-panel="language">
+              <div class="card card-pad-lg">
+                <div class="flex items-center gap-2" style="margin-bottom:18px;"><h3 style="margin:0;">Language & region</h3><span class="badge">Coming soon</span></div>
+                <p class="text-muted" style="font-size:var(--fs-sm);">The interface is English-only for now. Multi-language support is planned.</p>
+              </div>
+            </div>
+
+            <!-- Security -->
+            <div class="tab-panel" data-panel="security">
+              <div class="flex flex-col gap-6">
+                <div class="card card-pad-lg">
+                  <h3 style="margin-bottom:18px;">Password</h3>
+                  <div class="grid grid-2 gap-4">
+                    <div class="field"><label class="label">Current password</label><input id="currentPasswordInput" class="input" type="password" placeholder="••••••••" /></div>
+                    <div class="field"><label class="label">New password</label><input id="newPasswordInput" class="input" type="password" placeholder="••••••••" /></div>
+                  </div>
+                  <button id="updatePasswordBtn" class="btn btn-primary">Update password</button>
+                </div>
+                <div class="card card-pad-lg">
+                  <div class="flex items-center gap-2" style="margin-bottom:18px;"><h3 style="margin:0;">Two-factor authentication</h3><span class="badge">Coming soon</span></div>
+                  <p class="text-muted" style="font-size:var(--fs-sm);">2FA and session management aren't available yet.</p>
+                </div>
+                <div class="card card-pad-lg" style="border-color:var(--red-500);">
+                  <h3 style="color:var(--red-500);margin-bottom:8px;">Danger zone</h3>
+                  <div class="setting-row" style="border:0;padding:0;"><div><div class="fw-semibold">Delete account</div><div class="desc">Permanently remove your account and all your projects, citations, and data. This cannot be undone.</div></div><button id="deleteAccountBtn" class="btn btn-danger btn-sm">Delete</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/settings.js"></script>
+</body>
+</html>

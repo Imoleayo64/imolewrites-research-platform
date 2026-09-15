@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal Recommendation — ImoleWrites Research Hub</title>
+  <meta name="description" content="Upload your abstract and get ranked journal suggestions with acceptance probability and submission checklists." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="journals"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Journal Recommendation"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>Journal Recommendation</h1><p>Find the right home for your manuscript.</p></div>
+        </div>
+
+        <!-- Abstract input -->
+        <div class="card card-pad-lg" style="margin-bottom:28px;">
+          <label class="label" style="margin-bottom:10px;">Paste your abstract or title</label>
+          <textarea class="textarea" id="abstract" style="min-height:110px;margin-bottom:16px;">Adaptive ensemble methods that re-weight base learners in response to distributional shift improve regional climate projections by 18% RMSE, validated under non-stationary conditions across three basins.</textarea>
+          <div class="flex items-center justify-between flex-wrap gap-3">
+            <div class="filter-chips" data-chip-group id="prefGroup">
+              <button class="chip active" data-pref="open access">Open access</button>
+              <button class="chip" data-pref="fast review turnaround">Fast review</button>
+              <button class="chip" data-pref="high impact factor">High impact</button>
+            </div>
+            <button class="btn btn-primary" id="recBtn"><span data-icon="compass"></span> Find journals</button>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom:16px;">Recommended journals</h3>
+        <p class="text-muted" style="font-size:var(--fs-xs);margin-top:-10px;margin-bottom:16px;">AI-suggested starting points based on your abstract's topic and scope — always verify acceptance rates, APCs, and submission requirements on the publisher's own site before submitting.</p>
+        <div class="filter-chips" data-chip-group id="journalResultFilters" style="margin-bottom:16px;display:none;">
+          <button class="chip active" data-oa-filter="all">All results</button>
+          <button class="chip" data-oa-filter="oa">Open access only</button>
+        </div>
+        <div id="journalResults" class="flex flex-col gap-4">
+          <p class="text-muted" style="font-size:var(--fs-sm);">Click "Find journals" to get matches for your abstract.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checklist modal -->
+  <div class="modal-overlay" id="checklistModal">
+    <div class="modal">
+      <h3 style="margin-bottom:6px;">Submission checklist</h3>
+      <p class="text-muted" style="margin-bottom:18px;font-size:var(--fs-sm);">General checklist — confirm exact requirements on the journal's own submission guidelines page.</p>
+      <div class="flex flex-col gap-3">
+        <label class="checkbox"><input type="checkbox" /> <span>Abstract meets the journal's word limit</span></label>
+        <label class="checkbox"><input type="checkbox" /> <span>Structured highlights (if required)</span></label>
+        <label class="checkbox"><input type="checkbox" /> <span>Cover letter with novelty statement</span></label>
+        <label class="checkbox"><input type="checkbox" /> <span>Data availability statement</span></label>
+        <label class="checkbox"><input type="checkbox" /> <span>ORCID for all authors</span></label>
+        <label class="checkbox"><input type="checkbox" /> <span>Conflict of interest declaration</span></label>
+      </div>
+      <button class="btn btn-primary btn-block" style="margin-top:18px;" data-modal-close>Close</button>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/journals.js"></script>
+</body>
+</html>

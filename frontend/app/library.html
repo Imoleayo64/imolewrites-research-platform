@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reference Library — ImoleWrites Research Hub</title>
+  <meta name="description" content="Your organized reference library with collections, tags, and full-text search." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="library"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Reference Library"></div>
+
+      <div class="content">
+        <div class="dash-grid" style="align-items:start;">
+          <!-- Collections sidebar -->
+          <aside style="position:sticky;top:calc(var(--nav-height) + 24px);">
+            <div class="card card-pad">
+              <div class="input-group" style="margin-bottom:16px;"><span class="input-icon"><span data-icon="search"></span></span><input id="librarySearch" class="input" type="text" placeholder="Search library..." /></div>
+              <div class="ws-folder-header" style="padding:4px 0;"><span data-icon="folder"></span> Collections</div>
+              <div class="ws-tree-item active"><span data-icon="books"></span><span class="name">All references</span><span class="badge" id="libraryCount" style="margin-left:auto;">0</span></div>
+              <p class="text-muted" style="font-size:var(--fs-xs);margin-top:12px;">Custom collections and tags aren't available yet — every citation you save (from the Citation Manager or DOI lookup) shows up here automatically.</p>
+            </div>
+          </aside>
+
+          <!-- Library grid -->
+          <div>
+            <div class="page-title-row" style="margin-bottom:20px;">
+              <div><h1 style="font-size:var(--fs-2xl);">All references</h1><p class="text-muted" style="font-size:var(--fs-sm);" id="librarySummary">Loading…</p></div>
+              <div class="flex gap-2">
+                <a class="btn btn-secondary btn-sm" href="citations.html"><span data-icon="plus"></span> Add citation</a>
+              </div>
+            </div>
+
+            <div id="libraryGrid" class="grid grid-2 gap-card">
+              <p class="text-muted">Loading your references…</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/library.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Citation Manager — ImoleWrites Research Hub</title>
+  <meta name="description" content="Generate citations in APA, MLA, Chicago, Harvard, IEEE, and Vancouver with DOI lookup and BibTeX." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <style>
+    .cite-entry { padding:16px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--surface); margin-bottom:12px; font-family:var(--font-mono); font-size:var(--fs-sm); line-height:1.7; color:var(--text-2); }
+    .cite-entry .num { color:var(--blue-600); font-weight:700; margin-right:8px; }
+    .cite-entry.selected { border-color:var(--blue-600); box-shadow:0 0 0 1px var(--blue-600); }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="citations"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Citation Manager"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>Citation Manager</h1><p>Flawless citations in 6 styles — with DOI lookup & BibTeX.</p></div>
+          <div class="flex gap-2">
+            <button class="btn btn-secondary" data-modal-open="doiModal"><span data-icon="search"></span> DOI Lookup</button>
+            <button class="btn btn-primary" data-modal-open="addCiteModal"><span data-icon="plus"></span> Add Citation</button>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <!-- Style + entry -->
+          <div class="flex flex-col gap-6">
+            <div class="card card-pad">
+              <label class="label" style="margin-bottom:12px;">Citation style</label>
+              <div class="filter-chips" data-chip-group id="styleGroup">
+                <button class="chip active" data-style="APA">APA 7th</button>
+                <button class="chip" data-style="MLA">MLA 9th</button>
+                <button class="chip" data-style="Chicago">Chicago</button>
+                <button class="chip" data-style="Harvard">Harvard</button>
+                <button class="chip" data-style="IEEE">IEEE</button>
+                <button class="chip" data-style="Vancouver">Vancouver</button>
+              </div>
+            </div>
+
+            <div class="card card-pad">
+              <div class="flex items-center justify-between" style="margin-bottom:16px;">
+                <h3 id="bibHeading" style="margin:0;">Bibliography (0 sources)</h3>
+                <div class="flex gap-2">
+                  <button class="btn btn-ghost btn-sm" data-copy="#bibList"><span data-icon="copy"></span> Copy</button>
+                  <button id="exportBibBtn" class="btn btn-soft btn-sm"><span data-icon="download"></span> Export</button>
+                </div>
+              </div>
+              <div id="bibList">
+                <p class="text-muted" style="font-size:var(--fs-sm);">Loading your bibliography…</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: in-text + tools -->
+          <div class="flex flex-col gap-6">
+            <div class="card card-pad">
+              <h3 style="margin-bottom:12px;">In-text preview</h3>
+              <div class="cite-entry" style="font-family:var(--font-sans);"><span id="inText">Add a source to preview its in-text citation.</span></div>
+              <p class="hint" style="margin-top:8px;">Updates automatically with the selected style.</p>
+            </div>
+
+            <div class="card card-pad">
+              <h3 style="margin-bottom:12px;">Quick add by DOI</h3>
+              <div class="input-group" style="margin-bottom:12px;">
+                <span class="input-icon"><span data-icon="link"></span></span>
+                <input id="quickDoiInput" class="input" type="text" placeholder="10.1038/s41558-024-02010-x" />
+              </div>
+              <button id="quickDoiBtn" class="btn btn-soft btn-block btn-sm"><span data-icon="search"></span> Fetch metadata</button>
+            </div>
+
+            <div class="card card-pad">
+              <div class="flex items-center gap-2" style="margin-bottom:10px;"><span class="icon-tile xs bg-purple"><span data-icon="code"></span></span><h4 style="margin:0;">BibTeX</h4></div>
+              <div id="bibtexBlock" class="cite-entry" style="max-height:160px;overflow:auto;">Add a source to see its BibTeX entry.</div>
+              <button id="copyBibtexBtn" class="btn btn-ghost btn-sm btn-block" style="margin-top:10px;"><span data-icon="copy"></span> Copy BibTeX</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOI modal -->
+  <div class="modal-overlay" id="doiModal">
+    <div class="modal">
+      <h3 style="margin-bottom:8px;">DOI Lookup</h3>
+      <p class="text-muted" style="margin-bottom:20px;font-size:var(--fs-sm);">Paste a DOI to auto-fetch citation metadata.</p>
+      <div class="field"><div class="input-group"><span class="input-icon"><span data-icon="link"></span></span><input id="doiModalInput" class="input" placeholder="10.xxxx/xxxxx" /></div></div>
+      <div class="flex gap-2"><button class="btn btn-secondary btn-block" data-modal-close>Cancel</button><button id="doiModalFetchBtn" class="btn btn-primary btn-block">Fetch</button></div>
+    </div>
+  </div>
+  <!-- Add citation modal -->
+  <div class="modal-overlay" id="addCiteModal">
+    <div class="modal">
+      <h3 style="margin-bottom:16px;">Add citation</h3>
+      <div class="field"><label class="label">Source type</label><select id="addCiteType" class="select"><option value="journal-article">Journal article</option><option value="book">Book</option><option value="book-chapter">Book chapter</option><option value="proceedings-article">Conference paper</option><option value="webpage">Website</option><option value="dissertation">Thesis</option></select></div>
+      <div class="field"><label class="label">Title</label><input id="addCiteTitle" class="input" placeholder="Article title" /></div>
+      <div class="grid grid-2 gap-4"><div class="field"><label class="label">Authors</label><input id="addCiteAuthors" class="input" placeholder="Last, First; Last, First" /></div><div class="field"><label class="label">Year</label><input id="addCiteYear" class="input" placeholder="2024" /></div></div>
+      <div class="field"><label class="label">Venue / Journal (optional)</label><input id="addCiteVenue" class="input" placeholder="Journal name" /></div>
+      <div class="flex gap-2" style="margin-top:8px;"><button class="btn btn-secondary btn-block" data-modal-close>Cancel</button><button id="addCiteSubmitBtn" class="btn btn-primary btn-block">Add</button></div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/citations.js"></script>
+</body>
+</html>

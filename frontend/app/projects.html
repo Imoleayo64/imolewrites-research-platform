@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Projects — ImoleWrites Research Hub</title>
+  <meta name="description" content="All your research projects in one place." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="projects"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="My Projects"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>My Projects</h1><p id="projectsSummary">Loading your projects…</p></div>
+          <div class="flex gap-2">
+            <div class="filter-chips" data-chip-group id="projFilters">
+              <button class="chip active" data-filter="all">All</button>
+              <button class="chip" data-filter="active">Active</button>
+              <button class="chip" data-filter="published">Published</button>
+            </div>
+            <a class="btn btn-primary" href="workspace.html"><span data-icon="plus"></span> New Project</a>
+          </div>
+        </div>
+
+        <div id="projectsGrid" class="grid grid-3 gap-card">
+          <p class="text-muted">Loading…</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status modal -->
+  <div class="modal-overlay" id="statusModal">
+    <div class="modal">
+      <h3 style="margin-bottom:16px;">Update project status</h3>
+      <div class="field">
+        <label class="label">Status</label>
+        <select id="statusSelect" class="select">
+          <option value="draft">Draft</option>
+          <option value="submitted">Submitted</option>
+          <option value="in_review">In review</option>
+          <option value="revisions">Revisions</option>
+          <option value="published">Published</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="label">Target journal (optional)</label>
+        <input id="statusJournalInput" class="input" placeholder="Journal name" />
+      </div>
+      <div class="flex gap-2" style="margin-top:8px;">
+        <button class="btn btn-secondary btn-block" data-modal-close>Cancel</button>
+        <button id="statusSaveBtn" class="btn btn-primary btn-block">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/projects-grid.js"></script>
+</body>
+</html>

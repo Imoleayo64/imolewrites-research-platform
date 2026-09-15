@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Workspace - ImoleWrites Research Hub</title>
+  <meta name="description" content="Your three-column research workspace: project navigation, rich text editor, and AI assistant." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="workspace"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Research Workspace"></div>
+
+      <div class="workspace">
+        <!-- LEFT: project navigation -->
+        <div class="ws-col ws-left">
+          <div class="ws-head">
+            <div>
+              <div class="text-muted" style="font-size:var(--fs-xs);">Project</div>
+              <h4 style="font-size:var(--fs-md);" id="project-title">Workspace</h4>
+            </div>
+            <button class="icon-btn" data-sidebar-toggle aria-label="Toggle sidebar" style="width:34px;height:34px;"><span data-icon="menu"></span></button>
+          </div>
+          <div class="ws-scroll">
+            <div class="ws-folder-header"><span data-icon="folderOpen"></span> Chapters</div>
+            
+            <!-- Dynamic Chapters List -->
+            <div id="dynamic-chapters-list">
+                <div class="ws-tree-item active"><span data-icon="fileText"></span><span class="name">Loading...</span></div>
+            </div>
+
+            <div class="ws-folder-header" style="margin-top:12px;"><span data-icon="bookOpen"></span> Research notes</div>
+
+            <div class="ws-folder-header" style="margin-top:12px;"><span data-icon="quote"></span> References (0)</div>
+
+            <button id="new-page-btn" class="btn btn-soft btn-block btn-sm" style="margin-top:14px;"><span data-icon="plus"></span> New page</button>
+          </div>
+        </div>
+
+        <!-- CENTER: editor -->
+        <div class="ws-col ws-center">
+          <div class="ws-head">
+            <div class="flex items-center gap-3">
+              <button class="icon-btn" data-ws-toggle=".ws-left" style="display:none;" aria-label="Toggle folders"></button>
+              <div>
+                <h4 style="font-size:var(--fs-md);" id="document-title" class="workspace-title">Untitled Document</h4>
+                <div class="text-muted" style="font-size:var(--fs-xs);"><span data-wordcount>0 words</span> · <span class="save-status">Not saved yet</span></div>
+              </div>
+              <button id="delete-project-btn" class="icon-btn tooltip" data-tip="Delete this page" aria-label="Delete this page" style="margin-left:6px;"><span data-icon="trash"></span></button>
+            </div>
+            <div class="flex items-center gap-2">
+              <div id="collabPresence" class="flex items-center" style="margin-right:4px;"></div>
+              <span id="collabStatus" class="badge" style="display:none;font-size:var(--fs-xs);"></span>
+              <button class="icon-btn tooltip" data-tip="Share" aria-label="Share" data-modal-open="shareModal"><span data-icon="share"></span></button>
+              <button class="icon-btn tooltip" data-tip="Comments" aria-label="Comments" id="workspace-comments-btn"><span data-icon="message"></span></button>
+              <button class="btn btn-soft btn-sm" data-modal-open="exportModal"><span data-icon="download"></span> Export</button>
+              <button class="btn btn-primary btn-sm" data-ws-toggle=".ws-right" style="display:none;"><span data-icon="sparkles"></span> AI</button>
+            </div>
+          </div>
+
+          <!-- toolbar -->
+          <div class="editor-toolbar">
+            <select class="editor-select" data-cmd="formatBlock" data-value="p"><option data-value="p">Paragraph</option></select>
+            <button class="editor-btn tooltip" data-cmd="formatBlock" data-value="h1" data-tip="Heading 1"><span data-icon="bold"></span></button>
+            <div class="editor-divider"></div>
+            <button class="editor-btn tooltip" data-cmd="bold" data-tip="Bold (⌘B)"><span data-icon="bold"></span></button>
+            <button class="editor-btn tooltip" data-cmd="italic" data-tip="Italic (⌘I)"><span data-icon="italic"></span></button>
+            <button class="editor-btn tooltip" data-cmd="underline" data-tip="Underline (⌘U)"><span data-icon="underline"></span></button>
+            <button class="editor-btn tooltip" data-cmd="strikeThrough" data-tip="Strikethrough"><span data-icon="strikethrough"></span></button>
+            <div class="editor-divider"></div>
+            <button class="editor-btn tooltip" data-cmd="insertUnorderedList" data-tip="Bullet list"><span data-icon="list"></span></button>
+            <button class="editor-btn tooltip" data-cmd="insertOrderedList" data-tip="Numbered list"><span data-icon="listOrdered"></span></button>
+            <button class="editor-btn tooltip" data-cmd="formatBlock" data-value="blockquote" data-tip="Quote"><span data-icon="quote2"></span></button>
+            <div class="editor-divider"></div>
+            <button class="editor-btn tooltip" data-cmd="justifyLeft" data-tip="Align left"><span data-icon="alignLeft"></span></button>
+            <button class="editor-btn tooltip" data-cmd="justifyCenter" data-tip="Align center"><span data-icon="alignCenter"></span></button>
+            <div class="editor-divider"></div>
+            <button class="editor-btn tooltip" data-cmd="createLink" data-tip="Insert link"><span data-icon="link"></span></button>
+            <div class="editor-divider"></div>
+            <button class="editor-btn tooltip" id="insertTableBtn" data-tip="Insert table"><span data-icon="table"></span></button>
+            <div class="dropdown" id="caseDropdown" style="position:relative;display:inline-block;">
+              <button class="editor-btn tooltip" id="caseDropdownBtn" data-tip="Change case">Aa <span data-icon="chevronDown" style="width:12px;height:12px;"></span></button>
+              <div id="caseDropdownMenu" class="dropdown-menu" style="display:none;position:absolute;top:100%;left:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);z-index:20;min-width:170px;padding:6px;">
+                <button type="button" class="dropdown-item" data-case="upper" style="display:block;width:100%;text-align:left;padding:8px 10px;border-radius:6px;background:none;border:0;cursor:pointer;">UPPERCASE</button>
+                <button type="button" class="dropdown-item" data-case="lower" style="display:block;width:100%;text-align:left;padding:8px 10px;border-radius:6px;background:none;border:0;cursor:pointer;">lowercase</button>
+                <button type="button" class="dropdown-item" data-case="title" style="display:block;width:100%;text-align:left;padding:8px 10px;border-radius:6px;background:none;border:0;cursor:pointer;">Title Case</button>
+                <button type="button" class="dropdown-item" data-case="sentence" style="display:block;width:100%;text-align:left;padding:8px 10px;border-radius:6px;background:none;border:0;cursor:pointer;">Sentence case</button>
+              </div>
+            </div>
+            <div class="editor-divider"></div>
+            <button class="editor-btn tooltip" id="citeBtn" data-tip="Insert citation"><span data-icon="quote"></span> Cite</button>
+            <div class="editor-divider"></div>
+            <button class="editor-btn tooltip" data-cmd="undo" data-tip="Undo"><span data-icon="undo"></span></button>
+            <button class="editor-btn tooltip" data-cmd="redo" data-tip="Redo"><span data-icon="redo"></span></button>
+            <div class="grow"></div>
+            <button class="editor-btn tooltip" id="focusModeBtn" data-tip="Focus mode — hide side panels"><span data-icon="maximize"></span></button>
+          </div>
+
+          <!-- Table context toolbar (shown when cursor is inside a table) -->
+          <div id="tableToolbar" style="display:none;padding:8px 18px;border-bottom:1px solid var(--border);background:var(--surface-3);gap:8px;align-items:center;" class="flex">
+            <span class="text-muted" style="font-size:var(--fs-xs);">Table:</span>
+            <button class="btn btn-ghost btn-xs" id="tblAddRowBtn">+ Row</button>
+            <button class="btn btn-ghost btn-xs" id="tblDelRowBtn">− Row</button>
+            <button class="btn btn-ghost btn-xs" id="tblAddColBtn">+ Column</button>
+            <button class="btn btn-ghost btn-xs" id="tblDelColBtn">− Column</button>
+            <button class="btn btn-ghost btn-xs" id="tblToggleHeaderBtn">Toggle header row</button>
+            <button class="btn btn-ghost btn-xs" id="tblDeleteBtn" style="color:var(--red-500, #ef4444);">Delete table</button>
+          </div>
+
+          <!-- editor content -->
+          <div class="editor-area">
+            <div class="editor-page" contenteditable="true" data-editor data-placeholder="Start writing your manuscript..."></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: AI assistant -->
+        <div class="ws-col ws-right">
+          <div class="ws-head">
+            <div class="flex items-center gap-2">
+              <span class="icon-tile xs bg-blue"><span data-icon="sparkles"></span></span>
+              <div><h4 style="font-size:var(--fs-md);">AI Assistant</h4><div class="text-muted" style="font-size:var(--fs-xs);">Grounded in your library</div></div>
+            </div>
+            <button class="icon-btn" data-ws-toggle=".ws-right" aria-label="Close panel"><span data-icon="close"></span></button>
+          </div>
+
+          <div class="chat-messages" data-chat-messages>
+          </div>
+
+          <div class="chat-input">
+            <div class="chat-suggest">
+              <button class="chip" data-suggest="Improve the clarity of this paragraph">✨ Improve clarity</button>
+              <button class="chip" data-suggest="Suggest a citation for this claim">📚 Suggest citation</button>
+              <button class="chip" data-suggest="Check grammar and tone">✔️ Check grammar</button>
+            </div>
+            <form data-chat-form>
+              <div id="chatAttachmentChip" style="display:none;margin-bottom:8px;"></div>
+              <div class="chat-composer">
+                <input type="file" id="chatAttachInput" accept=".pdf,.docx,.txt,.md,.csv" style="display:none;" />
+                <button type="button" class="icon-btn" id="chatAttachBtn" aria-label="Attach file" title="Attach a document"><span data-icon="upload"></span></button>
+                <textarea placeholder="Ask AI to write, research, or refine..." rows="1"></textarea>
+                <button class="chat-send" type="submit" aria-label="Send"><span data-icon="send"></span></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating AI -->
+      <button class="fab tooltip" data-tip="Open AI" data-ws-toggle=".ws-right" style="bottom:24px;left:50%;transform:translateX(-50%);position:fixed;animation:none;display:none;" aria-label="Open AI assistant"><span data-icon="sparkles"></span></button>
+    </div>
+  </div>
+
+  <!-- Export modal -->
+  <!-- Cite modal: search your library or your live Mendeley library, insert -->
+  <!-- an in-text citation at the cursor, and build a References list from -->
+  <!-- everything cited in this document so far. -->
+  <div class="modal-overlay" id="citeModal">
+    <div class="modal" style="max-width:560px;">
+      <h3 style="margin-bottom:6px;">Insert citation</h3>
+      <p class="text-muted" style="margin-bottom:16px;font-size:var(--fs-sm);">Search your library, insert an in-text citation at your cursor, then add a References list when you're done.</p>
+
+      <div class="tabs" data-tabs style="border:0;margin-bottom:14px;">
+        <button class="tab active" data-cite-tab="library">My Library</button>
+        <button class="tab" data-cite-tab="mendeley" id="citeMendeleyTab" style="display:none;">Mendeley</button>
+      </div>
+
+      <div class="flex gap-2" style="margin-bottom:12px;">
+        <input id="citeSearchInput" class="input" placeholder="Search by title or author..." style="flex:1;" />
+        <select id="citeStyleSelect" class="select" style="width:auto;">
+          <option value="APA">APA</option><option value="MLA">MLA</option><option value="Chicago">Chicago</option><option value="Harvard">Harvard</option><option value="IEEE">IEEE</option><option value="Vancouver">Vancouver</option>
+        </select>
+      </div>
+
+      <div id="citeResultsList" class="flex flex-col gap-2" style="max-height:320px;overflow-y:auto;"></div>
+
+      <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:14px;">
+        <div class="flex items-center justify-between">
+          <span class="text-muted" style="font-size:var(--fs-xs);"><span id="citeUsedCount">0</span> source(s) cited in this document</span>
+          <button id="insertReferencesBtn" class="btn btn-soft btn-sm"><span data-icon="quote"></span> Insert References list</button>
+        </div>
+      </div>
+
+      <button class="btn btn-secondary btn-block" style="margin-top:14px;" data-modal-close>Close</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="exportModal">
+    <div class="modal">
+      <h3 style="margin-bottom:8px;">Export document</h3>
+      <p class="text-muted" style="margin-bottom:20px;font-size:var(--fs-sm);">Choose a format. Citations will be formatted automatically.</p>
+      <div class="grid grid-2 gap-3" style="margin-bottom:20px;">
+        <button class="quick-action" data-export="DOCX"><span class="icon-tile sm bg-blue"><span data-icon="fileText"></span></span><span>DOCX</span></button>
+        <button class="quick-action" data-export="PDF"><span class="icon-tile sm bg-rose"><span data-icon="file"></span></span><span>PDF</span></button>
+        <button class="quick-action" data-export="Markdown"><span class="icon-tile sm bg-teal"><span data-icon="code"></span></span><span>Markdown</span></button>
+        <button class="quick-action" data-export="BibTeX"><span class="icon-tile sm bg-purple"><span data-icon="quote"></span></span><span>BibTeX</span></button>
+      </div>
+      <button class="btn btn-secondary btn-block" data-modal-close>Cancel</button>
+    </div>
+  </div>
+
+  <!-- Share / collaborators modal -->
+  <div class="modal-overlay" id="shareModal">
+    <div class="modal">
+      <h3 style="margin-bottom:6px;">Collaborators</h3>
+      <p class="text-muted" style="margin-bottom:18px;font-size:var(--fs-sm);">Anyone added here can edit this document live with you, like Google Docs. They need an existing ImoleWrites account.</p>
+      <div class="flex gap-2" style="margin-bottom:18px;">
+        <input id="shareEmailInput" class="input" type="email" placeholder="Collaborator's email" />
+        <select id="shareRoleSelect" class="select" style="width:auto;"><option value="editor">Editor</option><option value="viewer">Viewer</option></select>
+        <button id="shareInviteBtn" class="btn btn-primary">Invite</button>
+      </div>
+      <div id="shareMembersList" class="flex flex-col gap-2"></div>
+      <button class="btn btn-secondary btn-block" style="margin-top:18px;" data-modal-close>Close</button>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/markdown.js"></script>
+  <script src="../assets/js/editor.js"></script>
+  <script src="../assets/js/editor-extras.js"></script>
+  <script src="../assets/js/collab-share.js"></script>
+  <script src="../assets/js/cite.js"></script>
+  <script type="module" src="../assets/js/collab.js"></script>
+  
+  <script>
+    function syncToggles() {
+      const show = window.matchMedia("(max-width: 1024px)").matches;
+      document.querySelectorAll('[data-ws-toggle=".ws-right"], [data-ws-toggle=".ws-left"]').forEach(b => b.style.display = show ? "" : "none");
+      document.querySelector('.fab[data-ws-toggle]')?.style.setProperty('display', show ? 'inline-grid' : 'none');
+    }
+    window.addEventListener("resize", syncToggles);
+    document.addEventListener("DOMContentLoaded", syncToggles);
+  </script>
+</body>
+</html>

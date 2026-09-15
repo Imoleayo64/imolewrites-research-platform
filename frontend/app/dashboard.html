@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - ImoleWrites Research Hub</title>
+  <meta name="description" content="Your ImoleWrites research dashboard." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+
+<script>
+const token = localStorage.getItem("imole-token") || localStorage.getItem("access_token");
+
+if (!token) {
+    window.location.href = "../auth/login.html";
+}
+</script>
+
+<div class="app-shell">
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="dashboard"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Dashboard"></div>
+
+      <div class="content">
+        <!-- Welcome -->
+        <div class="flex items-center justify-between gap-4 flex-wrap" style="margin-bottom:28px;">
+          <div>
+            <h1 id="dashGreeting" style="font-size:var(--fs-3xl);">Welcome back 👋</h1>
+            <p id="dashSubtext" class="text-muted" style="margin-top:4px;">Loading your workspace…</p>
+          </div>
+          <div class="flex gap-2">
+            <a class="btn btn-secondary" href="ai-assistant.html"><span data-icon="sparkles"></span> Ask AI</a>
+            <button type="button" class="btn btn-primary" onclick="forceCreateProject(event, this)">
+              <span data-icon="plus"></span> Create Workspace
+            </button>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="stat-grid" style="margin-bottom:28px;">
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Active projects</span><span class="icon-tile xs bg-blue"><span data-icon="folder"></span></span></div>
+            <div class="stat-card__value" id="dashProjectCount">—</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Words written</span><span class="icon-tile xs bg-teal"><span data-icon="pen"></span></span></div>
+            <div class="stat-card__value" id="dashWordCount">—</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">Saved citations</span><span class="icon-tile xs bg-purple"><span data-icon="book"></span></span></div>
+            <div class="stat-card__value" id="dashCitationCount">—</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-card__top"><span class="stat-card__label">AI interactions</span><span class="icon-tile xs bg-amber"><span data-icon="sparkles"></span></span></div>
+            <div class="stat-card__value" id="dashAiCount">—</div>
+          </div>
+        </div>
+
+        <!-- Main grid -->
+        <div class="dash-grid" style="margin-bottom:28px;">
+          <!-- Writing progress -->
+          <div class="panel">
+            <div class="panel__head">
+              <h3>Writing activity</h3>
+            </div>
+            <div class="panel__body">
+              <div id="progressChart" style="height:260px;"></div>
+              <p id="progressChartEmpty" class="text-muted" style="font-size:var(--fs-sm);display:none;">No writing activity in the last 7 days yet — save a project to see your trend here.</p>
+            </div>
+          </div>
+
+          <!-- Quick actions -->
+          <div class="flex flex-col gap-6">
+            <div class="panel">
+              <div class="panel__head"><h3>Quick actions</h3></div>
+              <div class="panel__body">
+                <div class="quick-actions">
+                  <a class="quick-action" href="javascript:void(0)" onclick="forceCreateProject(event, this)">
+                    <span class="icon-tile sm bg-blue"><span data-icon="fileText"></span></span><span>Create Workspace</span>
+                  </a>
+                  <a class="quick-action" href="literature.html"><span class="icon-tile sm bg-teal"><span data-icon="bookOpen"></span></span><span>Search papers</span></a>
+                  <a class="quick-action" href="citations.html"><span class="icon-tile sm bg-purple"><span data-icon="quote"></span></span><span>Add citation</span></a>
+                  <a class="quick-action" href="humanizer.html"><span class="icon-tile sm bg-rose"><span data-icon="wand"></span></span><span>Humanize text</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel__head"><h3>Deadlines</h3><span class="badge">Coming soon</span></div>
+              <div class="panel__body">
+                <p class="text-muted" style="font-size:var(--fs-sm);">Deadline tracking isn't built yet — you can track a project's status (draft/submitted/published) from the Projects page.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent projects -->
+        <div class="dash-grid">
+          <div class="panel">
+            <div class="panel__head"><h3>Recent projects</h3><a class="more" href="projects.html">View all</a></div>
+            <div class="panel__body" style="padding-top:6px;padding-bottom:6px;" id="dashRecentProjects">
+              <p class="text-muted" style="font-size:var(--fs-sm);padding:12px 4px;">Loading…</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel__head"><h3>AI Assistant</h3><a class="more" href="ai-assistant.html">Open chat</a></div>
+            <div class="panel__body">
+              <p class="text-muted" style="font-size:var(--fs-sm);">Chat history isn't saved between visits yet — each visit to the AI Assistant starts a fresh conversation.</p>
+              <a class="btn btn-secondary btn-sm" href="ai-assistant.html" style="margin-top:10px;"><span data-icon="sparkles"></span> Start a chat</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/icons.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+
+<script>
+  async function forceCreateProject(event, buttonElement) {
+      if (event) {
+          event.preventDefault();
+          event.stopPropagation();
+      }
+      if (buttonElement) {
+          buttonElement.disabled = true;
+          buttonElement.innerHTML = '<span class="spinner"></span> Creating...';
+      }
+      try {
+          const project = await window.API.createProject({ title: "Untitled Project", description: "A new research project." });
+          window.location.href = "workspace.html?id=" + project.id;
+      } catch (err) {
+          console.error(err);
+          if (buttonElement) {
+              buttonElement.disabled = false;
+              buttonElement.innerHTML = '<span data-icon="plus"></span> Create Workspace';
+              if (window.Icon && window.Icon.fill) window.Icon.fill();
+          }
+          if (window.IW && window.IW.Toast) window.IW.Toast.show("Couldn't create project — is the backend running?", "alert", "Dashboard");
+      }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Literature Search — ImoleWrites Research Hub</title>
+  <meta name="description" content="Search 85M+ academic papers with smart filters." />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232563eb'/%3E%3Cpath d='M9 17V8.5l5 3.5-5 3.5z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div data-mount="sidebar" data-active="literature"></div>
+    <div data-mount="sidebar-backdrop"></div>
+
+    <div class="main">
+      <div data-mount="topbar" data-title="Literature Search"></div>
+
+      <div class="content">
+        <div class="page-title-row">
+          <div><h1>Literature Search</h1><p>Search real academic papers via CrossRef — no fake results.</p></div>
+          <a class="btn btn-secondary" href="library.html"><span data-icon="bookmark"></span> My library</a>
+        </div>
+
+        <!-- Search bar -->
+        <div class="card card-pad-lg" style="margin-bottom:16px;">
+          <form id="litSearchForm" class="input-group" style="margin-bottom:0;">
+            <span class="input-icon"><span data-icon="search"></span></span>
+            <input id="litQuery" class="input" type="text" style="height:54px;font-size:var(--fs-lg);" placeholder="Search papers, authors, DOIs, or ask a question..." value="adaptive machine learning climate modeling" />
+            <span class="input-affix"><button id="litSearchBtn" type="submit" class="btn btn-primary" style="margin-right:6px;">Search <span data-icon="arrowRight"></span></button></span>
+          </form>
+        </div>
+
+        <!-- Search controls: year range, result count, style, sort -->
+        <div class="card card-pad" style="margin-bottom:16px;">
+          <div class="flex items-end gap-4 flex-wrap">
+            <div class="field" style="margin-bottom:0;">
+              <label class="label" style="font-size:var(--fs-xs);">Year from</label>
+              <input id="litYearFrom" class="input" type="number" placeholder="e.g. 2022" style="width:110px;" min="1900" max="2100" />
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label class="label" style="font-size:var(--fs-xs);">Year to</label>
+              <input id="litYearTo" class="input" type="number" placeholder="e.g. 2026" style="width:110px;" min="1900" max="2100" />
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label class="label" style="font-size:var(--fs-xs);">Number of papers</label>
+              <input id="litLimit" class="input" type="number" value="20" min="1" max="100" style="width:100px;" />
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label class="label" style="font-size:var(--fs-xs);">Sort</label>
+              <select id="litSort" class="select" style="width:auto;">
+                <option value="relevance">Relevance</option><option value="newest">Newest first</option><option value="cited">Most cited</option>
+              </select>
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label class="label" style="font-size:var(--fs-xs);">Citation style</label>
+              <select id="litStyle" class="select" style="width:auto;">
+                <option value="APA">APA</option><option value="MLA">MLA</option><option value="Chicago">Chicago</option><option value="Harvard">Harvard</option><option value="IEEE">IEEE</option><option value="Vancouver">Vancouver</option>
+              </select>
+            </div>
+            <div class="grow"></div>
+            <button id="litApplyBtn" class="btn btn-primary btn-sm">Apply</button>
+          </div>
+        </div>
+
+        <!-- Quick filters -->
+        <div class="filter-bar">
+          <div class="filter-chips" data-chip-group id="litFilters">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="open_access">Open access</button>
+            <button class="chip" data-filter="review">Review articles</button>
+            <button class="chip" data-filter="cited">Highly cited</button>
+          </div>
+        </div>
+
+        <p id="litResultsSummary" class="text-muted" style="margin-bottom:12px;font-size:var(--fs-sm);">Search above to find papers.</p>
+
+        <div id="litExportBar" class="flex gap-2" style="margin-bottom:20px;display:none;">
+          <button id="litExportTxtBtn" class="btn btn-soft btn-sm"><span data-icon="download"></span> Export .txt (<span class="litStyleLabel">APA</span>)</button>
+          <button id="litExportBibtexBtn" class="btn btn-soft btn-sm"><span data-icon="download"></span> Export BibTeX</button>
+        </div>
+
+        <!-- Results -->
+        <div id="litResults" class="flex flex-col gap-4"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/literature.js?v=2"></script>
+</body>
+</html>
