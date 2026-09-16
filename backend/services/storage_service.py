@@ -1,5 +1,6 @@
 import os
 import uuid
+import botocore.exceptions
 
 LOCAL_UPLOAD_DIR = os.getenv("LOCAL_UPLOAD_DIR", "uploads")
 
@@ -38,19 +39,30 @@ def save_file(user_id: int, filename: str, content: bytes) -> str:
     return key
 
 
-def read_file(key: str) -> bytes:
+def read_file(key: str):
     if USE_S3:
-        obj = _s3_client().get_object(Bucket=S3_BUCKET, Key=key)
-        return obj["Body"].read()
+        try:
+            obj = _s3_client().get_object(Bucket=S3_BUCKET, Key=key)
+            return obj["Body"].read()
+        except botocore.exceptions.ClientError as e:
+            if e.response['Error']['Code'] == 'NoSuchKey':
+                return None
+            return None 
 
     path = os.path.join(LOCAL_UPLOAD_DIR, key)
+    if not os.path.exists(path):
+        return None
+        
     with open(path, "rb") as f:
         return f.read()
 
 
 def delete_file(key: str):
     if USE_S3:
-        _s3_client().delete_object(Bucket=S3_BUCKET, Key=key)
+        try:
+            _s3_client().delete_object(Bucket=S3_BUCKET, Key=key)
+        except Exception:
+            pass
         return
     path = os.path.join(LOCAL_UPLOAD_DIR, key)
     if os.path.exists(path):
@@ -58,6 +70,6 @@ def delete_file(key: str):
 
 
 def is_using_persistent_storage() -> bool:
-    """False means local disk — fine for dev, but many free hosting tiers wipe
+    """False means local disk, fine for dev, but many free hosting tiers wipe
     local disks on redeploy/restart. Surfaced so the UI can warn honestly."""
     return USE_S3
