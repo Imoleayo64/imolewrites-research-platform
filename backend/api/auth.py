@@ -132,11 +132,19 @@ async def upload_avatar(
 
 @router.get("/me/avatar/{user_id}")
 def get_avatar(user_id: int, db: Session = Depends(get_db)):
-    """Public (no auth) so plain <img> tags can load it — profile photos aren't sensitive."""
+    """Public (no auth) so plain <img> tags can load it, profile photos aren't sensitive."""
     user = db.query(UserModel).filter(UserModel.id == user_id).first()
+    
     if not user or not user.avatar_key:
         raise HTTPException(status_code=404, detail="No avatar set")
+        
     content = read_file(user.avatar_key)
+    
+    # SAFETY CHECK: If read_file returns None (e.g. Render deleted the file),
+    # we must raise a 404 instead of passing None to the Response.
+    if not content:
+        raise HTTPException(status_code=404, detail="Avatar file missing from server")
+        
     return Response(content=content, media_type="image/*")
 
 
