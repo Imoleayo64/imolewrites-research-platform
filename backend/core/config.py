@@ -9,7 +9,7 @@ class Settings:
     APP_VERSION = "2.0.0"
 
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-    GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+    GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
     DATABASE_URL = os.getenv("DATABASE_URL")
     SECRET_KEY = os.getenv("SECRET_KEY")
     SECRET_KEY = os.getenv(
